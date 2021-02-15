@@ -1186,7 +1186,7 @@ public class HomeFragment extends Fragment {
         try {
             System.out.println("Beginning 1");
             reader = new BufferedReader(
-                    new InputStreamReader(getActivity().getAssets().open("pangramLongList.txt")));
+                    new InputStreamReader(getActivity().getAssets().open("scrabblePangramList.txt")));
 
             // do reading, usually loop until end of file reading
             String mLine;

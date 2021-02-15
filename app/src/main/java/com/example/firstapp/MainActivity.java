@@ -399,7 +399,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             System.out.println("Beginning 1");
             reader = new BufferedReader(
-                    new InputStreamReader(getAssets().open("pangramLongList.txt")));
+                    new InputStreamReader(getAssets().open("scrabblePangramList.txt")));
 
             // do reading, usually loop until end of file reading
             String mLine;
