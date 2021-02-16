@@ -816,7 +816,7 @@ public class HomeFragment extends Fragment {
                 reader.close();
             } catch (IOException e) {
                 //log the exception
-                System.out.println("An exception occurred while reading achievementFile");
+                System.out.println("An exception occurred while reading settingstFile");
             }
 
             //Update UI to reflect savefile
@@ -897,13 +897,10 @@ public class HomeFragment extends Fragment {
                 }).start();
                 System.out.println("saveFileError = FALSE");
             }
-            writeSave(saveFileStrings, context, "saveFile.txt");
-            writeSave(userStatsFileStrings, context, "userStatsFile.txt");
-            writeSave(userAchievementFileStrings, context, "achievementFile.txt");
-            writeSave(settingsFileStrings, context, "settingsFile.txt");
-
-            System.out.println("Stored to string");
-            System.out.println(saveFileStrings);
+//            writeSave(saveFileStrings, context, "saveFile.txt");
+//            writeSave(userStatsFileStrings, context, "userStatsFile.txt");
+//            writeSave(userAchievementFileStrings, context, "achievementFile.txt");
+//            writeSave(settingsFileStrings, context, "settingsFile.txt");
 
         } catch (IOException e) {
             //log the exception
@@ -912,56 +909,62 @@ public class HomeFragment extends Fragment {
     }
 
     private void writeSave(ArrayList<String> stringArrayList, Context context, String filename) {
-        if (filename == "saveFile.txt") {
-            try {
-                writeToFile("", context, filename);
-                String tempString = "NEWPLAYER == FALSE\n";
-                for (int i = 1; i < 8; i++) {
-                    tempString += stringArrayList.get(i) + "\n";
+        switch (filename) {
+            case "saveFile.txt":
+                try {
+                    writeToFile("", context, filename);
+                    String tempString = "NEWPLAYER == FALSE\n";
+                    for (int i = 1; i < 8; i++) {
+                        tempString += stringArrayList.get(i) + "\n";
+                    }
+                    tempString += score + "\n";
+                    for (int i = 9; i < saveFileStrings.size(); i++) {
+                        tempString += saveFileStrings.get(i) + "\n";
+                    }
+                    appendToFile(tempString, context, filename);
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.println("Error while saving saveFileStrings.");
                 }
-                tempString += score + "\n";
-                for (int i = 9; i < saveFileStrings.size(); i++) {
-                    tempString += saveFileStrings.get(i) + "\n";
+                break;
+            case "userStatsFile.txt":
+                try {
+                    writeToFile("", context, filename);
+                    String tempString = "";
+                    for (int i = 0; i < userStatsFileStrings.size(); i++) {
+                        tempString += userStatsFileStrings.get(i) + "\n";
+                    }
+                    appendToFile(tempString, context, filename);
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.println("Error while saving userStatsFileStrings.");
                 }
-                appendToFile(tempString, context, filename);
-            } catch (IndexOutOfBoundsException e) {
-                System.out.println("Error while saving saveFileStrings.");
-            }
-        } else if (filename == "userStatsFile.txt") {
-            try {
-                writeToFile("", context, filename);
-                String tempString = "";
-                for (int i = 0; i < userStatsFileStrings.size(); i++) {
-                    tempString += userStatsFileStrings.get(i) + "\n";
+                break;
+            case "achievementFile.txt":
+                try {
+                    writeToFile("", context, filename);
+                    String tempString = "";
+                    for (int i = 0; i < userAchievementFileStrings.size(); i++) {
+                        tempString += userAchievementFileStrings.get(i) + "\n";
+                    }
+                    appendToFile(tempString, context, filename);
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.println("Error while saving achievementFileStrings.");
                 }
-                appendToFile(tempString, context, filename);
-            } catch (IndexOutOfBoundsException e) {
-                System.out.println("Error while saving userStatsFileStrings.");
-            }
-        } else if (filename == "achievementFile.txt") {
-            try {
-                writeToFile("", context, filename);
-                String tempString = "";
-                for (int i = 0; i < userAchievementFileStrings.size(); i++) {
-                    tempString += userAchievementFileStrings.get(i) + "\n";
+                break;
+            case "settingsFile.txt":
+                try {
+                    writeToFile("", context, filename);
+                    String tempString = "";
+                    for (int i = 0; i < settingsFileStrings.size(); i++) {
+                        tempString += settingsFileStrings.get(i) + "\n";
+                    }
+                    appendToFile(tempString, context, filename);
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.println("Error while saving settingsFileStrings.");
                 }
-                appendToFile(tempString, context, filename);
-            } catch (IndexOutOfBoundsException e) {
-                System.out.println("Error while saving achievementFileStrings.");
-            }
-        } else if (filename == "settingsFile.txt") {
-            try {
-                writeToFile("", context, filename);
-                String tempString = "";
-                for (int i = 0; i < settingsFileStrings.size(); i++) {
-                    tempString += settingsFileStrings.get(i) + "\n";
-                }
-                appendToFile(tempString, context, filename);
-            } catch (IndexOutOfBoundsException e) {
-                System.out.println("Error while saving settingsFileStrings.");
-            }
-        } else {
-            System.out.println("WriteSave is not defined for " + filename + ". Did you mean to use writeToFile?");
+                break;
+            default:
+                System.out.println("WriteSave is not defined for " + filename + ". Did you mean to use writeToFile?");
+                break;
         }
     }
 
@@ -1061,8 +1064,7 @@ public class HomeFragment extends Fragment {
         }
 
         String tempString = "";
-        for (int i = 0; i < usedLetters.length; i++)
-            tempString += usedLetters[i] + "\n";
+        for (String usedLetter : usedLetters) tempString += usedLetter + "\n";
         appendToFile(tempString, HomeFragment.this.getActivity(), "saveFile.txt");
 
         possibleWords.clear();
@@ -1111,9 +1113,18 @@ public class HomeFragment extends Fragment {
             BufferedReader reader = null;
             try {
                 System.out.println("Beginning 4");
+                String filename;
+                try {
+                    if (Boolean.parseBoolean(settingsFileStrings.get(1))) {
+                        filename = "scrabbleWordList.txt";
+                    } else {
+                        filename = "commonWordList.txt";
+                    }
+                } catch (NullPointerException e) {
+                    filename = "scrabbleWordList.txt";
+                }
                 reader = new BufferedReader(
-                        new InputStreamReader(getActivity().getAssets().open("scrabbleWordList.txt")));
-
+                        new InputStreamReader(getActivity().getAssets().open(filename)));
                 // do reading, usually loop until end of file reading
                 String mLine;
                 while ((mLine = reader.readLine()) != null) {
@@ -1185,8 +1196,18 @@ public class HomeFragment extends Fragment {
         ArrayList<String> pangramList = new ArrayList<String>();
         try {
             System.out.println("Beginning 1");
+            String filename;
+            try {
+                if (Boolean.parseBoolean(settingsFileStrings.get(1))) {
+                    filename = "scrabblePangramList.txt";
+                } else {
+                    filename = "commonPangramList.txt";
+                }
+            } catch (NullPointerException e) {
+                filename = "scrabblePangramList.txt";
+            }
             reader = new BufferedReader(
-                    new InputStreamReader(getActivity().getAssets().open("scrabblePangramList.txt")));
+                    new InputStreamReader(getActivity().getAssets().open(filename)));
 
             // do reading, usually loop until end of file reading
             String mLine;
@@ -1247,8 +1268,18 @@ public class HomeFragment extends Fragment {
         reader = null;
         try {
             System.out.println("Beginning 4");
+            String filename;
+            try {
+                if (Boolean.parseBoolean(settingsFileStrings.get(1))) {
+                    filename = "scrabbleWordList.txt";
+                } else {
+                    filename = "commonWordList.txt";
+                }
+            } catch (NullPointerException e) {
+                filename = "scrabbleWordList.txt";
+            }
             reader = new BufferedReader(
-                    new InputStreamReader(getActivity().getAssets().open("scrabbleWordList.txt")));
+                    new InputStreamReader(getActivity().getAssets().open(filename)));
 
             // do reading, usually loop until end of file reading
             String mLine;
