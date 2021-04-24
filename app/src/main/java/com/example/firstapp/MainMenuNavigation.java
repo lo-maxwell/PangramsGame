@@ -1,29 +1,26 @@
 package com.example.firstapp;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
+import android.view.Menu;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
-
-import androidx.drawerlayout.widget.DrawerLayout;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
-import android.view.Menu;
+import com.google.android.material.snackbar.Snackbar;
 
 public class MainMenuNavigation extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
+    private static MediaPlayer backgroundMusic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +53,11 @@ public class MainMenuNavigation extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+
+        //Testing in progress
+        backgroundMusic = MediaPlayer.create(getApplicationContext(), R.raw.music_fantasy);
+        startMusicPlayer(backgroundMusic);
     }
 
     @Override
@@ -70,5 +72,33 @@ public class MainMenuNavigation extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if ((backgroundMusic!= null) && (backgroundMusic.isPlaying())) {stopMusicPlayer(backgroundMusic);}
+
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if ((backgroundMusic!= null) && (backgroundMusic.isPlaying())) {stopMusicPlayer(backgroundMusic);}
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if ((backgroundMusic!= null) && !(backgroundMusic.isPlaying())) {startMusicPlayer(backgroundMusic);}
+    }
+
+    private void startMusicPlayer(MediaPlayer music){
+        music.start();
+        music.setLooping(true);
+    }
+
+    private void stopMusicPlayer(MediaPlayer music){
+        music.pause();
     }
 }

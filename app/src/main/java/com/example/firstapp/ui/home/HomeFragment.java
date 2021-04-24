@@ -45,7 +45,6 @@ public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
 
-    public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
     private static ArrayList<String> saveFileStrings = new ArrayList<String>();
     private static ArrayList<String> preLoadFileStrings = new ArrayList<String>();
     private static ArrayList<String> userStatsFileStrings = new ArrayList<String>();
@@ -482,6 +481,7 @@ public class HomeFragment extends Fragment {
             @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
             @Override
             public void onClick(View view) {
+
                 Random rand = new Random();
                 ArrayList<Integer> randomIntArray = new ArrayList<Integer>();
                 randomIntArray.add(4);
@@ -1650,4 +1650,6 @@ public class HomeFragment extends Fragment {
             startPlaytimeTimer();
         }
     }
+
+
 }
