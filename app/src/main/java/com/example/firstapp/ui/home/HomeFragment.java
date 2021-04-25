@@ -27,6 +27,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.firstapp.MainMenuNavigation;
 import com.example.firstapp.R;
 
 import java.io.BufferedReader;
@@ -813,6 +814,7 @@ public class HomeFragment extends Fragment {
                     //Ads
                     settingsFileStrings.add("False");
                 }
+                MainMenuNavigation.setMusicVolume(MainMenuNavigation.backgroundMusic, Integer.parseInt(settingsFileStrings.get(0)));
                 reader.close();
             } catch (IOException e) {
                 //log the exception

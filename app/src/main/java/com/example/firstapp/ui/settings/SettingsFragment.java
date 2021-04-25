@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.firstapp.MainMenuNavigation;
 import com.example.firstapp.R;
 
 import java.io.BufferedReader;
@@ -26,6 +27,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+
 //Read settings file, preset if no existing file or update screen values to current
 public class SettingsFragment extends Fragment {
 
@@ -59,6 +61,8 @@ public class SettingsFragment extends Fragment {
                 // handle progress change
                 settingsFileStrings.set(0, Integer.toString(i));
                 writeSave(settingsFileStrings, SettingsFragment.this.getActivity(), "settingsFile.txt");
+                MainMenuNavigation.setMusicVolume(MainMenuNavigation.backgroundMusic, Integer.parseInt(settingsFileStrings.get(0)));
+                System.out.println("Current volume level: " + settingsFileStrings.get(0));
             }
 
             @Override

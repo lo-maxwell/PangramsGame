@@ -20,7 +20,7 @@ import com.google.android.material.snackbar.Snackbar;
 public class MainMenuNavigation extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
-    private static MediaPlayer backgroundMusic;
+    public static MediaPlayer backgroundMusic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,9 +55,10 @@ public class MainMenuNavigation extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
 
-        //Testing in progress
+        //Testing in progress for music player
         backgroundMusic = MediaPlayer.create(getApplicationContext(), R.raw.music_fantasy);
         startMusicPlayer(backgroundMusic);
+        setMusicVolume(backgroundMusic, 0); //Prevent 1-second music playing at start
     }
 
     @Override
@@ -100,5 +101,10 @@ public class MainMenuNavigation extends AppCompatActivity {
 
     private void stopMusicPlayer(MediaPlayer music){
         music.pause();
+    }
+
+    public static void setMusicVolume(MediaPlayer music, int volume) {
+        float log1=(float)(1-(Math.log(101-volume)/Math.log(101)));
+        music.setVolume(log1,log1);
     }
 }

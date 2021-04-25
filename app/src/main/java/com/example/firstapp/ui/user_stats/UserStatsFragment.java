@@ -34,6 +34,7 @@ public class UserStatsFragment extends Fragment {
 
     private UserStatsViewModel userStatsViewModel;
     private int counter;
+    private static Handler screenUpdater;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -95,11 +96,16 @@ public class UserStatsFragment extends Fragment {
                 messageBox.setTextColor(ContextCompat.getColor(context, R.color.red));
                 messageBox.setText("Deleted save file!");
                 //Restarts playtimeHandler in home fragment so that time resets to 0
-                HomeFragment.playtimeHandler.removeCallbacksAndMessages(null);
-                HomeFragment.playtimeHandler = null;
-                mainTextView.setText("Total words submitted: 0\nLongest word submitted: N/A\nTotal pangrams: 0\nLongest pangram: N/A\nTotal points: 0\nBest score on a single set of letters: 0\nTotal time played: 0");
+                if (HomeFragment.playtimeHandler != null) {
+                    HomeFragment.playtimeHandler.removeCallbacksAndMessages(null);
+                    HomeFragment.playtimeHandler = null;
+                }
+                mainTextView.setText("Total words submitted: 0\nLongest word submitted: N/A\nTotal pangrams: 0\nLongest pangram: N/A\nTotal points: 0\nBest score on a single puzzle: 0\nTotal time played: 0");
+                counter = 0;
+                readSaveFile(UserStatsFragment.this.getActivity());
             }
         });
+
 
         readSaveFile(UserStatsFragment.this.getActivity());
         //Update text for main achievement list
@@ -121,12 +127,12 @@ public class UserStatsFragment extends Fragment {
     private void readSaveFile (Context context) {
         BufferedReader reader = null;
         try {
-            System.out.println("Opening userStatsFile");
+            System.out.println("USF: Opening userStatsFile");
             File file = new File(context.getFilesDir(), "userStatsFile.txt");
             if (!file.exists()) {
                 file.createNewFile();
-                System.out.println("Created new userStatsFile (This should never occur besides the first run after a new patch)");
-                System.out.println("Filling with default values...");
+                System.out.println("USF: Created new userStatsFile (This should never occur besides the first run after a new patch)");
+                System.out.println("USF: Filling with default values...");
                 //Words submitted (0), Longest word (none), Total points (0), Best score (0), Total Pangrams (0), Longest Pangram (none), Time Played (0)
                 String tempString = "0\nN/A\n0\n0\n0\nN/A\n0";
                 writeToFile(tempString, context, "userStatsFile.txt");
@@ -134,21 +140,21 @@ public class UserStatsFragment extends Fragment {
             FileInputStream fis = context.openFileInput("userStatsFile.txt");
             InputStreamReader inputStreamReader = new InputStreamReader(fis);
             reader = new BufferedReader(inputStreamReader);
-            System.out.println("Opened userStatsFile");
+            System.out.println("USF: Opened userStatsFile");
             String mLine = "";
             userStatsFileStrings.clear();
             while ((mLine = reader.readLine()) != null) {
                 //process line
                 String data = mLine.toUpperCase();
-                System.out.println("UserStatsFile: " + data);
+                System.out.println("USF: UserStatsFile: " + data);
                 userStatsFileStrings.add(data);
             }
             for (int i = 0; i < 7; i++) {
                 try {
                     System.out.println(userStatsFileStrings.get(i));
                 } catch (IndexOutOfBoundsException e) {
-                    System.out.println("Missing data! ");
-                    System.out.println("Filling in missing data.");
+                    System.out.println("USF: Missing data! ");
+                    System.out.println("USF: Filling in missing data.");
                     if (i == 1 || i == 5)
                         userStatsFileStrings.add(i, "N/A");
                     else
@@ -159,7 +165,7 @@ public class UserStatsFragment extends Fragment {
             reader.close();
         } catch (IOException e) {
             //log the exception
-            System.out.println("An exception occurred while reading userStatsFile");
+            System.out.println("USF: An exception occurred while reading userStatsFile");
         }
     }
 
@@ -248,10 +254,14 @@ public class UserStatsFragment extends Fragment {
     private void updateScreen () {
         //Does not affect playtimeHandler in home fragment
         //playtimeHandler keeps running and updating new times, which updateScreen will read
-        final Handler handler = new Handler();
+        if(screenUpdater != null) {
+            screenUpdater.removeCallbacksAndMessages(null); //null will remove callbacks for anonymous runnables
+            System.out.println("Deleted callbacks to screenUpdater"); //currently never runs this
+        } else System.out.println("screenUpdater is already null");
+        screenUpdater = new Handler();
         final int delay = 1000; //milliseconds
 
-        handler.postDelayed(new Runnable(){
+        screenUpdater.postDelayed(new Runnable(){
             public void run(){
                 mainTextView.post(new Runnable() {
                     public void run() {
@@ -267,7 +277,7 @@ public class UserStatsFragment extends Fragment {
                     }
                 });
                 counter ++;
-                handler.postDelayed(this, delay);
+                screenUpdater.postDelayed(this, delay);
             }
         }, delay);
 
