@@ -42,6 +42,11 @@ import java.util.Random;
 
 import static java.lang.Integer.parseInt;
 
+//minor issue: game time increments even when app is not in focus (as long as it is not killed)
+//TODO: Change background music
+//TODO: App icon, Credits page, Night Theme, Settings explanations
+//TODO: Remove ad setting
+
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;

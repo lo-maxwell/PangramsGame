@@ -30,7 +30,8 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="0dp"
                 android:textAlignment="center"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:gravity="center_horizontal" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/Sound_Constraint_Layout_Settings"
@@ -208,6 +209,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/Advertisements_Constraint_Layout_Settings"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="5dp">
@@ -220,6 +222,7 @@
                     android:layout_marginLeft="10dp"
                     android:text="@string/SettingsAdvertisementsLabel"
                     android:textSize="24sp"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -230,6 +233,7 @@
                     android:layout_height="40dp"
                     android:layout_marginStart="5dp"
                     android:layout_marginLeft="5dp"
+                    android:visibility="gone"
                     android:contentDescription="@string/SettingsInfoButtonImage"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/Advertisements_Label_Settings"
@@ -244,6 +248,7 @@
                     android:layout_marginRight="5dp"
                     android:text="@string/SettingsSwitchOff"
                     android:textSize="20sp"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/Advertisements_Switch_Settings"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -258,6 +263,7 @@
                     android:checked="false"
                     android:switchMinWidth="50dp"
                     android:textSize="28sp"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/Advertisements_Switch_Right_Label_Settings"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -270,6 +276,7 @@
                     android:layout_marginRight="10dp"
                     android:text="@string/SettingsSwitchOn"
                     android:textSize="20sp"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
