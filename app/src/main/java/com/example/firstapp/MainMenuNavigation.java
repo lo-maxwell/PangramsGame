@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
@@ -21,10 +22,12 @@ public class MainMenuNavigation extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     public static MediaPlayer backgroundMusic;
+    static MainMenuNavigation mainMenuNavigation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mainMenuNavigation = this;
         setContentView(R.layout.activity_main_menu_navigation);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -40,15 +43,10 @@ public class MainMenuNavigation extends AppCompatActivity {
         NavigationView navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        //mAppBarConfiguration = new AppBarConfiguration.Builder(
-        //        R.id.nav_home, R.id.nav_user_stats, R.id.nav_achievements,
-        //        R.id.nav_tools, R.id.nav_share, R.id.nav_send)
-        //        .setDrawerLayout(drawer)
-        //        .build();
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_user_stats, R.id.nav_achievements,
                 R.id.nav_settings)
-                .setDrawerLayout(drawer)
+                .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
@@ -94,6 +92,10 @@ public class MainMenuNavigation extends AppCompatActivity {
         if ((backgroundMusic!= null) && !(backgroundMusic.isPlaying())) {startMusicPlayer(backgroundMusic);}
     }
 
+    public static MainMenuNavigation getInstance(){
+        return   mainMenuNavigation;
+    }
+
     private void startMusicPlayer(MediaPlayer music){
         music.start();
         music.setLooping(true);
@@ -107,4 +109,28 @@ public class MainMenuNavigation extends AppCompatActivity {
         float log1=(float)(1-(Math.log(101-volume)/Math.log(101)));
         music.setVolume(log1,log1);
     }
+
+    public static void setNightMode(Boolean isOn) {
+        if (isOn && AppCompatDelegate.MODE_NIGHT_YES != AppCompatDelegate.getDefaultNightMode()) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            System.out.println("Night mode enabled");
+            mainMenuNavigation.refresh();
+        } else if(!isOn && AppCompatDelegate.MODE_NIGHT_NO != AppCompatDelegate.getDefaultNightMode()) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            System.out.println("Night mode disabled");
+            mainMenuNavigation.refresh();
+        } else {
+            System.out.println("Night mode setting is already correct");
+        }
+
+    }
+
+    private void refresh() {
+        finish();
+        overridePendingTransition(0, 0);
+        startActivity(getIntent());
+        overridePendingTransition(0, 0);
+        //Sends user back to home screen
+    }
+
 }

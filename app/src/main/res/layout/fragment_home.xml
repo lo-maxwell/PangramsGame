@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/Home_Constraint_Layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/backgroundColor">
 
     <TextView
         android:id="@+id/text_home"
@@ -14,11 +15,13 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:textAlignment="center"
+        android:textColor="@color/defaultSoftTextColor"
         android:textSize="20sp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center_horizontal" />
 
     <Button
         android:id="@+id/Add_Text_Button_1_Home"
@@ -28,6 +31,7 @@
         android:layout_marginRight="6dp"
         android:background="@drawable/button_circle_gray_ripple"
         android:onClick="addLetter"
+        android:textColor="@color/defaultHardTextColor"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/Add_Text_Button_4_Home"
         app:layout_constraintEnd_toStartOf="@+id/Add_Text_Button_2_Home"
@@ -41,6 +45,7 @@
         android:layout_marginLeft="6dp"
         android:background="@drawable/button_circle_gray_ripple"
         android:onClick="addLetter"
+        android:textColor="@color/defaultHardTextColor"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/Add_Text_Button_4_Home"
         app:layout_constraintEnd_toEndOf="@+id/Add_Text_Button_4_Home"
@@ -55,6 +60,7 @@
         android:layout_marginRight="9dp"
         android:background="@drawable/button_circle_gray_ripple"
         android:onClick="addLetter"
+        android:textColor="@color/defaultHardTextColor"
         android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@+id/Add_Text_Button_4_Home"
         app:layout_constraintTop_toBottomOf="@+id/Add_Text_Button_1_Home" />
@@ -66,6 +72,7 @@
         android:layout_marginTop="110dp"
         android:background="@drawable/button_circle_blue_ripple"
         android:onClick="addLetter"
+        android:textColor="@color/defaultHardTextColor"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -79,6 +86,7 @@
         android:layout_marginLeft="9dp"
         android:background="@drawable/button_circle_gray_ripple"
         android:onClick="addLetter"
+        android:textColor="@color/defaultHardTextColor"
         android:textSize="24sp"
         app:layout_constraintStart_toEndOf="@+id/Add_Text_Button_4_Home"
         app:layout_constraintTop_toBottomOf="@+id/Add_Text_Button_2_Home" />
@@ -91,6 +99,7 @@
         android:layout_marginRight="6dp"
         android:background="@drawable/button_circle_gray_ripple"
         android:onClick="addLetter"
+        android:textColor="@color/defaultHardTextColor"
         android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@+id/Add_Text_Button_7_Home"
         app:layout_constraintStart_toStartOf="@+id/Add_Text_Button_4_Home"
@@ -104,6 +113,7 @@
         android:layout_marginLeft="6dp"
         android:background="@drawable/button_circle_gray_ripple"
         android:onClick="addLetter"
+        android:textColor="@color/defaultHardTextColor"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="@+id/Add_Text_Button_4_Home"
         app:layout_constraintStart_toEndOf="@+id/Add_Text_Button_6_Home"
@@ -115,6 +125,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:text="@string/AnswerBox"
+        android:textColor="@color/defaultSoftTextColor"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -127,6 +138,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:text="@string/EmptyText"
+        android:textColor="@color/defaultSoftTextColor"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -156,6 +168,7 @@
                 android:layout_width="160dp"
                 android:layout_height="220dp"
                 android:text="@string/Score"
+                android:textColor="@color/defaultSoftTextColor"
                 tools:layout_editor_absoluteX="179dp"
                 tools:layout_editor_absoluteY="421dp" />
         </LinearLayout>
@@ -198,33 +211,39 @@
                 android:autoSizeTextType="none"
                 android:paddingLeft="0dp"
                 android:paddingTop="0dp"
-                android:text="@string/WordList" />
+                android:text="@string/WordList"
+                android:textColor="@color/defaultSoftTextColor" />
 
         </LinearLayout>
     </ScrollView>
 
     <Button
+        android:background="@color/defaultButtonColor"
         android:id="@+id/New_Game_Button_Home"
         android:layout_width="80dp"
         android:layout_height="60dp"
         android:onClick="startNewGame"
         android:text="@string/NewGame"
+        android:textColor="@color/defaultHardTextColor"
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
+        android:background="@color/defaultButtonColor"
         android:id="@+id/Shuffle_Button_Home"
         android:layout_width="100dp"
         android:layout_height="40dp"
         android:onClick="shuffleLetters"
         android:text="@string/ButtonShuffle"
+        android:textColor="@color/defaultHardTextColor"
         app:layout_constraintEnd_toStartOf="@+id/Submit_Button_Home"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/Erase_Button_Home"
         app:layout_constraintTop_toTopOf="@+id/Erase_Button_Home" />
 
     <Button
+        android:background="@color/defaultButtonColor"
         android:id="@+id/Submit_Button_Home"
         android:layout_width="100dp"
         android:layout_height="40dp"
@@ -232,6 +251,7 @@
         android:layout_marginBottom="32dp"
         android:onClick="submitWord"
         android:text="@string/SubmitButton"
+        android:textColor="@color/defaultHardTextColor"
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/Score_Tracker_Scroll_View_Home"
         app:layout_constraintEnd_toEndOf="parent"
@@ -240,6 +260,7 @@
         app:layout_constraintTop_toBottomOf="@+id/Add_Text_Button_4_Home" />
 
     <Button
+        android:background="@color/defaultButtonColor"
         android:id="@+id/Erase_Button_Home"
         android:layout_width="100dp"
         android:layout_height="40dp"
@@ -247,6 +268,7 @@
         android:layout_marginBottom="32dp"
         android:onClick="eraseAnswerBox"
         android:text="@string/ButtonErase"
+        android:textColor="@color/defaultHardTextColor"
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/Word_List_Scroll_View_Home"
         app:layout_constraintEnd_toStartOf="@+id/Shuffle_Button_Home"
@@ -255,176 +277,208 @@
         app:layout_constraintTop_toBottomOf="@+id/Add_Text_Button_4_Home" />
 
     <Button
+        android:background="@color/achievementButtonColor"
         android:id="@+id/Default_Achievement_Button_Home"
         android:layout_width="160dp"
         android:layout_height="48dp"
         android:drawableLeft="@android:drawable/btn_star_big_on"
         android:text="Achievement!"
+        android:textColor="@color/achievementTextColor"
         android:textSize="12sp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        android:background="@color/achievementButtonColor"
         android:id="@+id/Default_Achievement_Button_Home_2"
         android:layout_width="160dp"
         android:layout_height="48dp"
         android:drawableLeft="@android:drawable/btn_star_big_on"
         android:text="Achievement2!"
+        android:textColor="@color/achievementTextColor"
         android:textSize="12sp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        android:background="@color/achievementButtonColor"
         android:id="@+id/Default_Achievement_Button_Home_3"
         android:layout_width="160dp"
         android:layout_height="48dp"
         android:drawableLeft="@android:drawable/btn_star_big_on"
         android:text="Achievement3!"
+        android:textColor="@color/achievementTextColor"
         android:textSize="12sp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        android:background="@color/achievementButtonColor"
         android:id="@+id/Default_Achievement_Button_Home_4"
         android:layout_width="160dp"
         android:layout_height="48dp"
         android:drawableLeft="@android:drawable/btn_star_big_on"
         android:text="Achievement4!"
+        android:textColor="@color/achievementTextColor"
         android:textSize="12sp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        android:background="@color/achievementButtonColor"
         android:id="@+id/Default_Achievement_Button_Home_5"
         android:layout_width="160dp"
         android:layout_height="48dp"
         android:drawableLeft="@android:drawable/btn_star_big_on"
         android:text="Achievement5!"
+        android:textColor="@color/achievementTextColor"
         android:textSize="12sp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        android:background="@color/achievementButtonColor"
         android:id="@+id/Achievement_Button_Pangram_Home"
         android:layout_width="160dp"
         android:layout_height="48dp"
         android:drawableLeft="@android:drawable/btn_star_big_on"
         android:text="First Pangram!"
+        android:textColor="@color/achievementTextColor"
         android:textSize="12sp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        android:background="@color/achievementButtonColor"
         android:id="@+id/Achievement_Button_Word_Progress_10_Home"
         android:layout_width="160dp"
         android:layout_height="48dp"
         android:drawableLeft="@android:drawable/btn_star_big_on"
         android:text="10 Words!"
+        android:textColor="@color/achievementTextColor"
         android:textSize="12sp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        android:background="@color/achievementButtonColor"
         android:id="@+id/Achievement_Button_Word_Progress_25_Home"
         android:layout_width="160dp"
         android:layout_height="48dp"
         android:drawableLeft="@android:drawable/btn_star_big_on"
         android:text="25 Words!"
+        android:textColor="@color/achievementTextColor"
         android:textSize="12sp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        android:background="@color/achievementButtonColor"
         android:id="@+id/Achievement_Button_Word_Progress_50_Home"
         android:layout_width="160dp"
         android:layout_height="48dp"
         android:drawableLeft="@android:drawable/btn_star_big_on"
         android:text="50 Words!"
+        android:textColor="@color/achievementTextColor"
         android:textSize="12sp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        android:background="@color/achievementButtonColor"
         android:id="@+id/Achievement_Button_Longest_Word_7_Home"
         android:layout_width="160dp"
         android:layout_height="48dp"
         android:drawableLeft="@android:drawable/btn_star_big_on"
         android:text="Long Word!"
+        android:textColor="@color/achievementTextColor"
         android:textSize="12sp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        android:background="@color/achievementButtonColor"
         android:id="@+id/Achievement_Button_Longest_Word_9_Home"
         android:layout_width="160dp"
         android:layout_height="48dp"
         android:drawableLeft="@android:drawable/btn_star_big_on"
         android:text="Very Long Word!"
+        android:textColor="@color/achievementTextColor"
         android:textSize="12sp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        android:background="@color/achievementButtonColor"
         android:id="@+id/Achievement_Button_Longest_Word_11_Home"
         android:layout_width="160dp"
         android:layout_height="48dp"
         android:drawableLeft="@android:drawable/btn_star_big_on"
         android:text="Super Long Word!"
+        android:textColor="@color/achievementTextColor"
         android:textSize="12sp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        android:background="@color/achievementButtonColor"
         android:id="@+id/Achievement_Button_Longest_Word_13_Home"
         android:layout_width="160dp"
         android:layout_height="48dp"
         android:drawableLeft="@android:drawable/btn_star_big_on"
         android:text="Ridiculously Long Word!"
+        android:textColor="@color/achievementTextColor"
         android:textSize="12sp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        android:background="@color/achievementButtonColor"
         android:id="@+id/Achievement_Button_Speed_Demon_1_Home"
         android:layout_width="160dp"
         android:layout_height="48dp"
         android:drawableLeft="@android:drawable/btn_star_big_on"
         android:text="Quick As Lightning"
+        android:textColor="@color/achievementTextColor"
         android:textSize="12sp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        android:background="@color/achievementButtonColor"
         android:id="@+id/Achievement_Button_Speed_Demon_2_Home"
         android:layout_width="160dp"
         android:layout_height="48dp"
         android:drawableLeft="@android:drawable/btn_star_big_on"
         android:text="Speed Demon"
+        android:textColor="@color/achievementTextColor"
         android:textSize="12sp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        android:background="@color/achievementButtonColor"
         android:id="@+id/Achievement_Button_Playtime_Home"
         android:layout_width="160dp"
         android:layout_height="48dp"
         android:drawableLeft="@android:drawable/btn_star_big_on"
         android:text="1 Hour Played!"
+        android:textColor="@color/achievementTextColor"
         android:textSize="12sp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"

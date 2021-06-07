@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/Constraint_Layout_User_Stats"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/backgroundColor">
 
     <TextView
         android:id="@+id/text_user_stats"
@@ -14,11 +15,13 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:textAlignment="center"
+        android:textColor="@color/defaultSoftTextColor"
         android:textSize="20sp"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center_horizontal" />
 
     <TextView
         android:id="@+id/Display_Box_User_Stats"
@@ -32,12 +35,16 @@
         android:id="@+id/Button_Delete_Save_User_Stats"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@color/defaultButtonColor"
+        android:padding="5dp"
         android:text="@string/ButtonDeleteSave"
+        android:textColor="@color/red"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ScrollView
+        android:background="@color/backgroundColor"
         android:id="@+id/Main_Scroll_View_User_Stats"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -49,6 +56,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
+            android:background="@color/backgroundColor"
             android:id="@+id/Main_Linear_Layout_User_Stats"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -58,6 +66,7 @@
                 android:id="@+id/Main_TextView_User_Stats"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/defaultSoftTextColor"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp" />
         </LinearLayout>

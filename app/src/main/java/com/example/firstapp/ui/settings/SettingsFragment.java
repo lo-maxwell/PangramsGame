@@ -91,13 +91,17 @@ public class SettingsFragment extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 // do something, the isChecked will be
                 // true if the switch is in the On position
-                settingsFileStrings.set(2, Boolean.toString(isChecked));
-                writeSave(settingsFileStrings, SettingsFragment.this.getActivity(), "settingsFile.txt");
+                if (isChecked != Boolean.parseBoolean(settingsFileStrings.get(2))) {
+                    settingsFileStrings.set(2, Boolean.toString(isChecked));
+                    writeSave(settingsFileStrings, SettingsFragment.this.getActivity(), "settingsFile.txt");
+                    MainMenuNavigation.setNightMode(isChecked);
+                }
             }
         });
 
         adSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                // Currently not in use
                 // do something, the isChecked will be
                 // true if the switch is in the On position
                 settingsFileStrings.set(3, Boolean.toString(isChecked));

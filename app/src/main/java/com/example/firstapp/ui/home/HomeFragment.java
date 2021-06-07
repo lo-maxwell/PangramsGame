@@ -45,10 +45,24 @@ import static java.lang.Integer.parseInt;
 //minor issue: game time increments even when app is not in focus (as long as it is not killed)
 //TODO: Change background music
 //TODO: App icon, Credits page, Night Theme, Settings explanations
-//TODO: Remove ad setting
+//Minimum viable product:
+//App Icon
+//Night Mode
+//Credits
+//Remove shuffle achievement
+//Background music fixed
+//Design fixes
+//Code Cleanup/Bugfixes
+//Publish
+
+//Extra:
+//Database
+//Setting explanations
+//Tutorial/How to Play page
 
 public class HomeFragment extends Fragment {
 
+    public static HomeFragment homeFragment;
     private HomeViewModel homeViewModel;
 
     private static ArrayList<String> saveFileStrings = new ArrayList<String>();
@@ -109,7 +123,7 @@ public class HomeFragment extends Fragment {
         //readSaveFile(HomeFragment.this.getActivity());
         System.out.println("onCreate was called.");
         mContext = getActivity();
-
+        homeFragment = this;
     }
 
     public void onDestroy() {
@@ -594,6 +608,7 @@ public class HomeFragment extends Fragment {
         setLettersToBlank();
 
         readSaveFile(HomeFragment.this.getActivity());
+        MainMenuNavigation.setNightMode(Boolean.parseBoolean(settingsFileStrings.get(2)));
 
         startPlaytimeTimer();
         return root;
@@ -1520,7 +1535,7 @@ public class HomeFragment extends Fragment {
         achievementButton.bringToFront();
 
         //If not the first achievement, set Y to be lower
-        float end = scoreTrackerScrollView.getY() + getPixelsFromDp(20 + 40 * currentAchievements.size());
+        float end = scoreTrackerScrollView.getY() + getPixelsFromDp(20 + 48 * currentAchievements.size());
         achievementButton.setX(scoreTrackerScrollView.getX());
         achievementButton.setY(end);
 
@@ -1571,7 +1586,7 @@ public class HomeFragment extends Fragment {
         for (int i = 0; i < currentAchievements.size(); i++) {
             final Button achievementButton = currentAchievements.get(i);
             float end = scoreTrackerScrollView.getY();
-            end += getPixelsFromDp(20 + 40 * i);
+            end += getPixelsFromDp(20 + 48 * i);
             System.out.println(end);
             final ObjectAnimator achievementButtonAnimation = ObjectAnimator.ofFloat(achievementButton, "y", end);
             System.out.println("default animation: " + defaultAchievementButtonAnimation);

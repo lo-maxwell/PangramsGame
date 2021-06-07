@@ -7,6 +7,17 @@
     <color name="blue">#00acc1</color>
     <color name="green">#1faa00</color>
     <color name="loadingBar">#00ffff</color>
+
+
     <color name="achievementTitleText">#1c100b</color>
     <color name="achievementDetailText">#7f7d7e</color>
+    <color name="achievementButtonColor">#6dd3f0</color>
+    <color name="achievementTextColor">#a874f4</color>
+    <color name="defaultButtonColor">#CCCCCC</color>
+    <color name="letterButtonColor">#DDDDDD</color>
+    <color name="centerLetterButtonColor">#33b5e5</color>
+    <color name="centerLetterButtonTextColor">#2cc91a</color>
+    <color name="backgroundColor">#FCFCFC</color>
+    <color name="defaultSoftTextColor">#7f7d7e</color>
+    <color name="defaultHardTextColor">#222222</color>
 </resources>
