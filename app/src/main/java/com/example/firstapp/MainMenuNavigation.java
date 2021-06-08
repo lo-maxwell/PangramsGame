@@ -1,5 +1,6 @@
 package com.example.firstapp;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.Menu;
@@ -54,9 +55,21 @@ public class MainMenuNavigation extends AppCompatActivity {
 
 
         //Testing in progress for music player
-        backgroundMusic = MediaPlayer.create(getApplicationContext(), R.raw.music_fantasy);
-        startMusicPlayer(backgroundMusic);
+
+        if (backgroundMusic!=null) {
+            if(backgroundMusic.isPlaying()) backgroundMusic.stop();
+            backgroundMusic.reset();//It requires again setDataSource for player object.
+            backgroundMusic.release();
+        }
+        backgroundMusic = MediaPlayer.create(getApplicationContext(), R.raw.music_a_very_brady_special);
+        //"A Very Brady Special" Kevin MacLeod (incompetech.com)
+        //Licensed under Creative Commons: By Attribution 4.0 License
+        //http://creativecommons.org/licenses/by/4.0/
+        int musicPosition = getIntent().getIntExtra("bg_music_location", 0);
+        backgroundMusic.seekTo(musicPosition);
         setMusicVolume(backgroundMusic, 0); //Prevent 1-second music playing at start
+        startMusicPlayer(backgroundMusic);
+        System.out.println("Music is playing");
     }
 
     @Override
@@ -76,20 +89,30 @@ public class MainMenuNavigation extends AppCompatActivity {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if ((backgroundMusic!= null) && (backgroundMusic.isPlaying())) {stopMusicPlayer(backgroundMusic);}
+        if ((backgroundMusic!= null) && (backgroundMusic.isPlaying())) {
+            //killMusicPlayer(backgroundMusic);
+            System.out.println("Music should be stopped by onDestroy");
+            //Currently hacky but works as intended
+        }
 
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        if ((backgroundMusic!= null) && (backgroundMusic.isPlaying())) {stopMusicPlayer(backgroundMusic);}
+        if ((backgroundMusic!= null) && (backgroundMusic.isPlaying())) {
+            pauseMusicPlayer(backgroundMusic);
+            System.out.println("Music is stopped by onPause");
+        }
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        if ((backgroundMusic!= null) && !(backgroundMusic.isPlaying())) {startMusicPlayer(backgroundMusic);}
+        if ((backgroundMusic!= null) && !(backgroundMusic.isPlaying())) {
+            startMusicPlayer(backgroundMusic);
+            System.out.println("Music is started by onResume");
+        }
     }
 
     public static MainMenuNavigation getInstance(){
@@ -101,8 +124,19 @@ public class MainMenuNavigation extends AppCompatActivity {
         music.setLooping(true);
     }
 
-    private void stopMusicPlayer(MediaPlayer music){
+    private void pauseMusicPlayer(MediaPlayer music){
         music.pause();
+    }
+
+    private void killMusicPlayer(MediaPlayer mediaPlayer){
+        if(mediaPlayer!=null) {
+            if(mediaPlayer.isPlaying()) {
+                mediaPlayer.reset();// It requires again setDataSource for player object.
+                mediaPlayer.stop();// Stop it
+                //mediaPlayer.release();// Release it
+                mediaPlayer = null; // Initialize it to null so it can be used later
+            }
+        }
     }
 
     public static void setMusicVolume(MediaPlayer music, int volume) {
@@ -126,9 +160,11 @@ public class MainMenuNavigation extends AppCompatActivity {
     }
 
     private void refresh() {
+        Intent intent = getIntent();
+        intent.putExtra("bg_music_location", backgroundMusic.getCurrentPosition());
         finish();
         overridePendingTransition(0, 0);
-        startActivity(getIntent());
+        startActivity(intent);
         overridePendingTransition(0, 0);
         //Sends user back to home screen
     }

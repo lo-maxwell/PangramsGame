@@ -44,13 +44,14 @@ import static java.lang.Integer.parseInt;
 
 //minor issue: game time increments even when app is not in focus (as long as it is not killed)
 //TODO: Change background music
-//TODO: App icon, Credits page, Night Theme, Settings explanations
+//TODO: App icon, Credits page, Settings explanations
 //Minimum viable product:
 //App Icon
-//Night Mode
+//Night Mode - Done (ish?)
 //Credits
 //Remove shuffle achievement
-//Background music fixed
+//Background music resets when night mode switches - Done
+//Need new background music
 //Design fixes
 //Code Cleanup/Bugfixes
 //Publish
