@@ -68,8 +68,8 @@
     <string name="SettingsInfoButtonImage">Question Mark</string>
     <string name="SettingsCredits" >
         &lt;b>CREDITS&lt;/b>&lt;br>
-        &lt;u>Game Design&lt;/u>&lt;br>
-        INSERT NAME HERE&lt;br>
+        &lt;u>Code and Game Design&lt;/u>&lt;br>
+        Maxwell Lo&lt;br>
         &lt;u>Music&lt;/u>&lt;br>
         \"A Very Brady Special\" by Kevin MacLeod (&lt;a href="https://incompetech.com/">incompetech.com&lt;/a>)&lt;br>
         Licensed under Creative Commons: By Attribution 4.0 License&lt;br>
@@ -77,5 +77,19 @@
         &lt;br>
         Game inspired by the &lt;a href="https://www.nytimes.com/puzzles/spelling-bee">New York Times Spelling Bee&lt;/a>.&lt;br>
         Full codebase available on &lt;a href="https://github.com/lo-maxwell/PangramsGame">Github&lt;/a>.
+    </string>
+    <string name="popup_word_list" >
+        <i>Common word list:</i>\n
+        Approximately 30,000 of the most common English words.\n
+        Word list based on 20,000 word list from \n
+        https://github.com/first20hours/google-10000-english.\n
+        <i>Full word list:</i>\n
+        Approximately 280,000 words.\n
+        Based on the Collins Scrabble Word List (2019).\n
+        <b>Setting takes effect upon getting a new set of letters.</b>\n
+    </string>
+    <string name="popup_night_mode" >
+        <i></i>Changes between dark and light themes.\n
+        Requires app restart.
     </string>
 </resources>

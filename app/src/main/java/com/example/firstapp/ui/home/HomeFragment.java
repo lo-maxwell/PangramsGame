@@ -50,7 +50,7 @@ import static java.lang.Integer.parseInt;
 //Remove shuffle achievement - Done
 //Background music resets when night mode switches - Done
 //Need new background music - Done
-//Design fixes - get testers/other eyes
+//Design fixes - get testers/other eyes, clean up navigation drawer
 //Code Cleanup/Bugfixes - Remove all print statements
 //Publish
 
