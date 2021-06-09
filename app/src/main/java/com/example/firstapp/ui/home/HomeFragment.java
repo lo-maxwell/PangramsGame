@@ -46,7 +46,7 @@ import static java.lang.Integer.parseInt;
 //Minimum viable product:
 //App Icon
 //Night Mode - Done (ish?)
-//Credits
+//Credits - Decide on name
 //Remove shuffle achievement - Done
 //Background music resets when night mode switches - Done
 //Need new background music - Done
