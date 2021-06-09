@@ -29,17 +29,19 @@ import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
 public class UserStatsFragment extends Fragment {
+    public static UserStatsFragment userStatsFragment;
+
     private static ArrayList<String> userStatsFileStrings = new ArrayList<String>();
     private TextView mainTextView;
 
     private UserStatsViewModel userStatsViewModel;
     private int counter;
-    private static Handler screenUpdater;
+    public static Handler screenUpdater;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-
+        userStatsFragment = this;
         userStatsViewModel =
                 ViewModelProviders.of(this).get(UserStatsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_user_stats, container, false);
@@ -251,7 +253,7 @@ public class UserStatsFragment extends Fragment {
         return returnString;
     }
 
-    private void updateScreen () {
+    public void updateScreen () {
         //Does not affect playtimeHandler in home fragment
         //playtimeHandler keeps running and updating new times, which updateScreen will read
         if(screenUpdater != null) {

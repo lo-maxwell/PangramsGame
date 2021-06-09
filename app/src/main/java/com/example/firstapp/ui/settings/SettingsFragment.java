@@ -2,6 +2,8 @@ package com.example.firstapp.ui.settings;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,7 +54,8 @@ public class SettingsFragment extends Fragment {
         });
 
         readSaveFile(SettingsFragment.this.getActivity());
-
+        ((TextView)root.findViewById(R.id.Credits_Text_View)).setMovementMethod(LinkMovementMethod.getInstance());
+        ((TextView)root.findViewById(R.id.Credits_Text_View)).setText(Html.fromHtml(getResources().getString(R.string.SettingsCredits)));
         initializeViews(root);
 
         soundSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -108,6 +111,8 @@ public class SettingsFragment extends Fragment {
                 writeSave(settingsFileStrings, SettingsFragment.this.getActivity(), "settingsFile.txt");
             }
         });
+
+
 
         return root;
     }

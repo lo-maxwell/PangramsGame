@@ -16,21 +16,23 @@
         android:textAlignment="center"
         android:textColor="@color/defaultSoftTextColor"
         android:textSize="20sp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:gravity="center_horizontal" />
 
     <ScrollView
-        android:background="@color/backgroundColor"
         android:id="@+id/Achievement_List_Scroll_View_Achievements"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
+        android:background="@color/backgroundColor"
         android:fillViewport="true"
         android:paddingLeft="0dp"
         android:paddingRight="0dp"
@@ -494,7 +496,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:text="1 Hour Played"
+                        android:text="Pretty Interesting"
                         android:textColor="@color/achievementTitleText"
                         android:textSize="18sp" />
 
@@ -503,7 +505,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="2"
-                        android:text="Play for over an hour."
+                        android:text="Play for over 15 minutes."
                         android:textColor="@color/achievementDetailText" />
                 </LinearLayout>
 

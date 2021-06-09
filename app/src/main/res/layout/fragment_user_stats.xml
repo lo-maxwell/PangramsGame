@@ -17,7 +17,7 @@
         android:textAlignment="center"
         android:textColor="@color/defaultSoftTextColor"
         android:textSize="20sp"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -35,6 +35,7 @@
         android:id="@+id/Button_Delete_Save_User_Stats"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
         android:background="@color/defaultButtonColor"
         android:padding="5dp"
         android:text="@string/ButtonDeleteSave"
@@ -44,31 +45,31 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ScrollView
-        android:background="@color/backgroundColor"
         android:id="@+id/Main_Scroll_View_User_Stats"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/backgroundColor"
         app:layout_constraintBottom_toTopOf="@+id/Display_Box_User_Stats"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="@id/text_user_stats">
 
         <LinearLayout
-            android:background="@color/backgroundColor"
             android:id="@+id/Main_Linear_Layout_User_Stats"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/backgroundColor"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/Main_TextView_User_Stats"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/defaultSoftTextColor"
                 android:paddingLeft="10dp"
-                android:paddingRight="10dp" />
+                android:paddingRight="10dp"
+                android:textColor="@color/defaultSoftTextColor" />
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

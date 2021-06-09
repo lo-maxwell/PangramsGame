@@ -42,16 +42,14 @@ import java.util.Random;
 
 import static java.lang.Integer.parseInt;
 
-//minor issue: game time increments even when app is not in focus (as long as it is not killed)
-//TODO: Change background music
 //TODO: App icon, Credits page, Settings explanations
 //Minimum viable product:
 //App Icon
 //Night Mode - Done (ish?)
 //Credits
-//Remove shuffle achievement
+//Remove shuffle achievement - Done
 //Background music resets when night mode switches - Done
-//Need new background music
+//Need new background music - Done
 //Design fixes
 //Code Cleanup/Bugfixes
 //Publish
@@ -60,6 +58,7 @@ import static java.lang.Integer.parseInt;
 //Database
 //Setting explanations
 //Tutorial/How to Play page
+//Optimization - WriteSave should be on pause/resume instead of every second, which means it needs to be in MainMenuNavigation
 
 public class HomeFragment extends Fragment {
 
@@ -68,7 +67,7 @@ public class HomeFragment extends Fragment {
 
     private static ArrayList<String> saveFileStrings = new ArrayList<String>();
     private static ArrayList<String> preLoadFileStrings = new ArrayList<String>();
-    private static ArrayList<String> userStatsFileStrings = new ArrayList<String>();
+    public static ArrayList<String> userStatsFileStrings = new ArrayList<String>();
     private static ArrayList<String> userAchievementFileStrings = new ArrayList<String>();
     private static ArrayList<String> settingsFileStrings = new ArrayList<String>();
     private static ArrayList<String> possibleWords = new ArrayList<String>();
@@ -533,39 +532,41 @@ public class HomeFragment extends Fragment {
                     tempButtons[i].setText(usedLetters[i]);
                 }
 
-                if (!currentAchievements.contains(defaultAchievementButton)) {
-                    System.out.println("Adding achievement button 1 to screen");
-                    ArrayList<String> tempArrayList = new ArrayList<String>();
-                    tempArrayList.add("Default_Achievement_Button_Home");
-                    tempArrayList.add(Integer.toString(R.id.Default_Achievement_Button_Home));
-                    addAchievementToScreen(tempArrayList);
-                } else if (!currentAchievements.contains(defaultAchievementButton2)) {
-                    System.out.println("Adding achievement button 2 to screen");
-                    ArrayList<String> tempArrayList = new ArrayList<String>();
-                    tempArrayList.add("Default_Achievement_Button_Home_2");
-                    tempArrayList.add(Integer.toString(R.id.Default_Achievement_Button_Home_2));
-                    addAchievementToScreen(tempArrayList);
-                } else if (!currentAchievements.contains(defaultAchievementButton3)) {
-                    System.out.println("Adding achievement button 3 to screen");
-                    ArrayList<String> tempArrayList = new ArrayList<String>();
-                    tempArrayList.add("Default_Achievement_Button_Home_3");
-                    tempArrayList.add(Integer.toString(R.id.Default_Achievement_Button_Home_3));
-                    addAchievementToScreen(tempArrayList);
-                } else if (!currentAchievements.contains(defaultAchievementButton4)) {
-                    System.out.println("Adding achievement button 4 to screen");
-                    ArrayList<String> tempArrayList = new ArrayList<String>();
-                    tempArrayList.add("Default_Achievement_Button_Home_4");
-                    tempArrayList.add(Integer.toString(R.id.Default_Achievement_Button_Home_4));
-                    addAchievementToScreen(tempArrayList);
-                } else if (!currentAchievements.contains(defaultAchievementButton5)) {
-                    System.out.println("Adding achievement button 5 to screen");
-                    ArrayList<String> tempArrayList = new ArrayList<String>();
-                    tempArrayList.add("Default_Achievement_Button_Home_5");
-                    tempArrayList.add(Integer.toString(R.id.Default_Achievement_Button_Home_5));
-                    addAchievementToScreen(tempArrayList);
-                }
+                //Previously used for testing achievement popups
+                //TODO: Delete code
+//                if (!currentAchievements.contains(defaultAchievementButton)) {
+//                    System.out.println("Adding achievement button 1 to screen");
+//                    ArrayList<String> tempArrayList = new ArrayList<String>();
+//                    tempArrayList.add("Default_Achievement_Button_Home");
+//                    tempArrayList.add(Integer.toString(R.id.Default_Achievement_Button_Home));
+//                    addAchievementToScreen(tempArrayList);
+//                } else if (!currentAchievements.contains(defaultAchievementButton2)) {
+//                    System.out.println("Adding achievement button 2 to screen");
+//                    ArrayList<String> tempArrayList = new ArrayList<String>();
+//                    tempArrayList.add("Default_Achievement_Button_Home_2");
+//                    tempArrayList.add(Integer.toString(R.id.Default_Achievement_Button_Home_2));
+//                    addAchievementToScreen(tempArrayList);
+//                } else if (!currentAchievements.contains(defaultAchievementButton3)) {
+//                    System.out.println("Adding achievement button 3 to screen");
+//                    ArrayList<String> tempArrayList = new ArrayList<String>();
+//                    tempArrayList.add("Default_Achievement_Button_Home_3");
+//                    tempArrayList.add(Integer.toString(R.id.Default_Achievement_Button_Home_3));
+//                    addAchievementToScreen(tempArrayList);
+//                } else if (!currentAchievements.contains(defaultAchievementButton4)) {
+//                    System.out.println("Adding achievement button 4 to screen");
+//                    ArrayList<String> tempArrayList = new ArrayList<String>();
+//                    tempArrayList.add("Default_Achievement_Button_Home_4");
+//                    tempArrayList.add(Integer.toString(R.id.Default_Achievement_Button_Home_4));
+//                    addAchievementToScreen(tempArrayList);
+//                } else if (!currentAchievements.contains(defaultAchievementButton5)) {
+//                    System.out.println("Adding achievement button 5 to screen");
+//                    ArrayList<String> tempArrayList = new ArrayList<String>();
+//                    tempArrayList.add("Default_Achievement_Button_Home_5");
+//                    tempArrayList.add(Integer.toString(R.id.Default_Achievement_Button_Home_5));
+//                    addAchievementToScreen(tempArrayList);
+//                }
 
-                System.out.println(defaultAchievementButtonAnimation);
+                //System.out.println(defaultAchievementButtonAnimation);
             }
         });
 
@@ -931,7 +932,7 @@ public class HomeFragment extends Fragment {
         }
     }
 
-    private void writeSave(ArrayList<String> stringArrayList, Context context, String filename) {
+    public void writeSave(ArrayList<String> stringArrayList, Context context, String filename) {
         switch (filename) {
             case "saveFile.txt":
                 try {
@@ -1639,9 +1640,10 @@ public class HomeFragment extends Fragment {
         }, 10000);
     }
 
-    private void startPlaytimeTimer(){
+    public void startPlaytimeTimer(){
         if (playtimeHandler == null) {
             System.out.println("time: playtimeHandler isNull");
+            MainMenuNavigation.timerRunning = true;
             playtimeHandler = new Handler();
             playtimeHandler.postDelayed(new Runnable() {
                 @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
@@ -1653,12 +1655,12 @@ public class HomeFragment extends Fragment {
                         userStatsFileStrings.set(6, "0");
                         System.out.println("time: " + userStatsFileStrings.get(6));
                     }
-                    if (!(userAchievementFileStrings.contains("1 HOUR PLAYED!")) && Integer.parseInt(userStatsFileStrings.get(6)) >= 3600) {
+                    if (!(userAchievementFileStrings.contains("PRETTY INTERESTING!")) && Integer.parseInt(userStatsFileStrings.get(6)) >= 900) {
                         ArrayList<String> tempArrayList = new ArrayList<String>();
                         tempArrayList.add("Achievement_Button_Playtime_Home");
                         tempArrayList.add(Integer.toString(R.id.Achievement_Button_Playtime_Home));
                         addAchievementToScreen(tempArrayList);
-                        userAchievementFileStrings.add("1 HOUR PLAYED!");
+                        userAchievementFileStrings.add("PRETTY INTERESTING!");
                         writeSave(userAchievementFileStrings, HomeFragment.this.getActivity(), "achievementFile.txt");
                     }
                     writeSave(userStatsFileStrings, HomeFragment.this.getContext(), "userStatsFile.txt");
@@ -1666,8 +1668,7 @@ public class HomeFragment extends Fragment {
                 }
             },1000);
             System.out.println("time: playtimeHandler started");
-        }
-        else {
+        } else {
             playtimeHandler.removeCallbacksAndMessages(null);
             playtimeHandler = null;
             startPlaytimeTimer();

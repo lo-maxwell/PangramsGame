@@ -11709,6 +11709,7 @@ paneled
 panelled
 panic
 panics
+pant
 panties
 pants
 pantyhose

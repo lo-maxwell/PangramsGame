@@ -53,7 +53,6 @@
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_main_menu_navigation">MainMenuNavigation</string>
     <string name="ButtonDeleteSave">Delete Save File</string>
@@ -67,4 +66,16 @@
     <string name="SettingsSwitchOff">Off</string>
     <string name="SettingsAdvertisementsLabel">Enable Ads</string>
     <string name="SettingsInfoButtonImage">Question Mark</string>
+    <string name="SettingsCredits" >
+        &lt;b>CREDITS&lt;/b>&lt;br>
+        &lt;u>Game Design&lt;/u>&lt;br>
+        INSERT NAME HERE&lt;br>
+        &lt;u>Music&lt;/u>&lt;br>
+        \"A Very Brady Special\" by Kevin MacLeod (&lt;a href="https://incompetech.com/">incompetech.com&lt;/a>)&lt;br>
+        Licensed under Creative Commons: By Attribution 4.0 License&lt;br>
+        &lt;a href="http://creativecommons.org/licenses/by/4.0/">http://creativecommons.org/licenses/by/4.0/&lt;/a>&lt;br>
+        &lt;br>
+        Game inspired by the &lt;a href="https://www.nytimes.com/puzzles/spelling-bee">New York Times Spelling Bee&lt;/a>.&lt;br>
+        Full codebase available on &lt;a href="https://github.com/lo-maxwell/PangramsGame">Github&lt;/a>.
+    </string>
 </resources>

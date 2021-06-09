@@ -15,20 +15,28 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.firstapp.ui.home.HomeFragment;
+import com.example.firstapp.ui.user_stats.UserStatsFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
+
+import static com.example.firstapp.ui.home.HomeFragment.homeFragment;
+import static com.example.firstapp.ui.user_stats.UserStatsFragment.userStatsFragment;
 
 public class MainMenuNavigation extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     public static MediaPlayer backgroundMusic;
     static MainMenuNavigation mainMenuNavigation;
+    public static boolean timerRunning;
+    private int curTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mainMenuNavigation = this;
+        timerRunning = false;
         setContentView(R.layout.activity_main_menu_navigation);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -100,9 +108,20 @@ public class MainMenuNavigation extends AppCompatActivity {
     @Override
     public void onPause() {
         super.onPause();
-        if ((backgroundMusic!= null) && (backgroundMusic.isPlaying())) {
+        if ((backgroundMusic != null) && (backgroundMusic.isPlaying())) {
             pauseMusicPlayer(backgroundMusic);
             System.out.println("Music is stopped by onPause");
+        }
+        if (HomeFragment.playtimeHandler != null) {
+            HomeFragment.playtimeHandler.removeCallbacksAndMessages(null);
+            HomeFragment.playtimeHandler = null;
+            timerRunning = false;
+            curTime = Integer.parseInt(HomeFragment.userStatsFileStrings.get(6));
+            System.out.println("timer stopped");
+        }
+        if (UserStatsFragment.screenUpdater != null) {
+            UserStatsFragment.screenUpdater.removeCallbacksAndMessages(null);
+            UserStatsFragment.screenUpdater = null;
         }
     }
 
@@ -112,6 +131,14 @@ public class MainMenuNavigation extends AppCompatActivity {
         if ((backgroundMusic!= null) && !(backgroundMusic.isPlaying())) {
             startMusicPlayer(backgroundMusic);
             System.out.println("Music is started by onResume");
+        }
+        if (HomeFragment.playtimeHandler == null && !timerRunning) {
+            homeFragment.startPlaytimeTimer();
+            HomeFragment.userStatsFileStrings.set(6,Integer.toString(curTime));
+            System.out.println("timer resumed");
+        }
+        if (UserStatsFragment.screenUpdater == null && userStatsFragment != null) {
+            userStatsFragment.updateScreen();
         }
     }
 
