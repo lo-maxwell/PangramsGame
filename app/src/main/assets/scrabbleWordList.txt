@@ -1,3 +1,4 @@
+#Word List taken from Official Scrabble English Dictionary
 aa
 aah
 aahed
