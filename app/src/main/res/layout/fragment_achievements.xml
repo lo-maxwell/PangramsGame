@@ -27,7 +27,6 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
@@ -67,15 +66,17 @@
                     android:id="@+id/First_Pangram_Linear_Layout_Vertical_Achievements"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
                     android:layout_weight="4"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_marginLeft="5dp">
 
                     <TextView
                         android:id="@+id/First_Pangram_Title_Text_Achievements"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
+                        android:gravity="center_vertical"
                         android:text="First Pangram"
                         android:textColor="@color/achievementTitleText"
                         android:textSize="18sp" />
@@ -109,15 +110,17 @@
                     android:id="@+id/Word_Progress_10_Linear_Layout_Vertical_Achievements"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
                     android:layout_weight="4"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_marginLeft="5dp">
 
                     <TextView
                         android:id="@+id/Word_Progress_10_Title_Text_Achievements"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
+                        android:gravity="center_vertical"
                         android:text="10 Words"
                         android:textColor="@color/achievementTitleText"
                         android:textSize="18sp" />
@@ -151,15 +154,17 @@
                     android:id="@+id/Word_Progress_25_Linear_Layout_Vertical_Achievements"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
                     android:layout_weight="4"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_marginLeft="5dp">
 
                     <TextView
                         android:id="@+id/Word_Progress_25_Title_Text_Achievements"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
+                        android:gravity="center_vertical"
                         android:text="25 Words"
                         android:textColor="@color/achievementTitleText"
                         android:textSize="18sp" />
@@ -193,9 +198,10 @@
                     android:id="@+id/Word_Progress_50_Linear_Layout_Vertical_Achievements"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
                     android:layout_weight="4"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_marginLeft="5dp">
 
                     <TextView
                         android:id="@+id/Word_Progress_50_Title_Text_Achievements"
@@ -203,6 +209,7 @@
                         android:layout_height="0dp"
                         android:layout_weight="1"
                         android:text="50 Words"
+                        android:gravity="center_vertical"
                         android:textColor="@color/achievementTitleText"
                         android:textSize="18sp" />
 
@@ -235,15 +242,17 @@
                     android:id="@+id/Longest_Word_7_Linear_Layout_Vertical_Achievements"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
                     android:layout_weight="4"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_marginLeft="5dp">
 
                     <TextView
                         android:id="@+id/Longest_Word_7_Title_Text_Achievements"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
+                        android:gravity="center_vertical"
                         android:text="Long Word"
                         android:textColor="@color/achievementTitleText"
                         android:textSize="18sp" />
@@ -277,15 +286,17 @@
                     android:id="@+id/Longest_Word_9_Linear_Layout_Vertical_Achievements"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
                     android:layout_weight="4"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_marginLeft="5dp">
 
                     <TextView
                         android:id="@+id/Longest_Word_9_Title_Text_Achievements"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
+                        android:gravity="center_vertical"
                         android:text="Very Long Word"
                         android:textColor="@color/achievementTitleText"
                         android:textSize="18sp" />
@@ -319,15 +330,17 @@
                     android:id="@+id/Longest_Word_11_Linear_Layout_Vertical_Achievements"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
                     android:layout_weight="4"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_marginLeft="5dp">
 
                     <TextView
                         android:id="@+id/Longest_Word_11_Title_Text_Achievements"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
+                        android:gravity="center_vertical"
                         android:text="Super Long Word"
                         android:textColor="@color/achievementTitleText"
                         android:textSize="18sp" />
@@ -361,15 +374,17 @@
                     android:id="@+id/Longest_Word_13_Linear_Layout_Vertical_Achievements"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
                     android:layout_weight="4"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_marginLeft="5dp">
 
                     <TextView
                         android:id="@+id/Longest_Word_13_Title_Text_Achievements"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
+                        android:gravity="center_vertical"
                         android:text="Ridiculously Long Word"
                         android:textColor="@color/achievementTitleText"
                         android:textSize="18sp" />
@@ -403,15 +418,17 @@
                     android:id="@+id/Speed_Demon_1_Linear_Layout_Vertical_Achievements"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
                     android:layout_weight="4"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_marginLeft="5dp">
 
                     <TextView
                         android:id="@+id/Speed_Demon_1_Title_Text_Achievements"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
+                        android:gravity="center_vertical"
                         android:text="Quick As Lightning"
                         android:textColor="@color/achievementTitleText"
                         android:textSize="18sp" />
@@ -445,15 +462,17 @@
                     android:id="@+id/Speed_Demon_2_Linear_Layout_Vertical_Achievements"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
                     android:layout_weight="4"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_marginLeft="5dp">
 
                     <TextView
                         android:id="@+id/Speed_Demon_2_Title_Text_Achievements"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
+                        android:gravity="center_vertical"
                         android:text="Speed Demon"
                         android:textColor="@color/achievementTitleText"
                         android:textSize="18sp" />
@@ -487,16 +506,18 @@
                     android:id="@+id/Playtime_Linear_Layout_Vertical_Achievements"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
                     android:layout_weight="4"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_marginLeft="5dp">
 
                     <TextView
                         android:id="@+id/Playtime_Title_Text_Achievements"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:text="Pretty Interesting"
+                        android:gravity="center_vertical"
+                        android:text="Pretty Fun"
                         android:textColor="@color/achievementTitleText"
                         android:textSize="18sp" />
 

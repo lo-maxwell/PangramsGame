@@ -50,8 +50,8 @@ import static java.lang.Integer.parseInt;
 //Remove shuffle achievement - Done
 //Background music resets when night mode switches - Done
 //Need new background music - Done
-//Design fixes
-//Code Cleanup/Bugfixes
+//Design fixes - get testers/other eyes
+//Code Cleanup/Bugfixes - Remove all print statements
 //Publish
 
 //Extra:
@@ -1655,12 +1655,12 @@ public class HomeFragment extends Fragment {
                         userStatsFileStrings.set(6, "0");
                         System.out.println("time: " + userStatsFileStrings.get(6));
                     }
-                    if (!(userAchievementFileStrings.contains("PRETTY INTERESTING!")) && Integer.parseInt(userStatsFileStrings.get(6)) >= 900) {
+                    if (!(userAchievementFileStrings.contains("PRETTY FUN!")) && Integer.parseInt(userStatsFileStrings.get(6)) >= 900) {
                         ArrayList<String> tempArrayList = new ArrayList<String>();
                         tempArrayList.add("Achievement_Button_Playtime_Home");
                         tempArrayList.add(Integer.toString(R.id.Achievement_Button_Playtime_Home));
                         addAchievementToScreen(tempArrayList);
-                        userAchievementFileStrings.add("PRETTY INTERESTING!");
+                        userAchievementFileStrings.add("PRETTY FUN!");
                         writeSave(userAchievementFileStrings, HomeFragment.this.getActivity(), "achievementFile.txt");
                     }
                     writeSave(userStatsFileStrings, HomeFragment.this.getContext(), "userStatsFile.txt");
