@@ -77,7 +77,7 @@
                         android:layout_height="0dp"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
-                        android:text="First Pangram"
+                        android:text="@string/achievement_first_pangram"
                         android:textColor="@color/achievementTitleText"
                         android:textSize="18sp" />
 
@@ -86,7 +86,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="2"
-                        android:text="Submit a word that contains every possible letter."
+                        android:text="@string/achievement_first_pangram_details"
                         android:textColor="@color/achievementDetailText" />
                 </LinearLayout>
 
@@ -121,7 +121,7 @@
                         android:layout_height="0dp"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
-                        android:text="10 Words"
+                        android:text="@string/achievement_word_progress_1"
                         android:textColor="@color/achievementTitleText"
                         android:textSize="18sp" />
 
@@ -130,7 +130,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="2"
-                        android:text="Submit 10 valid words for a single set of letters."
+                        android:text="@string/achievement_word_progress_1_details"
                         android:textColor="@color/achievementDetailText" />
                 </LinearLayout>
 
@@ -165,7 +165,7 @@
                         android:layout_height="0dp"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
-                        android:text="25 Words"
+                        android:text="@string/achievement_word_progress_2"
                         android:textColor="@color/achievementTitleText"
                         android:textSize="18sp" />
 
@@ -174,7 +174,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="2"
-                        android:text="Submit 25 valid words for a single set of letters."
+                        android:text="@string/achievement_word_progress_2_details"
                         android:textColor="@color/achievementDetailText" />
                 </LinearLayout>
 
@@ -208,7 +208,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:text="50 Words"
+                        android:text="@string/achievement_word_progress_3"
                         android:gravity="center_vertical"
                         android:textColor="@color/achievementTitleText"
                         android:textSize="18sp" />
@@ -218,7 +218,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="2"
-                        android:text="Submit 50 valid words for a single set of letters."
+                        android:text="@string/achievement_word_progress_3_details"
                         android:textColor="@color/achievementDetailText" />
                 </LinearLayout>
 
@@ -253,7 +253,7 @@
                         android:layout_height="0dp"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
-                        android:text="Long Word"
+                        android:text="@string/achievement_word_length_1"
                         android:textColor="@color/achievementTitleText"
                         android:textSize="18sp" />
 
@@ -262,7 +262,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="2"
-                        android:text="Submit a word with 7 or more letters."
+                        android:text="@string/achievement_word_length_1_details"
                         android:textColor="@color/achievementDetailText" />
                 </LinearLayout>
 
@@ -297,7 +297,7 @@
                         android:layout_height="0dp"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
-                        android:text="Very Long Word"
+                        android:text="@string/achievement_word_length_2"
                         android:textColor="@color/achievementTitleText"
                         android:textSize="18sp" />
 
@@ -306,7 +306,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="2"
-                        android:text="Submit a word with 9 or more letters."
+                        android:text="@string/achievement_word_length_2_details"
                         android:textColor="@color/achievementDetailText" />
                 </LinearLayout>
 
@@ -341,7 +341,7 @@
                         android:layout_height="0dp"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
-                        android:text="Super Long Word"
+                        android:text="@string/achievement_word_length_3"
                         android:textColor="@color/achievementTitleText"
                         android:textSize="18sp" />
 
@@ -350,7 +350,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="2"
-                        android:text="Submit a word with 11 or more letters."
+                        android:text="@string/achievement_word_length_3_details"
                         android:textColor="@color/achievementDetailText" />
                 </LinearLayout>
 
@@ -385,7 +385,7 @@
                         android:layout_height="0dp"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
-                        android:text="Ridiculously Long Word"
+                        android:text="@string/achievement_word_length_4"
                         android:textColor="@color/achievementTitleText"
                         android:textSize="18sp" />
 
@@ -394,7 +394,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="2"
-                        android:text="Submit a word with 13 or more letters."
+                        android:text="@string/achievement_word_length_4_details"
                         android:textColor="@color/achievementDetailText" />
                 </LinearLayout>
 
@@ -429,7 +429,7 @@
                         android:layout_height="0dp"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
-                        android:text="Quick As Lightning"
+                        android:text="@string/achievement_speed_demon_1"
                         android:textColor="@color/achievementTitleText"
                         android:textSize="18sp" />
 
@@ -438,7 +438,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="2"
-                        android:text="Submit 10 words with less than 10 seconds between each word."
+                        android:text="@string/achievement_speed_demon_1_details"
                         android:textColor="@color/achievementDetailText" />
                 </LinearLayout>
 
@@ -473,7 +473,7 @@
                         android:layout_height="0dp"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
-                        android:text="Speed Demon"
+                        android:text="@string/achievement_speed_demon_2"
                         android:textColor="@color/achievementTitleText"
                         android:textSize="18sp" />
 
@@ -482,7 +482,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="2"
-                        android:text="Submit 20 words with less than 10 seconds between each word."
+                        android:text="@string/achievement_speed_demon_2_details"
                         android:textColor="@color/achievementDetailText" />
                 </LinearLayout>
 
@@ -517,7 +517,7 @@
                         android:layout_height="0dp"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
-                        android:text="Pretty Fun"
+                        android:text="@string/achievement_playtime_1"
                         android:textColor="@color/achievementTitleText"
                         android:textSize="18sp" />
 
@@ -526,7 +526,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="2"
-                        android:text="Play for over 15 minutes."
+                        android:text="@string/achievement_playtime_1_details"
                         android:textColor="@color/achievementDetailText" />
                 </LinearLayout>
 

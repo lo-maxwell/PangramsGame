@@ -92,4 +92,26 @@
         <i></i>Changes between dark and light themes.\n
         Requires app restart.
     </string>
+    <string name="achievement_first_pangram">First Pangram</string>
+    <string name="achievement_word_progress_1">10 Words</string>
+    <string name="achievement_word_progress_2">25 Words</string>
+    <string name="achievement_word_progress_3">50 Words</string>
+    <string name="achievement_word_length_1">Long Word</string>
+    <string name="achievement_word_length_2">Very Long Word</string>
+    <string name="achievement_word_length_3">Super Long Word</string>
+    <string name="achievement_word_length_4">Ridiculously Long Word</string>
+    <string name="achievement_speed_demon_1">Quick As Lightning</string>
+    <string name="achievement_speed_demon_2">Speed Demon</string>
+    <string name="achievement_playtime_1">Pretty Fun</string>
+    <string name="achievement_first_pangram_details">Submit a word that contains every possible letter.</string>
+    <string name="achievement_word_progress_1_details">Submit 10 valid words for a single set of letters.</string>
+    <string name="achievement_word_progress_2_details">Submit 25 valid words for a single set of letters.</string>
+    <string name="achievement_word_progress_3_details">Submit 50 valid words for a single set of letters.</string>
+    <string name="achievement_word_length_1_details">Submit a word with 7 or more letters.</string>
+    <string name="achievement_word_length_2_details">Submit a word with 8 or more letters.</string>
+    <string name="achievement_word_length_3_details">Submit a word with 9 or more letters.</string>
+    <string name="achievement_word_length_4_details">Submit a word with 10 or more letters.</string>
+    <string name="achievement_speed_demon_1_details">Submit 10 words with less than 10 seconds between each word.</string>
+    <string name="achievement_speed_demon_2_details">Submit 20 words with less than 10 seconds between each word.</string>
+    <string name="achievement_playtime_1_details">Play for over 15 minutes.</string>
 </resources>

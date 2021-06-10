@@ -17,7 +17,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -45,7 +44,6 @@ public class SettingsFragment extends Fragment {
     private Switch adSwitch;
     private ImageButton wordListExplanation;
     private ImageButton nightModeExplanation;
-    private ConstraintLayout nightModeConstraintLayout;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -165,7 +163,6 @@ public class SettingsFragment extends Fragment {
         adSwitch = root.findViewById(R.id.Advertisements_Switch_Settings);
         wordListExplanation = root.findViewById(R.id.Word_List_Info_Button);
         nightModeExplanation = root.findViewById(R.id.Night_Mode_Info_Button);
-        nightModeConstraintLayout = root.findViewById(R.id.Night_Mode_Constraint_Layout_Settings);
 
         soundSeekBar.post(new Runnable() {
             public void run() {

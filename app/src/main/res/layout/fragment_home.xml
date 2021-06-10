@@ -350,103 +350,111 @@
         android:layout_width="160dp"
         android:layout_height="48dp"
         android:drawableLeft="@android:drawable/btn_star_big_on"
-        android:text="First Pangram!"
+        android:text="@string/achievement_first_pangram"
         android:textColor="@color/achievementTextColor"
         android:textSize="12sp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:drawableStart="@android:drawable/btn_star_big_on" />
 
     <Button
         android:background="@color/achievementButtonColor"
-        android:id="@+id/Achievement_Button_Word_Progress_10_Home"
+        android:id="@+id/Achievement_Button_Word_Progress_1_Home"
         android:layout_width="160dp"
         android:layout_height="48dp"
         android:drawableLeft="@android:drawable/btn_star_big_on"
-        android:text="10 Words!"
+        android:text="@string/achievement_word_progress_1"
         android:textColor="@color/achievementTextColor"
         android:textSize="12sp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:drawableStart="@android:drawable/btn_star_big_on" />
 
     <Button
         android:background="@color/achievementButtonColor"
-        android:id="@+id/Achievement_Button_Word_Progress_25_Home"
+        android:id="@+id/Achievement_Button_Word_Progress_2_Home"
         android:layout_width="160dp"
         android:layout_height="48dp"
         android:drawableLeft="@android:drawable/btn_star_big_on"
-        android:text="25 Words!"
+        android:text="@string/achievement_word_progress_2"
         android:textColor="@color/achievementTextColor"
         android:textSize="12sp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:drawableStart="@android:drawable/btn_star_big_on" />
 
     <Button
         android:background="@color/achievementButtonColor"
-        android:id="@+id/Achievement_Button_Word_Progress_50_Home"
+        android:id="@+id/Achievement_Button_Word_Progress_3_Home"
         android:layout_width="160dp"
         android:layout_height="48dp"
         android:drawableLeft="@android:drawable/btn_star_big_on"
-        android:text="50 Words!"
+        android:text="@string/achievement_word_progress_3"
         android:textColor="@color/achievementTextColor"
         android:textSize="12sp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:drawableStart="@android:drawable/btn_star_big_on" />
 
     <Button
         android:background="@color/achievementButtonColor"
-        android:id="@+id/Achievement_Button_Longest_Word_7_Home"
+        android:id="@+id/Achievement_Button_Longest_Word_1_Home"
         android:layout_width="160dp"
         android:layout_height="48dp"
         android:drawableLeft="@android:drawable/btn_star_big_on"
-        android:text="Long Word!"
+        android:text="@string/achievement_word_length_1"
         android:textColor="@color/achievementTextColor"
         android:textSize="12sp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:drawableStart="@android:drawable/btn_star_big_on" />
 
     <Button
         android:background="@color/achievementButtonColor"
-        android:id="@+id/Achievement_Button_Longest_Word_9_Home"
+        android:id="@+id/Achievement_Button_Longest_Word_2_Home"
         android:layout_width="160dp"
         android:layout_height="48dp"
         android:drawableLeft="@android:drawable/btn_star_big_on"
-        android:text="Very Long Word!"
+        android:text="@string/achievement_word_length_2"
         android:textColor="@color/achievementTextColor"
         android:textSize="12sp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:drawableStart="@android:drawable/btn_star_big_on" />
 
     <Button
         android:background="@color/achievementButtonColor"
-        android:id="@+id/Achievement_Button_Longest_Word_11_Home"
+        android:id="@+id/Achievement_Button_Longest_Word_3_Home"
         android:layout_width="160dp"
         android:layout_height="48dp"
         android:drawableLeft="@android:drawable/btn_star_big_on"
-        android:text="Super Long Word!"
+        android:text="@string/achievement_word_length_3"
         android:textColor="@color/achievementTextColor"
         android:textSize="12sp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:drawableStart="@android:drawable/btn_star_big_on" />
 
     <Button
         android:background="@color/achievementButtonColor"
-        android:id="@+id/Achievement_Button_Longest_Word_13_Home"
+        android:id="@+id/Achievement_Button_Longest_Word_4_Home"
         android:layout_width="160dp"
         android:layout_height="48dp"
         android:drawableLeft="@android:drawable/btn_star_big_on"
-        android:text="Ridiculously Long Word!"
+        android:text="@string/achievement_word_length_4"
         android:textColor="@color/achievementTextColor"
         android:textSize="12sp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:drawableStart="@android:drawable/btn_star_big_on" />
 
     <Button
         android:background="@color/achievementButtonColor"
@@ -454,12 +462,13 @@
         android:layout_width="160dp"
         android:layout_height="48dp"
         android:drawableLeft="@android:drawable/btn_star_big_on"
-        android:text="Quick As Lightning"
+        android:text="@string/achievement_speed_demon_1"
         android:textColor="@color/achievementTextColor"
         android:textSize="12sp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:drawableStart="@android:drawable/btn_star_big_on" />
 
     <Button
         android:background="@color/achievementButtonColor"
@@ -467,12 +476,13 @@
         android:layout_width="160dp"
         android:layout_height="48dp"
         android:drawableLeft="@android:drawable/btn_star_big_on"
-        android:text="Speed Demon"
+        android:text="@string/achievement_speed_demon_2"
         android:textColor="@color/achievementTextColor"
         android:textSize="12sp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:drawableStart="@android:drawable/btn_star_big_on" />
 
     <Button
         android:background="@color/achievementButtonColor"
@@ -480,12 +490,13 @@
         android:layout_width="160dp"
         android:layout_height="48dp"
         android:drawableLeft="@android:drawable/btn_star_big_on"
-        android:text="Pretty Fun!"
+        android:text="@string/achievement_playtime_1"
         android:textColor="@color/achievementTextColor"
         android:textSize="12sp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:drawableStart="@android:drawable/btn_star_big_on" />
 
 
     <ImageView

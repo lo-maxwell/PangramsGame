@@ -101,13 +101,13 @@ public class HomeFragment extends Fragment {
     private Button defaultAchievementButton4;
     private Button defaultAchievementButton5;
     private Button pangramAchievementButton;
-    private Button wordProgress10AchievementButton;
-    private Button wordProgress25AchievementButton;
-    private Button wordProgress50AchievementButton;
-    private Button longWord8AchievementButton;
-    private Button longWord10AchievementButton;
-    private Button longWord12AchievementButton;
-    private Button longWord15AchievementButton;
+    private Button wordProgress1AchievementButton;
+    private Button wordProgress2AchievementButton;
+    private Button wordProgress3AchievementButton;
+    private Button longWord1AchievementButton;
+    private Button longWord2AchievementButton;
+    private Button longWord3AchievementButton;
+    private Button longWord4AchievementButton;
     private Button speedDemon1AchievementButton;
     private Button speedDemon2AchievementButton;
     private Button playtimeAchievementButton;
@@ -174,20 +174,20 @@ public class HomeFragment extends Fragment {
         defaultAchievementButton5.setVisibility(View.INVISIBLE);
         pangramAchievementButton = root.findViewById(R.id.Achievement_Button_Pangram_Home);
         pangramAchievementButton.setVisibility(View.INVISIBLE);
-        wordProgress10AchievementButton = root.findViewById(R.id.Achievement_Button_Word_Progress_10_Home);
-        wordProgress10AchievementButton.setVisibility(View.INVISIBLE);
-        wordProgress25AchievementButton = root.findViewById(R.id.Achievement_Button_Word_Progress_25_Home);
-        wordProgress25AchievementButton.setVisibility(View.INVISIBLE);
-        wordProgress50AchievementButton = root.findViewById(R.id.Achievement_Button_Word_Progress_50_Home);
-        wordProgress50AchievementButton.setVisibility(View.INVISIBLE);
-        longWord8AchievementButton = root.findViewById(R.id.Achievement_Button_Longest_Word_7_Home);
-        longWord8AchievementButton.setVisibility(View.INVISIBLE);
-        longWord10AchievementButton = root.findViewById(R.id.Achievement_Button_Longest_Word_9_Home);
-        longWord10AchievementButton.setVisibility(View.INVISIBLE);
-        longWord12AchievementButton = root.findViewById(R.id.Achievement_Button_Longest_Word_11_Home);
-        longWord12AchievementButton.setVisibility(View.INVISIBLE);
-        longWord15AchievementButton = root.findViewById(R.id.Achievement_Button_Longest_Word_13_Home);
-        longWord15AchievementButton.setVisibility(View.INVISIBLE);
+        wordProgress1AchievementButton = root.findViewById(R.id.Achievement_Button_Word_Progress_1_Home);
+        wordProgress1AchievementButton.setVisibility(View.INVISIBLE);
+        wordProgress2AchievementButton = root.findViewById(R.id.Achievement_Button_Word_Progress_2_Home);
+        wordProgress2AchievementButton.setVisibility(View.INVISIBLE);
+        wordProgress3AchievementButton = root.findViewById(R.id.Achievement_Button_Word_Progress_3_Home);
+        wordProgress3AchievementButton.setVisibility(View.INVISIBLE);
+        longWord1AchievementButton = root.findViewById(R.id.Achievement_Button_Longest_Word_1_Home);
+        longWord1AchievementButton.setVisibility(View.INVISIBLE);
+        longWord2AchievementButton = root.findViewById(R.id.Achievement_Button_Longest_Word_2_Home);
+        longWord2AchievementButton.setVisibility(View.INVISIBLE);
+        longWord3AchievementButton = root.findViewById(R.id.Achievement_Button_Longest_Word_3_Home);
+        longWord3AchievementButton.setVisibility(View.INVISIBLE);
+        longWord4AchievementButton = root.findViewById(R.id.Achievement_Button_Longest_Word_4_Home);
+        longWord4AchievementButton.setVisibility(View.INVISIBLE);
         speedDemon1AchievementButton = root.findViewById(R.id.Achievement_Button_Speed_Demon_1_Home);
         speedDemon1AchievementButton.setVisibility(View.INVISIBLE);
         speedDemon2AchievementButton = root.findViewById(R.id.Achievement_Button_Speed_Demon_2_Home);
@@ -303,24 +303,24 @@ public class HomeFragment extends Fragment {
                         //Words submitted achievement if it does not already exist
                         if (!(userAchievementFileStrings.contains("10 WORDS!")) && Integer.parseInt(userStatsFileStrings.get(0)) == 10) {
                             ArrayList<String> tempArrayList = new ArrayList<String>();
-                            tempArrayList.add("Achievement_Button_Word_Progress_10_Home");
-                            tempArrayList.add(Integer.toString(R.id.Achievement_Button_Word_Progress_10_Home));
+                            tempArrayList.add("Achievement_Button_Word_Progress_1_Home");
+                            tempArrayList.add(Integer.toString(R.id.Achievement_Button_Word_Progress_1_Home));
                             addAchievementToScreen(tempArrayList);
                             userAchievementFileStrings.add("10 WORDS!");
                             writeSave(userAchievementFileStrings, HomeFragment.this.getActivity(), "achievementFile.txt");
                         }
                         else if (!(userAchievementFileStrings.contains("25 WORDS!")) && Integer.parseInt(userStatsFileStrings.get(0)) == 25) {
                             ArrayList<String> tempArrayList = new ArrayList<String>();
-                            tempArrayList.add("Achievement_Button_Word_Progress_25_Home");
-                            tempArrayList.add(Integer.toString(R.id.Achievement_Button_Word_Progress_25_Home));
+                            tempArrayList.add("Achievement_Button_Word_Progress_2_Home");
+                            tempArrayList.add(Integer.toString(R.id.Achievement_Button_Word_Progress_2_Home));
                             addAchievementToScreen(tempArrayList);
                             userAchievementFileStrings.add("25 WORDS!");
                             writeSave(userAchievementFileStrings, HomeFragment.this.getActivity(), "achievementFile.txt");
                         }
                         else if (!(userAchievementFileStrings.contains("50 WORDS!")) && Integer.parseInt(userStatsFileStrings.get(0)) == 50) {
                             ArrayList<String> tempArrayList = new ArrayList<String>();
-                            tempArrayList.add("Achievement_Button_Word_Progress_50_Home");
-                            tempArrayList.add(Integer.toString(R.id.Achievement_Button_Word_Progress_50_Home));
+                            tempArrayList.add("Achievement_Button_Word_Progress_3_Home");
+                            tempArrayList.add(Integer.toString(R.id.Achievement_Button_Word_Progress_3_Home));
                             addAchievementToScreen(tempArrayList);
                             userAchievementFileStrings.add("50 WORDS!");
                             writeSave(userAchievementFileStrings, HomeFragment.this.getActivity(), "achievementFile.txt");
@@ -332,36 +332,36 @@ public class HomeFragment extends Fragment {
                             System.out.println("Updating longest word: " + userStatsFileStrings.get(1));
                         }
                         //Long word achievement if it does not already exist
-                        if (!(userAchievementFileStrings.contains("7 LETTER WORD!")) && answer.length() >= 7) {
+                        if (!(userAchievementFileStrings.contains("LONG WORD!")) && answer.length() >= 7) {
                             ArrayList<String> tempArrayList = new ArrayList<String>();
-                            tempArrayList.add("Achievement_Button_Longest_Word_7_Home");
-                            tempArrayList.add(Integer.toString(R.id.Achievement_Button_Longest_Word_7_Home));
+                            tempArrayList.add("Achievement_Button_Longest_Word_1_Home");
+                            tempArrayList.add(Integer.toString(R.id.Achievement_Button_Longest_Word_1_Home));
                             addAchievementToScreen(tempArrayList);
-                            userAchievementFileStrings.add("7 LETTER WORD!");
+                            userAchievementFileStrings.add("LONG WORD!");
                             writeSave(userAchievementFileStrings, HomeFragment.this.getActivity(), "achievementFile.txt");
                         }
-                        if (!(userAchievementFileStrings.contains("9 LETTER WORD!")) && answer.length() >= 9) {
+                        if (!(userAchievementFileStrings.contains("VERY LONG WORD!")) && answer.length() >= 8) {
                             ArrayList<String> tempArrayList = new ArrayList<String>();
-                            tempArrayList.add("Achievement_Button_Longest_Word_9_Home");
-                            tempArrayList.add(Integer.toString(R.id.Achievement_Button_Longest_Word_9_Home));
+                            tempArrayList.add("Achievement_Button_Longest_Word_2_Home");
+                            tempArrayList.add(Integer.toString(R.id.Achievement_Button_Longest_Word_2_Home));
                             addAchievementToScreen(tempArrayList);
-                            userAchievementFileStrings.add("9 LETTER WORD!");
+                            userAchievementFileStrings.add("VERY LONG WORD!");
                             writeSave(userAchievementFileStrings, HomeFragment.this.getActivity(), "achievementFile.txt");
                         }
-                        if (!(userAchievementFileStrings.contains("11 LETTER WORD!")) && answer.length() >= 11) {
+                        if (!(userAchievementFileStrings.contains("SUPER LONG WORD!")) && answer.length() >= 9) {
                             ArrayList<String> tempArrayList = new ArrayList<String>();
-                            tempArrayList.add("Achievement_Button_Longest_Word_12_Home");
-                            tempArrayList.add(Integer.toString(R.id.Achievement_Button_Longest_Word_11_Home));
+                            tempArrayList.add("Achievement_Button_Longest_Word_3_Home");
+                            tempArrayList.add(Integer.toString(R.id.Achievement_Button_Longest_Word_3_Home));
                             addAchievementToScreen(tempArrayList);
-                            userAchievementFileStrings.add("11 LETTER WORD!");
+                            userAchievementFileStrings.add("SUPER LONG WORD!");
                             writeSave(userAchievementFileStrings, HomeFragment.this.getActivity(), "achievementFile.txt");
                         }
-                        if (!(userAchievementFileStrings.contains("13 LETTER WORD!")) && answer.length() >= 13) {
+                        if (!(userAchievementFileStrings.contains("RIDICULOUSLY LONG WORD!")) && answer.length() >= 10) {
                             ArrayList<String> tempArrayList = new ArrayList<String>();
-                            tempArrayList.add("Achievement_Button_Longest_Word_13_Home");
-                            tempArrayList.add(Integer.toString(R.id.Achievement_Button_Longest_Word_13_Home));
+                            tempArrayList.add("Achievement_Button_Longest_Word_4_Home");
+                            tempArrayList.add(Integer.toString(R.id.Achievement_Button_Longest_Word_4_Home));
                             addAchievementToScreen(tempArrayList);
-                            userAchievementFileStrings.add("13 LETTER WORD!");
+                            userAchievementFileStrings.add("RIDICULOUSLY LONG WORD!");
                             writeSave(userAchievementFileStrings, HomeFragment.this.getActivity(), "achievementFile.txt");
                         }
 
@@ -1498,26 +1498,26 @@ public class HomeFragment extends Fragment {
             case "Achievement_Button_Pangram_Home":
                 achievementButton = pangramAchievementButton;
                 break;
-            case "Achievement_Button_Word_Progress_10_Home":
-                achievementButton = wordProgress10AchievementButton;
+            case "Achievement_Button_Word_Progress_1_Home":
+                achievementButton = wordProgress1AchievementButton;
                 break;
-            case "Achievement_Button_Word_Progress_25_Home":
-                achievementButton = wordProgress25AchievementButton;
+            case "Achievement_Button_Word_Progress_2_Home":
+                achievementButton = wordProgress2AchievementButton;
                 break;
-            case "Achievement_Button_Word_Progress_50_Home":
-                achievementButton = wordProgress50AchievementButton;
+            case "Achievement_Button_Word_Progress_3_Home":
+                achievementButton = wordProgress3AchievementButton;
                 break;
-            case "Achievement_Button_Longest_Word_7_Home":
-                achievementButton = longWord8AchievementButton;
+            case "Achievement_Button_Longest_Word_1_Home":
+                achievementButton = longWord1AchievementButton;
                 break;
-            case "Achievement_Button_Longest_Word_9_Home":
-                achievementButton = longWord10AchievementButton;
+            case "Achievement_Button_Longest_Word_2_Home":
+                achievementButton = longWord2AchievementButton;
                 break;
-            case "Achievement_Button_Longest_Word_11_Home":
-                achievementButton = longWord12AchievementButton;
+            case "Achievement_Button_Longest_Word_3_Home":
+                achievementButton = longWord3AchievementButton;
                 break;
-            case "Achievement_Button_Longest_Word_13_Home":
-                achievementButton = longWord15AchievementButton;
+            case "Achievement_Button_Longest_Word_4_Home":
+                achievementButton = longWord4AchievementButton;
                 break;
             case "Achievement_Button_Speed_Demon_1_Home":
                 achievementButton = speedDemon1AchievementButton;

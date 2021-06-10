@@ -84,7 +84,7 @@ public class AchievementFragment extends Fragment {
             tempAchievementTitle.setTextColor(getResources().getColor(R.color.achievementTitleText));
             tempAchievementDetails.setTextColor(getResources().getColor(R.color.achievementDetailText));
         }
-        if (userAchievementFileStrings.contains("7 LETTER WORD!")) {
+        if (userAchievementFileStrings.contains("LONG WORD!")) {
             tempAchievementImage = (ImageView) root.findViewById(R.id.Longest_Word_7_Image_Achievements);
             tempAchievementTitle = (TextView) root.findViewById(R.id.Longest_Word_7_Title_Text_Achievements);
             tempAchievementDetails = (TextView) root.findViewById(R.id.Longest_Word_7_Details_Text_Achievements);
@@ -93,7 +93,7 @@ public class AchievementFragment extends Fragment {
             tempAchievementTitle.setTextColor(getResources().getColor(R.color.achievementTitleText));
             tempAchievementDetails.setTextColor(getResources().getColor(R.color.achievementDetailText));
         }
-        if (userAchievementFileStrings.contains("9 LETTER WORD!")) {
+        if (userAchievementFileStrings.contains("VERY LONG WORD!")) {
             tempAchievementImage = (ImageView) root.findViewById(R.id.Longest_Word_9_Image_Achievements);
             tempAchievementTitle = (TextView) root.findViewById(R.id.Longest_Word_9_Title_Text_Achievements);
             tempAchievementDetails = (TextView) root.findViewById(R.id.Longest_Word_9_Details_Text_Achievements);
@@ -102,7 +102,7 @@ public class AchievementFragment extends Fragment {
             tempAchievementTitle.setTextColor(getResources().getColor(R.color.achievementTitleText));
             tempAchievementDetails.setTextColor(getResources().getColor(R.color.achievementDetailText));
         }
-        if (userAchievementFileStrings.contains("11 LETTER WORD!")) {
+        if (userAchievementFileStrings.contains("SUPER LONG WORD!")) {
             tempAchievementImage = (ImageView) root.findViewById(R.id.Longest_Word_11_Image_Achievements);
             tempAchievementTitle = (TextView) root.findViewById(R.id.Longest_Word_11_Title_Text_Achievements);
             tempAchievementDetails = (TextView) root.findViewById(R.id.Longest_Word_11_Details_Text_Achievements);
@@ -111,7 +111,7 @@ public class AchievementFragment extends Fragment {
             tempAchievementTitle.setTextColor(getResources().getColor(R.color.achievementTitleText));
             tempAchievementDetails.setTextColor(getResources().getColor(R.color.achievementDetailText));
         }
-        if (userAchievementFileStrings.contains("13 LETTER WORD!")) {
+        if (userAchievementFileStrings.contains("RIDICULOUSLY LONG WORD!")) {
             tempAchievementImage = (ImageView) root.findViewById(R.id.Longest_Word_13_Image_Achievements);
             tempAchievementTitle = (TextView) root.findViewById(R.id.Longest_Word_13_Title_Text_Achievements);
             tempAchievementDetails = (TextView) root.findViewById(R.id.Longest_Word_13_Details_Text_Achievements);
@@ -138,7 +138,7 @@ public class AchievementFragment extends Fragment {
             tempAchievementTitle.setTextColor(getResources().getColor(R.color.achievementTitleText));
             tempAchievementDetails.setTextColor(getResources().getColor(R.color.achievementDetailText));
         }
-        if (userAchievementFileStrings.contains("1 HOUR PLAYED!")) {
+        if (userAchievementFileStrings.contains("PRETTY FUN!")) {
             tempAchievementImage = (ImageView) root.findViewById(R.id.Playtime_Image_Achievements);
             tempAchievementTitle = (TextView) root.findViewById(R.id.Playtime_Title_Text_Achievements);
             tempAchievementDetails = (TextView) root.findViewById(R.id.Playtime_Details_Text_Achievements);
