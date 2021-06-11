@@ -4,7 +4,6 @@ import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Property;
@@ -21,7 +20,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -51,13 +49,14 @@ import static java.lang.Integer.parseInt;
 //Background music resets when night mode switches - Done
 //Need new background music - Done
 //Design fixes - get testers/other eyes, clean up navigation drawer
-//Code Cleanup/Bugfixes - Remove all print statements
+//Code Cleanup/Bugfixes - Remove all print statements, remove cheats
 //Publish
 
 //Extra:
 //Database
 //Setting explanations
 //Tutorial/How to Play page
+//Order words found by alphabet on load in
 //Optimization - WriteSave should be on pause/resume instead of every second, which means it needs to be in MainMenuNavigation
 
 public class HomeFragment extends Fragment {
@@ -201,7 +200,6 @@ public class HomeFragment extends Fragment {
 
         //Submit_Button_Home
         submitButton.setOnClickListener(new OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
             @Override
             public void onClick(View view) {
                 if (enableCheat % 2 == 1) {
@@ -498,7 +496,6 @@ public class HomeFragment extends Fragment {
 
         //Shuffle_Button_Home
         shuffleButton.setOnClickListener(new OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
             @Override
             public void onClick(View view) {
 
@@ -1476,7 +1473,6 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     private void addAchievementToScreen(ArrayList<String> achievementInformation) {
         final Button achievementButton;
         switch(achievementInformation.get(0)) {
@@ -1603,7 +1599,6 @@ public class HomeFragment extends Fragment {
         return pixels;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     private void updateSpeedDemonCounter() {
         speedDemonCounter += 1;
         System.out.println("speedDemon is now: " + speedDemonCounter);
@@ -1646,7 +1641,6 @@ public class HomeFragment extends Fragment {
             MainMenuNavigation.timerRunning = true;
             playtimeHandler = new Handler();
             playtimeHandler.postDelayed(new Runnable() {
-                @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
                 public void run() {
                     try {
                         userStatsFileStrings.set(6, Integer.toString(Integer.parseInt((userStatsFileStrings.get(6))) + 1));

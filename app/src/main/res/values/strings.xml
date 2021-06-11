@@ -41,8 +41,8 @@
     <string name="title_activity_navigation__drawer">Navigation_Drawer</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">No Frills Studio</string>
-    <string name="nav_header_subtitle">test.test@test.com</string>
+    <string name="nav_header_title">Pangrams</string>
+    <string name="nav_header_subtitle">lungfishstudio@gmail.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
@@ -103,15 +103,15 @@
     <string name="achievement_speed_demon_1">Quick As Lightning</string>
     <string name="achievement_speed_demon_2">Speed Demon</string>
     <string name="achievement_playtime_1">Pretty Fun</string>
-    <string name="achievement_first_pangram_details">Submit a word that contains every possible letter.</string>
-    <string name="achievement_word_progress_1_details">Submit 10 valid words for a single set of letters.</string>
-    <string name="achievement_word_progress_2_details">Submit 25 valid words for a single set of letters.</string>
-    <string name="achievement_word_progress_3_details">Submit 50 valid words for a single set of letters.</string>
+    <string name="achievement_first_pangram_details">Submit a word that contains 7 different letters.</string>
+    <string name="achievement_word_progress_1_details">Submit a total of 10 words.</string>
+    <string name="achievement_word_progress_2_details">Submit a total of 25 words.</string>
+    <string name="achievement_word_progress_3_details">Submit a total of 50 words.</string>
     <string name="achievement_word_length_1_details">Submit a word with 7 or more letters.</string>
     <string name="achievement_word_length_2_details">Submit a word with 8 or more letters.</string>
     <string name="achievement_word_length_3_details">Submit a word with 9 or more letters.</string>
     <string name="achievement_word_length_4_details">Submit a word with 10 or more letters.</string>
     <string name="achievement_speed_demon_1_details">Submit 10 words with less than 10 seconds between each word.</string>
     <string name="achievement_speed_demon_2_details">Submit 20 words with less than 10 seconds between each word.</string>
-    <string name="achievement_playtime_1_details">Play for over 15 minutes.</string>
+    <string name="achievement_playtime_1_details">Play for a total of 15 minutes.</string>
 </resources>
