@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -17,11 +16,8 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.firstapp.ui.home.HomeFragment;
 import com.example.firstapp.ui.user_stats.UserStatsFragment;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
 
-import static com.example.firstapp.ui.home.HomeFragment.homeFragment;
 import static com.example.firstapp.ui.user_stats.UserStatsFragment.userStatsFragment;
 
 public class MainMenuNavigation extends AppCompatActivity {
@@ -40,14 +36,14 @@ public class MainMenuNavigation extends AppCompatActivity {
         setContentView(R.layout.activity_main_menu_navigation);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+//        FloatingActionButton fab = findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -133,7 +129,7 @@ public class MainMenuNavigation extends AppCompatActivity {
             System.out.println("Music is started by onResume");
         }
         if (HomeFragment.playtimeHandler == null && !timerRunning) {
-            homeFragment.startPlaytimeTimer();
+            HomeFragment.homeFragment.startPlaytimeTimer();
             HomeFragment.userStatsFileStrings.set(6,Integer.toString(curTime));
             System.out.println("timer resumed");
         }
