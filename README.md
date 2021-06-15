@@ -5,8 +5,8 @@ Button-based mostly fully functional word game inspired by the <a href = "https:
 <br><br>Features: <br>Score Tracker<br>Achievement System<br>Saved Progress<br>
 Settings page<br>In-game music<br>Night mode
 
-### Most Recent Stable APK
-
+### Most Recent APK
+Download <a href = "https://github.com/lo-maxwell/PangramsGame/blob/master/app-debug.apk">here</a>.
 
 ### App Walk-through
 
