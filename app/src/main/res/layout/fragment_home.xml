@@ -166,11 +166,17 @@
             <TextView
                 android:id="@+id/Score_Tracker_Home"
                 android:layout_width="160dp"
-                android:layout_height="220dp"
+                android:layout_height="40dp"
                 android:text="@string/Score"
                 android:textColor="@color/defaultSoftTextColor"
                 tools:layout_editor_absoluteX="179dp"
                 tools:layout_editor_absoluteY="421dp" />
+
+            <TextView
+                android:id="@+id/Score_Tracker_Cheats_Home"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/defaultSoftTextColor" />
         </LinearLayout>
     </ScrollView>
 

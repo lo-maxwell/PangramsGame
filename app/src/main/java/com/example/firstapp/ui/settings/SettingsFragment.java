@@ -20,6 +20,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.viewpager.widget.ViewPager;
 
 import com.example.firstapp.MainMenuNavigation;
 import com.example.firstapp.R;
@@ -119,37 +120,39 @@ public class SettingsFragment extends Fragment {
 
         wordListExplanation.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-//                int[] location = new int[2];
-//                nightModeConstraintLayout.getLocationOnScreen(location);
-//                int x = location[0];
-//                int y = location[1];
+            public void onClick(View view) {int[] location = new int[2];
+                View nightModeConstraintLayout = getView().findViewById(R.id.Night_Mode_Constraint_Layout_Settings);
+                nightModeConstraintLayout.getLocationInWindow(location);
+                int x = location[0];
+                int y = location[1] + nightModeConstraintLayout.getHeight();
                 LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 PopupWindow pw = new PopupWindow(
                         inflater.inflate(R.layout.popup_word_list, null, false),
-                        700,
-                        300,
+                        ViewPager.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT,
                         true);
                 // The code below assumes that the root container has an id called 'main'
-                pw.showAtLocation(getView().findViewById(R.id.Main_Settings_Scroll_View_Settings), Gravity.CENTER, -180, -100);
+                pw.showAtLocation(getView().findViewById(R.id.Main_Settings_Scroll_View_Settings), Gravity.TOP, x, y);
             }
         });
 
         nightModeExplanation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                int[] location = new int[2];
-//                nightModeConstraintLayout.getLocationOnScreen(location);
-//                int x = location[0];
-//                int y = location[1];
+
+                int[] location = new int[2];
+                View nightModeConstraintLayout = getView().findViewById(R.id.Night_Mode_Constraint_Layout_Settings);
+                nightModeConstraintLayout.getLocationInWindow(location);
+                int x = location[0];
+                int y = location[1] + nightModeConstraintLayout.getHeight();
                 LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 PopupWindow pw = new PopupWindow(
                         inflater.inflate(R.layout.popup_night_mode, null, false),
-                        700,
-                        100,
+                        ViewPager.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT,
                         true);
                 // The code below assumes that the root container has an id called 'main'
-                pw.showAtLocation(getView().findViewById(R.id.Main_Settings_Scroll_View_Settings), Gravity.CENTER, -180, -200);
+                pw.showAtLocation(getView().findViewById(R.id.Main_Settings_Scroll_View_Settings), Gravity.TOP, x, y);
             }
         });
 
