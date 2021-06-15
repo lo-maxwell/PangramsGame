@@ -3,7 +3,10 @@
 ### App Description
 Button-based mostly fully functional word game inspired by the <a href = "https://www.nytimes.com/puzzles/spelling-bee">New York Times Spelling Bee</a>. Created in Android Studio using Java. 
 <br><br>Features: <br>Score Tracker<br>Achievement System<br>Saved Progress<br>
-<br>TODO: <br>Settings page<br>In-game music<br>Night mode
+Settings page<br>In-game music<br>Night mode
+
+### Most Recent Stable APK
+
 
 ### App Walk-through
 
