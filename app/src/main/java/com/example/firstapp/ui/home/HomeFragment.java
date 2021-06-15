@@ -54,7 +54,7 @@ import static java.lang.Integer.parseInt;
 
 //Extra:
 //Database
-//Setting explanations
+//Setting explanations appear in weird location
 //Tutorial/How to Play page
 //Order words found by alphabet on load in
 //Optimization - WriteSave should be on pause/resume instead of every second, which means it needs to be in MainMenuNavigation
@@ -1373,49 +1373,56 @@ public class HomeFragment extends Fragment {
     private void setLetters() {
         textButton1.post(new Runnable() {
             public void run() {
-                textButton1.setText(newLettersStrings.get(0));
+                //textButton1.setText(newLettersStrings.get(0));
+                textButton1.setText("A");
                 textButton1.setEnabled(true);
             }
         });
 
         textButton2.post(new Runnable() {
             public void run() {
-                textButton2.setText(newLettersStrings.get(1));
+                //textButton2.setText(newLettersStrings.get(1));
+                textButton2.setText("B");
                 textButton2.setEnabled(true);
             }
         });
 
         textButton3.post(new Runnable() {
             public void run() {
-                textButton3.setText(newLettersStrings.get(2));
+                //textButton3.setText(newLettersStrings.get(2));
+                textButton3.setText("C");
                 textButton3.setEnabled(true);
             }
         });
 
         textButton4.post(new Runnable() {
             public void run() {
-                textButton4.setText(newLettersStrings.get(3));
+                //textButton4.setText(newLettersStrings.get(3));
+                textButton4.setText("D");
                 textButton4.setEnabled(true);
             }
         });
 
         textButton5.post(new Runnable() {
             public void run() {
-                textButton5.setText(newLettersStrings.get(4));
+                //textButton5.setText(newLettersStrings.get(4));
+                textButton5.setText("E");
                 textButton5.setEnabled(true);
             }
         });
 
         textButton6.post(new Runnable() {
             public void run() {
-                textButton6.setText(newLettersStrings.get(5));
+                //textButton6.setText(newLettersStrings.get(5));
+                textButton6.setText("F");
                 textButton6.setEnabled(true);
             }
         });
 
         textButton7.post(new Runnable() {
             public void run() {
-                textButton7.setText(newLettersStrings.get(6));
+                //textButton7.setText(newLettersStrings.get(6));
+                textButton7.setText("G");
                 textButton7.setEnabled(true);
             }
         });
