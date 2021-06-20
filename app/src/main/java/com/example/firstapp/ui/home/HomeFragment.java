@@ -36,6 +36,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 import static java.lang.Integer.parseInt;
@@ -120,15 +121,12 @@ public class HomeFragment extends Fragment {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //readSaveFile(HomeFragment.this.getActivity());
-        System.out.println("onCreate was called.");
         mContext = getActivity();
         homeFragment = this;
     }
 
     public void onDestroy() {
         super.onDestroy();
-        System.out.println("Fragment was destroyed.");
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -236,7 +234,6 @@ public class HomeFragment extends Fragment {
                         answerBox.setText(getString(R.string.AnswerBox));
                         messageBox.setText("Word must have at least 3 letters and contain the center letter (" + (textButton4).getText().toString() + ")");
                     } else if (!(possibleWords.contains(answer))) {
-                        System.out.println("Word " + answer + " not in possible words");
                         answerBox.setText(getString(R.string.AnswerBox));
                         messageBox.setText("Not a valid word!");
                     } else if (answer.length() >= 3 && answer.contains((textButton4).getText().toString())) {
@@ -266,11 +263,9 @@ public class HomeFragment extends Fragment {
                             wordList.append(answer + " (+" + tempScore + ")\n");
                             //Increment pangrams counter
                             userStatsFileStrings.set(4, Integer.toString(Integer.parseInt(userStatsFileStrings.get(4)) + 1));
-                            System.out.println("Updating pangrams submitted counter : " + userStatsFileStrings.get(4));
                             //Check if new longest pangram
                             if (answer.length() >= userStatsFileStrings.get(5).length()) {
                                 userStatsFileStrings.set(5, answer);
-                                System.out.println("Updating longest word: " + userStatsFileStrings.get(5));
                             }
                             //First pangram achievement if it does not already exist
                             if (!(userAchievementFileStrings.contains("FIRST PANGRAM!"))) {
@@ -298,7 +293,6 @@ public class HomeFragment extends Fragment {
 
                         //Increment words submitted counter
                         userStatsFileStrings.set(0, Integer.toString(Integer.parseInt(userStatsFileStrings.get(0)) + 1));
-                        System.out.println("Updating words submitted counter : " + userStatsFileStrings.get(0));
                         //Words submitted achievement if it does not already exist
                         if (!(userAchievementFileStrings.contains("10 WORDS!")) && Integer.parseInt(userStatsFileStrings.get(0)) == 10) {
                             ArrayList<String> tempArrayList = new ArrayList<String>();
@@ -328,7 +322,6 @@ public class HomeFragment extends Fragment {
                         //Update longest word
                         if (answer.length() >= userStatsFileStrings.get(1).length()) {
                             userStatsFileStrings.set(1, answer);
-                            System.out.println("Updating longest word: " + userStatsFileStrings.get(1));
                         }
                         //Long word achievement if it does not already exist
                         if (!(userAchievementFileStrings.contains("LONG WORD!")) && answer.length() >= 7) {
@@ -366,11 +359,9 @@ public class HomeFragment extends Fragment {
 
                         //Increment total points
                         userStatsFileStrings.set(2, Integer.toString(Integer.parseInt(userStatsFileStrings.get(2)) + tempScore));
-                        System.out.println("Updating total points: " + userStatsFileStrings.get(2));
                         //Increment highest score
                         if (score >= Integer.parseInt(userStatsFileStrings.get(3))) {
                             userStatsFileStrings.set(3, Integer.toString(score));
-                            System.out.println("Updating highest score: " + userStatsFileStrings.get(3));
                         }
 
                         updateSpeedDemonCounter();
@@ -513,7 +504,6 @@ public class HomeFragment extends Fragment {
                         }
                     }
                 }
-                System.out.println(randomIntArray);
                 String[] tempStringArray = {"", "", "", "", "", "", ""};
                 for (int i = 0; i < 7; i++) {
                     tempStringArray[i] = saveFileStrings.get(randomIntArray.get(i));
@@ -529,42 +519,6 @@ public class HomeFragment extends Fragment {
                     usedLetters[i] = saveFileStrings.get(i + 1);
                     tempButtons[i].setText(usedLetters[i]);
                 }
-
-                //Previously used for testing achievement popups
-                //TODO: Delete code
-//                if (!currentAchievements.contains(defaultAchievementButton)) {
-//                    System.out.println("Adding achievement button 1 to screen");
-//                    ArrayList<String> tempArrayList = new ArrayList<String>();
-//                    tempArrayList.add("Default_Achievement_Button_Home");
-//                    tempArrayList.add(Integer.toString(R.id.Default_Achievement_Button_Home));
-//                    addAchievementToScreen(tempArrayList);
-//                } else if (!currentAchievements.contains(defaultAchievementButton2)) {
-//                    System.out.println("Adding achievement button 2 to screen");
-//                    ArrayList<String> tempArrayList = new ArrayList<String>();
-//                    tempArrayList.add("Default_Achievement_Button_Home_2");
-//                    tempArrayList.add(Integer.toString(R.id.Default_Achievement_Button_Home_2));
-//                    addAchievementToScreen(tempArrayList);
-//                } else if (!currentAchievements.contains(defaultAchievementButton3)) {
-//                    System.out.println("Adding achievement button 3 to screen");
-//                    ArrayList<String> tempArrayList = new ArrayList<String>();
-//                    tempArrayList.add("Default_Achievement_Button_Home_3");
-//                    tempArrayList.add(Integer.toString(R.id.Default_Achievement_Button_Home_3));
-//                    addAchievementToScreen(tempArrayList);
-//                } else if (!currentAchievements.contains(defaultAchievementButton4)) {
-//                    System.out.println("Adding achievement button 4 to screen");
-//                    ArrayList<String> tempArrayList = new ArrayList<String>();
-//                    tempArrayList.add("Default_Achievement_Button_Home_4");
-//                    tempArrayList.add(Integer.toString(R.id.Default_Achievement_Button_Home_4));
-//                    addAchievementToScreen(tempArrayList);
-//                } else if (!currentAchievements.contains(defaultAchievementButton5)) {
-//                    System.out.println("Adding achievement button 5 to screen");
-//                    ArrayList<String> tempArrayList = new ArrayList<String>();
-//                    tempArrayList.add("Default_Achievement_Button_Home_5");
-//                    tempArrayList.add(Integer.toString(R.id.Default_Achievement_Button_Home_5));
-//                    addAchievementToScreen(tempArrayList);
-//                }
-
-                //System.out.println(defaultAchievementButtonAnimation);
             }
         });
 
@@ -623,74 +577,63 @@ public class HomeFragment extends Fragment {
     @Override
     public void onStop() {
         super.onStop();
-        System.out.println("onStop called");
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        System.out.println("onResume called");
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        System.out.println("onActivityCreated called");
-        if (savedInstanceState != null) {
-            // Restore last state for checked position.
-            //mCurCheckPosition = savedInstanceState.getInt("curChoice", 0);
-            System.out.println("onActivityCreated changed mCurCheckPosition");
-        }
     }
 
     private void readSaveFile(Context context) {
         BufferedReader reader = null;
+        File file;
+        FileInputStream fis;
+        InputStreamReader inputStreamReader;
+        String mLine;
+        boolean saveFileError = true;
         try {
-            System.out.println("Opening saveFile");
-            File file = new File(context.getFilesDir(), "saveFile.txt");
+            file = new File(context.getFilesDir(), "saveFile.txt");
             if (!file.exists()) {
                 file.createNewFile();
-                System.out.println("Created new file");
             }
-            FileInputStream fis = context.openFileInput("saveFile.txt");
-            InputStreamReader inputStreamReader = new InputStreamReader(fis);
+            fis = context.openFileInput("saveFile.txt");
+            inputStreamReader = new InputStreamReader(fis);
             reader = new BufferedReader(inputStreamReader);
             // do reading, usually loop until end of file reading
-            System.out.println("Opened saveFile");
-            String mLine;
             saveFileStrings.clear();
             while ((mLine = reader.readLine()) != null) {
                 //process line
                 String data = mLine.toUpperCase();
-                System.out.println("Savefile: " + data);
                 saveFileStrings.add(data);
             }
-            System.out.println(saveFileStrings);
-            boolean saveFileError = false;
+            saveFileError = false;
             try {
                 if (saveFileStrings.size() <= 8) {
                     saveFileError = true;
                 }
                 if (!saveFileStrings.get(0).equals("NEWPLAYER == FALSE")) {
                     saveFileError = true;
-                    System.out.println("First string is not newplayer false");
                 }
                 for (int i = 1; i < 8; i++) {
                     if (!(saveFileStrings.get(i).length() == 1)) {
                         saveFileError = true;
-                        System.out.println(i + " string is not a letter");
                     }
                 }
+                //Check if score string matches a number
                 if (!saveFileStrings.get(8).matches("-?\\d+(\\.\\d+)?")) {
                     saveFileError = true;
-                    System.out.println("9th string is not a number");
                 }
+                //Check if remaining strings are valid words
                 for (int i = 9; i < saveFileStrings.size(); i++) {
                     char[] chars = saveFileStrings.get(i).toCharArray();
                     for (char c : chars) {
                         if (!Character.isLetter(c)) {
                             saveFileError = true;
-                            System.out.println(i + "th string is not a word");
                         }
                     }
                 }
@@ -698,239 +641,223 @@ public class HomeFragment extends Fragment {
             } catch (IndexOutOfBoundsException e) {
                 System.out.println("saveFileError =" + saveFileError);
             }
+            sortSubmitList(saveFileStrings);
             reader.close();
-
-            //preLoadFile
-            try {
-                System.out.println("Opening preLoadFile");
-                file = new File(context.getFilesDir(), "preLoadFile.txt");
-                if (!file.exists()) {
-                    file.createNewFile();
-                    System.out.println("Created new preLoadFile (This should never occur besides the first run after a new patch)");
-                }
-                fis = context.openFileInput("preLoadFile.txt");
-                inputStreamReader = new InputStreamReader(fis);
-                reader = new BufferedReader(inputStreamReader);
-                // do reading, usually loop until end of file reading
-                System.out.println("Opened preLoadFile");
-                mLine = "";
-                preLoadFileStrings.clear();
-                while ((mLine = reader.readLine()) != null) {
-                    //process line
-                    String data = mLine.toUpperCase();
-                    System.out.println("Preload: " + data);
-                    preLoadFileStrings.add(data);
-                }
-                reader.close();
-            } catch (IOException e) {
-                //log the exception
-                System.out.println("An exception occurred while reading preLoadFile");
-            }
-
-            //userStatsFile
-            try {
-                System.out.println("Opening userStatsFile");
-                file = new File(context.getFilesDir(), "userStatsFile.txt");
-                if (!file.exists()) {
-                    file.createNewFile();
-                    System.out.println("Created new userStatsFile (This should never occur besides the first run after a new patch)");
-                    System.out.println("Filling with default values...");
-                    //Words submitted (0), Longest word (none), Total points (0), Best score (0), Total Pangrams (0), Longest Pangram (none), Time Played (0)
-                    String tempString = "0\nN/A\n0\n0\n0\nN/A\n0";
-                    writeToFile(tempString, context, "userStatsFile.txt");
-                }
-                fis = context.openFileInput("userStatsFile.txt");
-                inputStreamReader = new InputStreamReader(fis);
-                reader = new BufferedReader(inputStreamReader);
-                // do reading, usually loop until end of file reading
-                System.out.println("Opened userStatsFile");
-                mLine = "";
-                userStatsFileStrings.clear();
-                while ((mLine = reader.readLine()) != null) {
-                    //process line
-                    String data = mLine.toUpperCase();
-                    System.out.println("UserStatsFile: " + data);
-                    userStatsFileStrings.add(data);
-                }
-                for (int i = 0; i < 7; i++) {
-                    try {
-                        System.out.println(userStatsFileStrings.get(i));
-                    } catch (IndexOutOfBoundsException e) {
-                        System.out.println("Missing data! ");
-                        System.out.println("Filling in missing data.");
-                        if (i == 1 || i == 5)
-                            userStatsFileStrings.add(i, "N/A");
-                        else
-                            userStatsFileStrings.add(i, "0");
-                    }
-                }
-                reader.close();
-            } catch (IOException e) {
-                //log the exception
-                System.out.println("An exception occurred while reading userStatsFile");
-            }
-
-            //achievementFile
-            try {
-                System.out.println("Opening achievementFile");
-                file = new File(context.getFilesDir(), "achievementFile.txt");
-                if (!file.exists()) {
-                    file.createNewFile();
-                    System.out.println("Created new achievementFile (This should never occur besides the first run after a new patch)");
-                    System.out.println("Creating with no achievements.");
-                    writeToFile("", context, "achievementFile.txt");
-                }
-                fis = context.openFileInput("achievementFile.txt");
-                inputStreamReader = new InputStreamReader(fis);
-                reader = new BufferedReader(inputStreamReader);
-                // do reading, usually loop until end of file reading
-                System.out.println("Opened achievementFile");
-                mLine = "";
-                userAchievementFileStrings.clear();
-                while ((mLine = reader.readLine()) != null) {
-                    //process line
-                    String data = mLine.toUpperCase();
-                    System.out.println("achievementFile: " + data);
-                    userAchievementFileStrings.add(data);
-                }
-                reader.close();
-            } catch (IOException e) {
-                //log the exception
-                System.out.println("An exception occurred while reading achievementFile");
-            }
-
-            //settingsFile
-            try {
-                System.out.println("Opening settingsFile");
-                file = new File(context.getFilesDir(), "settingsFile.txt");
-                if (!file.exists()) {
-                    file.createNewFile();
-                    System.out.println("Created new settingsFile (This should never occur besides the first run after a new patch)");
-                    System.out.println("Creating with default settings.");
-                    writeToFile("", context, "settingsFile.txt");
-                }
-                fis = context.openFileInput("settingsFile.txt");
-                inputStreamReader = new InputStreamReader(fis);
-                reader = new BufferedReader(inputStreamReader);
-                // do reading, usually loop until end of file reading
-                System.out.println("Opened settingsFile");
-                mLine = "";
-                settingsFileStrings.clear();
-                while ((mLine = reader.readLine()) != null) {
-                    //process line
-                    String data = mLine.toUpperCase();
-                    System.out.println("settingsFile: " + data);
-                    settingsFileStrings.add(data);
-                }
-                //Add default if missing
-                if (settingsFileStrings.size() != 4) {
-                    settingsFileStrings.clear();
-                    //Sound
-                    settingsFileStrings.add("50");
-                    //Word List
-                    settingsFileStrings.add("True");
-                    //Night Mode
-                    settingsFileStrings.add("False");
-                    //Ads
-                    settingsFileStrings.add("False");
-                }
-                MainMenuNavigation.setMusicVolume(MainMenuNavigation.backgroundMusic, Integer.parseInt(settingsFileStrings.get(0)));
-                reader.close();
-            } catch (IOException e) {
-                //log the exception
-                System.out.println("An exception occurred while reading settingstFile");
-            }
-
-            //Update UI to reflect savefile
-            if (saveFileError) {
-                saveFileStrings.clear();
-                saveFileStrings.add("NEWPLAYER == FALSE");
-                saveFileStrings.add("A");
-                saveFileStrings.add("B");
-                saveFileStrings.add("C");
-                saveFileStrings.add("D");
-                saveFileStrings.add("E");
-                saveFileStrings.add("F");
-                saveFileStrings.add("G");
-                saveFileStrings.add("0");
-                //pickRandomLetters(null);
-                //setLetters();
-
-                new Thread(new Runnable() {
-                    public void run() {
-                        loadingBar.post(new Runnable() {
-                            public void run() {
-                                loadingBar.setVisibility(View.VISIBLE);
-                                loadingBar.invalidate();
-                            }
-                        });
-                    }
-                }).start();
-                new Thread(new Runnable() {
-                    public void run() {
-                        writeToFile("NEWPLAYER == FALSE\n", HomeFragment.this.getActivity(), "saveFile.txt");
-                        pickRandomLetters();
-                        answerBox.post(new Runnable() {
-                            public void run() {
-                                answerBox.setText(getString(R.string.AnswerBox));
-                            }
-                        });
-                        writeSave(saveFileStrings, HomeFragment.this.getActivity(), "saveFile.txt");
-                        loadingBar.post(new Runnable() {
-                            public void run() {
-                                loadingBar.setVisibility(View.GONE);
-                            }
-                        });
-
-                        setLetters();
-                    }
-                }).start();
-                System.out.println("saveFileError = TRUE");
-            } else {
-
-                new Thread(new Runnable() {
-                    public void run() {
-                        loadingBar.post(new Runnable() {
-                            public void run() {
-                                loadingBar.setVisibility(View.VISIBLE);
-                                loadingBar.invalidate();
-                            }
-                        });
-                    }
-                }).start();
-                new Thread(new Runnable() {
-                    public void run() {
-                        writeToFile("NEWPLAYER == FALSE\n", HomeFragment.this.getActivity(), "saveFile.txt");
-                        pickLetters();
-                        answerBox.post(new Runnable() {
-                            public void run() {
-                                answerBox.setText(getString(R.string.AnswerBox));
-                            }
-                        });
-                        writeSave(saveFileStrings, HomeFragment.this.getActivity(), "saveFile.txt");
-                        loadingBar.post(new Runnable() {
-                            public void run() {
-                                loadingBar.setVisibility(View.GONE);
-                            }
-                        });
-
-                        setLetters();
-                    }
-                }).start();
-                System.out.println("saveFileError = FALSE");
-            }
-//            writeSave(saveFileStrings, context, "saveFile.txt");
-//            writeSave(userStatsFileStrings, context, "userStatsFile.txt");
-//            writeSave(userAchievementFileStrings, context, "achievementFile.txt");
-//            writeSave(settingsFileStrings, context, "settingsFile.txt");
 
         } catch (IOException e) {
             //log the exception
             System.out.println("An exception occurred while reading saveFile");
         }
+
+        //Update UI to reflect savefile
+        if (saveFileError) {
+            saveFileStrings.clear();
+            saveFileStrings.add("NEWPLAYER == FALSE");
+            saveFileStrings.add("A");
+            saveFileStrings.add("B");
+            saveFileStrings.add("C");
+            saveFileStrings.add("D");
+            saveFileStrings.add("E");
+            saveFileStrings.add("F");
+            saveFileStrings.add("G");
+            saveFileStrings.add("0");
+            //pickRandomLetters(null);
+            //setLetters();
+
+            new Thread(new Runnable() {
+                public void run() {
+                    loadingBar.post(new Runnable() {
+                        public void run() {
+                            loadingBar.setVisibility(View.VISIBLE);
+                            loadingBar.invalidate();
+                        }
+                    });
+                }
+            }).start();
+            new Thread(new Runnable() {
+                public void run() {
+                    writeToFile("NEWPLAYER == FALSE\n", HomeFragment.this.getActivity(), "saveFile.txt");
+                    pickRandomLetters();
+                    answerBox.post(new Runnable() {
+                        public void run() {
+                            answerBox.setText(getString(R.string.AnswerBox));
+                        }
+                    });
+                    writeSave(saveFileStrings, HomeFragment.this.getActivity(), "saveFile.txt");
+                    loadingBar.post(new Runnable() {
+                        public void run() {
+                            loadingBar.setVisibility(View.GONE);
+                        }
+                    });
+
+                    setLetters();
+                }
+            }).start();
+            System.out.println("saveFileError = TRUE");
+        } else {
+            new Thread(new Runnable() {
+                public void run() {
+                    loadingBar.post(new Runnable() {
+                        public void run() {
+                            loadingBar.setVisibility(View.VISIBLE);
+                            loadingBar.invalidate();
+                        }
+                    });
+                }
+            }).start();
+            new Thread(new Runnable() {
+                public void run() {
+                    writeToFile("NEWPLAYER == FALSE\n", HomeFragment.this.getActivity(), "saveFile.txt");
+                    pickLetters();
+                    answerBox.post(new Runnable() {
+                        public void run() {
+                            answerBox.setText(getString(R.string.AnswerBox));
+                        }
+                    });
+                    writeSave(saveFileStrings, HomeFragment.this.getActivity(), "saveFile.txt");
+                    loadingBar.post(new Runnable() {
+                        public void run() {
+                            loadingBar.setVisibility(View.GONE);
+                        }
+                    });
+
+                    setLetters();
+                }
+            }).start();
+        }
+
+        //preLoadFile
+        try {
+            file = new File(context.getFilesDir(), "preLoadFile.txt");
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            fis = context.openFileInput("preLoadFile.txt");
+            inputStreamReader = new InputStreamReader(fis);
+            reader = new BufferedReader(inputStreamReader);
+            // do reading, usually loop until end of file reading
+            mLine = "";
+            preLoadFileStrings.clear();
+            while ((mLine = reader.readLine()) != null) {
+                //process line
+                String data = mLine.toUpperCase();
+                preLoadFileStrings.add(data);
+            }
+            reader.close();
+        } catch (IOException e) {
+            //log the exception
+            System.out.println("An exception occurred while reading preLoadFile");
+        }
+
+        //userStatsFile
+        try {
+            file = new File(context.getFilesDir(), "userStatsFile.txt");
+            if (!file.exists()) {
+                file.createNewFile();
+                //Words submitted (0), Longest word (none), Total points (0), Best score (0), Total Pangrams (0), Longest Pangram (none), Time Played (0)
+                String tempString = "0\nN/A\n0\n0\n0\nN/A\n0";
+                writeToFile(tempString, context, "userStatsFile.txt");
+            }
+            fis = context.openFileInput("userStatsFile.txt");
+            inputStreamReader = new InputStreamReader(fis);
+            reader = new BufferedReader(inputStreamReader);
+            // do reading, usually loop until end of file reading
+            mLine = "";
+            userStatsFileStrings.clear();
+            while ((mLine = reader.readLine()) != null) {
+                //process line
+                String data = mLine.toUpperCase();
+                userStatsFileStrings.add(data);
+            }
+            try {
+                for (int i = 0; i < 7; i++) {
+                    assert(userStatsFileStrings.get(i) != null);
+                }
+            } catch (IndexOutOfBoundsException e) {
+                userStatsFileStrings.clear();
+                userStatsFileStrings.add("0");
+                userStatsFileStrings.add("N/A");
+                userStatsFileStrings.add("0");
+                userStatsFileStrings.add("0");
+                userStatsFileStrings.add("0");
+                userStatsFileStrings.add("N/A");
+                userStatsFileStrings.add("0");
+            }
+            reader.close();
+        } catch (IOException e) {
+            //log the exception
+            System.out.println("An exception occurred while reading userStatsFile");
+        }
+
+        //achievementFile
+        try {
+            file = new File(context.getFilesDir(), "achievementFile.txt");
+            if (!file.exists()) {
+                file.createNewFile();
+                writeToFile("", context, "achievementFile.txt");
+            }
+            fis = context.openFileInput("achievementFile.txt");
+            inputStreamReader = new InputStreamReader(fis);
+            reader = new BufferedReader(inputStreamReader);
+            // do reading, usually loop until end of file reading
+            mLine = "";
+            userAchievementFileStrings.clear();
+            while ((mLine = reader.readLine()) != null) {
+                //process line
+                String data = mLine.toUpperCase();
+                userAchievementFileStrings.add(data);
+            }
+            reader.close();
+        } catch (IOException e) {
+            //log the exception
+            System.out.println("An exception occurred while reading achievementFile");
+        }
+
+        //settingsFile
+        try {
+            file = new File(context.getFilesDir(), "settingsFile.txt");
+            if (!file.exists()) {
+                file.createNewFile();
+                writeToFile("", context, "settingsFile.txt");
+            }
+            fis = context.openFileInput("settingsFile.txt");
+            inputStreamReader = new InputStreamReader(fis);
+            reader = new BufferedReader(inputStreamReader);
+            // do reading, usually loop until end of file reading
+            mLine = "";
+            settingsFileStrings.clear();
+            while ((mLine = reader.readLine()) != null) {
+                //process line
+                String data = mLine.toUpperCase();
+                settingsFileStrings.add(data);
+            }
+            //Add default if missing
+            if (settingsFileStrings.size() != 4) {
+                settingsFileStrings.clear();
+                //Sound
+                settingsFileStrings.add("50");
+                //Word List
+                settingsFileStrings.add("True");
+                //Night Mode
+                settingsFileStrings.add("False");
+                //Ads
+                settingsFileStrings.add("False");
+            }
+            MainMenuNavigation.setMusicVolume(MainMenuNavigation.backgroundMusic, Integer.parseInt(settingsFileStrings.get(0)));
+            reader.close();
+        } catch (IOException e) {
+            //log the exception
+            System.out.println("An exception occurred while reading settingsFile");
+        }
+        writeSave(saveFileStrings, context, "saveFile.txt");
+        //Preload file does not change or need a default creation, so we don't need to save it here
+        writeSave(userStatsFileStrings, context, "userStatsFile.txt");
+        writeSave(userAchievementFileStrings, context, "achievementFile.txt");
+        writeSave(settingsFileStrings, context, "settingsFile.txt");
     }
 
     public void writeSave(ArrayList<String> stringArrayList, Context context, String filename) {
+        //uses hardcoded patterns to save various user data in the right format
         switch (filename) {
             case "saveFile.txt":
                 try {
@@ -992,11 +919,9 @@ public class HomeFragment extends Fragment {
 
     private void appendToFile(String data, Context context, String filename) {
         File file = new File(mContext.getFilesDir(), filename);
-        System.out.println(file);
         try {
             if (!file.exists()) {
                 file.createNewFile();
-                System.out.println("Created new file");
             }
             //FileOutputStream fos = context.openFileOutput(filename, Context.MODE_APPEND);
             FileOutputStream fos = mContext.openFileOutput(filename, Context.MODE_APPEND);
@@ -1004,7 +929,6 @@ public class HomeFragment extends Fragment {
             bw.append(data);
             bw.flush();
             bw.close();
-            System.out.println("Appended to file: " + fos);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -1012,20 +936,31 @@ public class HomeFragment extends Fragment {
 
     private void writeToFile(String data, Context context, String filename) {
         File file = new File(mContext.getFilesDir(), filename);
-        System.out.println(file);
         try {
             if (!file.exists()) {
                 file.createNewFile();
-                System.out.println("Created new file");
             }
             FileOutputStream fos = mContext.openFileOutput(filename, Context.MODE_PRIVATE);
             OutputStreamWriter bw = new OutputStreamWriter(fos);
             bw.append(data);
             bw.flush();
             bw.close();
-            System.out.println("Wrote to file: " + fos);
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void sortSubmitList(ArrayList<String> list) {
+        //Sorts the submitwordlist (everything after the first 9 lines in saveFile) in alphabetical order
+        if (list.size() > 8) {
+            ArrayList<String> l1 = new ArrayList<>();
+            for (int i = 0; i < 8; i++) l1.add(list.get(i));
+            ArrayList<String> l2 = new ArrayList<>();
+            for (int i = 8; i < list.size(); i++) l2.add(list.get(i));
+            Collections.sort(l2);
+            list.clear();
+            for (int i = 0; i < 8; i++) list.add(l1.get(i));
+            for (int i = 0; i < l2.size(); i++) list.add(l2.get(i));
         }
     }
 
@@ -1092,20 +1027,17 @@ public class HomeFragment extends Fragment {
         possibleWords.clear();
         submittedWords.clear();
 
-        try {
+        if (saveFileStrings.size() > 9) {
             for (int i = 9; i < saveFileStrings.size(); i++) {
                 submittedWords.add(saveFileStrings.get(i));
             }
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println("No words found");
         }
 
-        try {
+        if (saveFileStrings.size() > 8) {
             score = parseInt(saveFileStrings.get(8));
-        } catch (IndexOutOfBoundsException e) {
+        } else {
             score = 0;
-            saveFileStrings.add(8, "0");
-            System.out.println("Could not find score");
+            saveFileStrings.set(8, "0");
         }
 
         for (int j = 0; j < submittedWords.size(); j++) {
@@ -1121,7 +1053,6 @@ public class HomeFragment extends Fragment {
                 wordList.append(submittedWords.get(j) + " (+" + submittedWords.get(j).length() + ")\n");
             }
         }
-
         maxScore = 0;
 
         if (preLoadFileStrings.size() != 0) {
@@ -1131,10 +1062,8 @@ public class HomeFragment extends Fragment {
             maxScore = parseInt(preLoadFileStrings.get(0));
         } else {
             //Should never run unless there is a file error
-            System.out.println("There was a file error in preLoadFile. Creating new possiblewordlist.");
             BufferedReader reader = null;
             try {
-                System.out.println("Beginning 4");
                 String filename;
                 try {
                     if (Boolean.parseBoolean(settingsFileStrings.get(1))) {
@@ -1142,7 +1071,7 @@ public class HomeFragment extends Fragment {
                     } else {
                         filename = "commonWordList.txt";
                     }
-                } catch (NullPointerException e) {
+                } catch (IndexOutOfBoundsException | NullPointerException e) {
                     filename = "scrabbleWordList.txt";
                 }
                 reader = new BufferedReader(
@@ -1183,16 +1112,15 @@ public class HomeFragment extends Fragment {
                     tempString += possibleWords.get(i) + "\n";
                 }
                 appendToFile(tempString, HomeFragment.this.getActivity(), "preLoadFile.txt");
-                System.out.println(possibleWords);
             } catch (IOException e) {
                 //log the exception
-                System.out.println("An exception occurred! 1");
+                System.out.println("Error reading preloadFile");
             } finally {
                 if (reader != null) {
                     try {
                         reader.close();
                     } catch (IOException e) {
-                        System.out.println("An exception occurred! 2");
+                        System.out.println("Error closing reader while after reading preloadFile");
                     }
                 }
             }
@@ -1204,7 +1132,6 @@ public class HomeFragment extends Fragment {
         }
         newLettersStrings.add(Integer.toString(score));
         newLettersStrings.add(Integer.toString(maxScore));
-        System.out.println("pickLetters called");
     }
 
     private void pickRandomLetters() {
@@ -1217,7 +1144,6 @@ public class HomeFragment extends Fragment {
         BufferedReader reader = null;
         ArrayList<String> pangramList = new ArrayList<String>();
         try {
-            System.out.println("Beginning 1");
             String filename;
             try {
                 if (Boolean.parseBoolean(settingsFileStrings.get(1))) {
@@ -1225,7 +1151,7 @@ public class HomeFragment extends Fragment {
                 } else {
                     filename = "commonPangramList.txt";
                 }
-            } catch (NullPointerException e) {
+            } catch (IndexOutOfBoundsException | NullPointerException e) {
                 filename = "scrabblePangramList.txt";
             }
             reader = new BufferedReader(
@@ -1238,15 +1164,14 @@ public class HomeFragment extends Fragment {
                 String data = mLine.toUpperCase();
                 pangramList.add(data);
             }
-            System.out.println(pangramList);
             int randInt = rand.nextInt(pangramList.size());
             String pangramWord = pangramList.get(randInt).toUpperCase();
-            System.out.println("PangramWord = " + pangramWord);
             int filledLetters = 0;
+            //Lazy method of getting random order of the 7 letters
+            //Technically possible for this to become an infinite loop but unlikely
             while (true) {
                 randInt = rand.nextInt(pangramWord.length());
                 while (!(contains(usedLetters, pangramWord.substring(randInt, randInt + 1)))) {
-                    System.out.println("Letter " + pangramWord.substring(randInt, randInt + 1) + " added to buttons");
                     usedLetters[filledLetters] = pangramWord.substring(randInt, randInt + 1);
                     saveFileStrings.set(filledLetters + 1, usedLetters[filledLetters]);
                     filledLetters += 1;
@@ -1255,23 +1180,19 @@ public class HomeFragment extends Fragment {
                     break;
                 }
             }
-            System.out.println("Made it");
 
         } catch (IOException e) {
             //log the exception
-            System.out.println("An exception occurred! 1");
+            System.out.println("Error while reading preloadFile");
         } finally {
             if (reader != null) {
                 try {
                     reader.close();
                 } catch (IOException e) {
-                    System.out.println("An exception occurred! 2");
+                    System.out.println("Error trying to close preloadFile");
                 }
             }
         }
-
-        for (int i = 0; i < usedLetters.length; i++)
-            System.out.println(usedLetters[i]);
 
         possibleWords.clear();
         submittedWords.clear();
@@ -1281,7 +1202,7 @@ public class HomeFragment extends Fragment {
                 saveFileStrings.remove(i);
             }
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("No words found");
+            System.out.println("No words found in saveFileStrings");
         }
 
         score = 0;
@@ -1289,7 +1210,6 @@ public class HomeFragment extends Fragment {
 
         reader = null;
         try {
-            System.out.println("Beginning 4");
             String filename;
             try {
                 if (Boolean.parseBoolean(settingsFileStrings.get(1))) {
@@ -1336,16 +1256,15 @@ public class HomeFragment extends Fragment {
                 tempString += possibleWords.get(i) + "\n";
             }
             appendToFile(tempString, HomeFragment.this.getActivity(), "preLoadFile.txt");
-            System.out.println(possibleWords);
         } catch (IOException e) {
             //log the exception
-            System.out.println("An exception occurred! 1");
+            System.out.println("Error while reading preloadFile");
         } finally {
             if (reader != null) {
                 try {
                     reader.close();
                 } catch (IOException e) {
-                    System.out.println("An exception occurred! 2");
+                    System.out.println("Error trying to close preloadFile");
                 }
             }
         }
@@ -1356,7 +1275,6 @@ public class HomeFragment extends Fragment {
         }
         newLettersStrings.add(Integer.toString(score));
         newLettersStrings.add(Integer.toString(maxScore));
-        System.out.println("pickRandomLetters called");
     }
 
     private void setLettersToBlank() {
@@ -1580,15 +1498,11 @@ public class HomeFragment extends Fragment {
     private void updateAchievementLocations() {
         //Runs whenever a fade animation finishes or an achievement is clicked so that it is removed.
         //Creates new translation animations for all remaining achievements.
-        System.out.println("Updating achievement button locations!");
-        System.out.println("Sizeof currentAchievements: " + currentAchievements.size());
         for (int i = 0; i < currentAchievements.size(); i++) {
             final Button achievementButton = currentAchievements.get(i);
             float end = scoreTrackerScrollView.getY();
             end += getPixelsFromDp(20 + 48 * i);
-            System.out.println(end);
             final ObjectAnimator achievementButtonAnimation = ObjectAnimator.ofFloat(achievementButton, "y", end);
-            System.out.println("default animation: " + defaultAchievementButtonAnimation);
             achievementButtonAnimation.setDuration(1000);
             achievementButtonAnimation.start();
         }
@@ -1602,7 +1516,6 @@ public class HomeFragment extends Fragment {
 
     private void updateSpeedDemonCounter() {
         speedDemonCounter += 1;
-        System.out.println("speedDemon is now: " + speedDemonCounter);
         if (speedDemonCounter == 10 && !(userAchievementFileStrings.contains("QUICK AS LIGHTNING!"))) {
             ArrayList<String> tempArrayList = new ArrayList<String>();
             tempArrayList.add("Achievement_Button_Speed_Demon_1_Home");
@@ -1631,24 +1544,20 @@ public class HomeFragment extends Fragment {
             @Override
             public void run() {
                 speedDemonCounter = 0;
-                System.out.println("speedDemon was reset to 0.");
             }
         }, 10000);
     }
 
     public void startPlaytimeTimer(){
         if (playtimeHandler == null) {
-            System.out.println("time: playtimeHandler isNull");
             MainMenuNavigation.timerRunning = true;
             playtimeHandler = new Handler();
             playtimeHandler.postDelayed(new Runnable() {
                 public void run() {
                     try {
                         userStatsFileStrings.set(6, Integer.toString(Integer.parseInt((userStatsFileStrings.get(6))) + 1));
-                        System.out.println("time: " + userStatsFileStrings.get(6));
                     } catch (NumberFormatException e) {
                         userStatsFileStrings.set(6, "0");
-                        System.out.println("time: " + userStatsFileStrings.get(6));
                     }
                     if (!(userAchievementFileStrings.contains("PRETTY FUN!")) && Integer.parseInt(userStatsFileStrings.get(6)) >= 900) {
                         ArrayList<String> tempArrayList = new ArrayList<String>();
@@ -1662,7 +1571,6 @@ public class HomeFragment extends Fragment {
                     playtimeHandler.postDelayed(this, 1000);
                 }
             },1000);
-            System.out.println("time: playtimeHandler started");
         } else {
             playtimeHandler.removeCallbacksAndMessages(null);
             playtimeHandler = null;

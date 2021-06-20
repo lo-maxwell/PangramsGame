@@ -153,25 +153,20 @@ public class AchievementFragment extends Fragment {
     private void readSaveFile (Context context) {
         try {
             BufferedReader reader = null;
-            System.out.println("Opening achievementFile");
             File file = new File(context.getFilesDir(), "achievementFile.txt");
             if (!file.exists()) {
                 file.createNewFile();
-                System.out.println("Created new achievementFile (This should never occur besides the first run after a new patch)");
-                System.out.println("Creating with no achievements.");
                 writeToFile("", context, "achievementFile.txt");
             }
             FileInputStream fis = context.openFileInput("achievementFile.txt");
             InputStreamReader inputStreamReader = new InputStreamReader(fis);
             reader = new BufferedReader(inputStreamReader);
             // do reading, usually loop until end of file reading
-            System.out.println("Opened achievementFile");
             String mLine = "";
             userAchievementFileStrings.clear();
             while ((mLine = reader.readLine()) != null) {
                 //process line
                 String data = mLine.toUpperCase();
-                System.out.println("achievementFile: " + data);
                 userAchievementFileStrings.add(data);
             }
             writeSave(userAchievementFileStrings, context, "achievementFile.txt");
@@ -184,34 +179,26 @@ public class AchievementFragment extends Fragment {
 
     private void writeToFile(String data, Context context, String filename) {
         File file = new File(context.getFilesDir(), filename);
-        System.out.println("Writing to file");
-        System.out.println(file);
         try {
             if (!file.exists()) {
                 file.createNewFile();
-                System.out.println("Created new file");
             }
             FileOutputStream fos = context.openFileOutput(filename, Context.MODE_PRIVATE);
-            System.out.println(fos);
             OutputStreamWriter bw = new OutputStreamWriter(fos);
             bw.append(data);
             bw.flush();
             bw.close();
-            System.out.println("Wrote to file");
         }
         catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("Wrote " + data);
     }
 
     private void appendToFile(String data, Context context, String filename) {
         File file = new File(context.getFilesDir(), filename);
-        System.out.println(file);
         try {
             if (!file.exists()) {
                 file.createNewFile();
-                System.out.println("Created new file");
             }
             //FileOutputStream fos = context.openFileOutput(filename, Context.MODE_APPEND);
             FileOutputStream fos = context.openFileOutput(filename, Context.MODE_APPEND);
@@ -219,7 +206,6 @@ public class AchievementFragment extends Fragment {
             bw.append(data);
             bw.flush();
             bw.close();
-            System.out.println("Appended to file: " + fos);
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -73,7 +73,6 @@ public class MainMenuNavigation extends AppCompatActivity {
         backgroundMusic.seekTo(musicPosition);
         setMusicVolume(backgroundMusic, 0); //Prevent 1-second music playing at start
         startMusicPlayer(backgroundMusic);
-        System.out.println("Music is playing");
     }
 
     @Override
@@ -93,11 +92,6 @@ public class MainMenuNavigation extends AppCompatActivity {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if ((backgroundMusic!= null) && (backgroundMusic.isPlaying())) {
-            //killMusicPlayer(backgroundMusic);
-            System.out.println("Music should be stopped by onDestroy");
-            //Currently hacky but works as intended
-        }
 
     }
 
@@ -106,14 +100,12 @@ public class MainMenuNavigation extends AppCompatActivity {
         super.onPause();
         if ((backgroundMusic != null) && (backgroundMusic.isPlaying())) {
             pauseMusicPlayer(backgroundMusic);
-            System.out.println("Music is stopped by onPause");
         }
         if (HomeFragment.playtimeHandler != null) {
             HomeFragment.playtimeHandler.removeCallbacksAndMessages(null);
             HomeFragment.playtimeHandler = null;
             timerRunning = false;
             curTime = Integer.parseInt(HomeFragment.userStatsFileStrings.get(6));
-            System.out.println("timer stopped");
         }
         if (UserStatsFragment.screenUpdater != null) {
             UserStatsFragment.screenUpdater.removeCallbacksAndMessages(null);
@@ -126,12 +118,10 @@ public class MainMenuNavigation extends AppCompatActivity {
         super.onResume();
         if ((backgroundMusic!= null) && !(backgroundMusic.isPlaying())) {
             startMusicPlayer(backgroundMusic);
-            System.out.println("Music is started by onResume");
         }
         if (HomeFragment.playtimeHandler == null && !timerRunning) {
             HomeFragment.homeFragment.startPlaytimeTimer();
             HomeFragment.userStatsFileStrings.set(6,Integer.toString(curTime));
-            System.out.println("timer resumed");
         }
         if (UserStatsFragment.screenUpdater == null && userStatsFragment != null) {
             userStatsFragment.updateScreen();
@@ -170,14 +160,10 @@ public class MainMenuNavigation extends AppCompatActivity {
     public static void setNightMode(Boolean isOn) {
         if (isOn && AppCompatDelegate.MODE_NIGHT_YES != AppCompatDelegate.getDefaultNightMode()) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-            System.out.println("Night mode enabled");
             mainMenuNavigation.refresh();
         } else if(!isOn && AppCompatDelegate.MODE_NIGHT_NO != AppCompatDelegate.getDefaultNightMode()) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-            System.out.println("Night mode disabled");
             mainMenuNavigation.refresh();
-        } else {
-            System.out.println("Night mode setting is already correct");
         }
 
     }

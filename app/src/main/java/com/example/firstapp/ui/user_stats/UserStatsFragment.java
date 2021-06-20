@@ -3,6 +3,7 @@ package com.example.firstapp.ui.user_stats;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,35 +65,31 @@ public class UserStatsFragment extends Fragment {
 
                 String filename = "saveFile.txt";
                 File file = new File(context.getFilesDir(), filename);
-                System.out.println("Clearing save file");
                 if (file.exists())
                     System.out.println("File deleted: " + file.delete());
                 else
-                    System.out.println("Could not delete file: File does not exist");
+                    System.out.println("Could not delete savefile: File does not exist");
 
                 filename = "preLoadFile.txt";
                 file = new File(context.getFilesDir(), filename);
-                System.out.println("Clearing preload file");
                 if (file.exists())
                     System.out.println("File deleted: " + file.delete());
                 else
-                    System.out.println("Could not delete file: File does not exist");
+                    System.out.println("Could not delete preloadfile: File does not exist");
 
                 filename = "userStatsFile.txt";
                 file = new File(context.getFilesDir(), filename);
-                System.out.println("Clearing userStats file");
                 if (file.exists())
                     System.out.println("File deleted: " + file.delete());
                 else
-                    System.out.println("Could not delete file: File does not exist");
+                    System.out.println("Could not delete userStatsfile: File does not exist");
 
                 filename = "achievementFile.txt";
                 file = new File(context.getFilesDir(), filename);
-                System.out.println("Clearing achievement file");
                 if (file.exists())
                     System.out.println("File deleted: " + file.delete());
                 else
-                    System.out.println("Could not delete file: File does not exist");
+                    System.out.println("Could not delete achievementfile: File does not exist");
 
                 TextView messageBox = getView().findViewById(R.id.Display_Box_User_Stats);
                 messageBox.setTextColor(ContextCompat.getColor(context, R.color.red));
@@ -129,12 +126,9 @@ public class UserStatsFragment extends Fragment {
     private void readSaveFile (Context context) {
         BufferedReader reader = null;
         try {
-            System.out.println("USF: Opening userStatsFile");
             File file = new File(context.getFilesDir(), "userStatsFile.txt");
             if (!file.exists()) {
                 file.createNewFile();
-                System.out.println("USF: Created new userStatsFile (This should never occur besides the first run after a new patch)");
-                System.out.println("USF: Filling with default values...");
                 //Words submitted (0), Longest word (none), Total points (0), Best score (0), Total Pangrams (0), Longest Pangram (none), Time Played (0)
                 String tempString = "0\nN/A\n0\n0\n0\nN/A\n0";
                 writeToFile(tempString, context, "userStatsFile.txt");
@@ -142,65 +136,57 @@ public class UserStatsFragment extends Fragment {
             FileInputStream fis = context.openFileInput("userStatsFile.txt");
             InputStreamReader inputStreamReader = new InputStreamReader(fis);
             reader = new BufferedReader(inputStreamReader);
-            System.out.println("USF: Opened userStatsFile");
             String mLine = "";
             userStatsFileStrings.clear();
             while ((mLine = reader.readLine()) != null) {
                 //process line
                 String data = mLine.toUpperCase();
-                System.out.println("USF: UserStatsFile: " + data);
                 userStatsFileStrings.add(data);
             }
-            for (int i = 0; i < 7; i++) {
-                try {
-                    System.out.println(userStatsFileStrings.get(i));
-                } catch (IndexOutOfBoundsException e) {
-                    System.out.println("USF: Missing data! ");
-                    System.out.println("USF: Filling in missing data.");
-                    if (i == 1 || i == 5)
-                        userStatsFileStrings.add(i, "N/A");
-                    else
-                        userStatsFileStrings.add(i, "0");
+            try {
+                for (int i = 0; i < 7; i++) {
+                    assert(userStatsFileStrings.get(i) != null);
                 }
+            } catch (IndexOutOfBoundsException e) {
+                userStatsFileStrings.clear();
+                userStatsFileStrings.add("0");
+                userStatsFileStrings.add("N/A");
+                userStatsFileStrings.add("0");
+                userStatsFileStrings.add("0");
+                userStatsFileStrings.add("0");
+                userStatsFileStrings.add("N/A");
+                userStatsFileStrings.add("0");
             }
             writeSave(userStatsFileStrings, context, "userStatsFile.txt");
             reader.close();
         } catch (IOException e) {
             //log the exception
-            System.out.println("USF: An exception occurred while reading userStatsFile");
+            System.out.println("An exception occurred while reading userStatsFile");
         }
     }
 
     private void writeToFile(String data, Context context, String filename) {
         File file = new File(context.getFilesDir(), filename);
-        System.out.println("Writing to file");
-        System.out.println(file);
         try {
             if (!file.exists()) {
                 file.createNewFile();
-                System.out.println("Created new file");
             }
             FileOutputStream fos = context.openFileOutput(filename, Context.MODE_PRIVATE);
-            System.out.println(fos);
             OutputStreamWriter bw = new OutputStreamWriter(fos);
             bw.append(data);
             bw.flush();
             bw.close();
-            System.out.println("Wrote to file");
         }
         catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("Wrote " + data);
     }
 
     private void appendToFile(String data, Context context, String filename) {
         File file = new File(context.getFilesDir(), filename);
-        System.out.println(file);
         try {
             if (!file.exists()) {
                 file.createNewFile();
-                System.out.println("Created new file");
             }
             //FileOutputStream fos = context.openFileOutput(filename, Context.MODE_APPEND);
             FileOutputStream fos = context.openFileOutput(filename, Context.MODE_APPEND);
@@ -208,7 +194,6 @@ public class UserStatsFragment extends Fragment {
             bw.append(data);
             bw.flush();
             bw.close();
-            System.out.println("Appended to file: " + fos);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -258,9 +243,8 @@ public class UserStatsFragment extends Fragment {
         //playtimeHandler keeps running and updating new times, which updateScreen will read
         if(screenUpdater != null) {
             screenUpdater.removeCallbacksAndMessages(null); //null will remove callbacks for anonymous runnables
-            System.out.println("Deleted callbacks to screenUpdater"); //currently never runs this
         } else System.out.println("screenUpdater is already null");
-        screenUpdater = new Handler();
+        screenUpdater = new Handler(Looper.getMainLooper());
         final int delay = 1000; //milliseconds
 
         screenUpdater.postDelayed(new Runnable(){
@@ -282,8 +266,5 @@ public class UserStatsFragment extends Fragment {
                 screenUpdater.postDelayed(this, delay);
             }
         }, delay);
-
-
-
     }
 }
