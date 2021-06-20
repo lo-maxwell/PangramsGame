@@ -44,21 +44,15 @@ import static java.lang.Integer.parseInt;
 
 //TODO: ?
 //Minimum viable product:
-//App Icon
-//Night Mode - Done (ish?)
-//Credits - Decide on name
-//Remove shuffle achievement - Done
-//Background music resets when night mode switches - Done
-//Need new background music - Done
 //Design fixes - get testers/other eyes, clean up navigation drawer
-//Code Cleanup/Bugfixes - Remove all print statements, remove cheats
+//Code Cleanup/Bugfixes - Remove cheats
 //Publish
 
 //Extra:
 //Database
-//Setting explanations appear in weird location
+//Setting explanations appear in weird location - maybe fixed
 //Tutorial/How to Play page
-//Order words found by alphabet on load in
+//Order words found by alphabet on load in - Done
 //Optimization - WriteSave should be on pause/resume instead of every second, which means it needs to be in MainMenuNavigation
 
 public class HomeFragment extends Fragment {
