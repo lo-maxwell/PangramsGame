@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.util.Property;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,7 +42,7 @@ import java.util.Random;
 
 import static java.lang.Integer.parseInt;
 
-//TODO: App icon, Credits page, Settings explanations
+//TODO: ?
 //Minimum viable product:
 //App Icon
 //Night Mode - Done (ish?)
@@ -862,15 +863,15 @@ public class HomeFragment extends Fragment {
             case "saveFile.txt":
                 try {
                     writeToFile("", context, filename);
-                    String tempString = "NEWPLAYER == FALSE\n";
+                    StringBuilder tempString = new StringBuilder("NEWPLAYER == FALSE\n");
                     for (int i = 1; i < 8; i++) {
-                        tempString += stringArrayList.get(i) + "\n";
+                        tempString.append(stringArrayList.get(i)).append("\n");
                     }
-                    tempString += score + "\n";
+                    tempString.append(score).append("\n");
                     for (int i = 9; i < saveFileStrings.size(); i++) {
-                        tempString += saveFileStrings.get(i) + "\n";
+                        tempString.append(saveFileStrings.get(i)).append("\n");
                     }
-                    appendToFile(tempString, context, filename);
+                    appendToFile(tempString.toString(), context, filename);
                 } catch (IndexOutOfBoundsException e) {
                     System.out.println("Error while saving saveFileStrings.");
                 }
@@ -878,11 +879,11 @@ public class HomeFragment extends Fragment {
             case "userStatsFile.txt":
                 try {
                     writeToFile("", context, filename);
-                    String tempString = "";
+                    StringBuilder tempString = new StringBuilder();
                     for (int i = 0; i < userStatsFileStrings.size(); i++) {
-                        tempString += userStatsFileStrings.get(i) + "\n";
+                        tempString.append(userStatsFileStrings.get(i)).append("\n");
                     }
-                    appendToFile(tempString, context, filename);
+                    appendToFile(tempString.toString(), context, filename);
                 } catch (IndexOutOfBoundsException e) {
                     System.out.println("Error while saving userStatsFileStrings.");
                 }
@@ -890,11 +891,11 @@ public class HomeFragment extends Fragment {
             case "achievementFile.txt":
                 try {
                     writeToFile("", context, filename);
-                    String tempString = "";
+                    StringBuilder tempString = new StringBuilder();
                     for (int i = 0; i < userAchievementFileStrings.size(); i++) {
-                        tempString += userAchievementFileStrings.get(i) + "\n";
+                        tempString.append(userAchievementFileStrings.get(i)).append("\n");
                     }
-                    appendToFile(tempString, context, filename);
+                    appendToFile(tempString.toString(), context, filename);
                 } catch (IndexOutOfBoundsException e) {
                     System.out.println("Error while saving achievementFileStrings.");
                 }
@@ -902,11 +903,11 @@ public class HomeFragment extends Fragment {
             case "settingsFile.txt":
                 try {
                     writeToFile("", context, filename);
-                    String tempString = "";
+                    StringBuilder tempString = new StringBuilder();
                     for (int i = 0; i < settingsFileStrings.size(); i++) {
-                        tempString += settingsFileStrings.get(i) + "\n";
+                        tempString.append(settingsFileStrings.get(i)).append("\n");
                     }
-                    appendToFile(tempString, context, filename);
+                    appendToFile(tempString.toString(), context, filename);
                 } catch (IndexOutOfBoundsException e) {
                     System.out.println("Error while saving settingsFileStrings.");
                 }
@@ -959,8 +960,8 @@ public class HomeFragment extends Fragment {
             for (int i = 8; i < list.size(); i++) l2.add(list.get(i));
             Collections.sort(l2);
             list.clear();
-            for (int i = 0; i < 8; i++) list.add(l1.get(i));
-            for (int i = 0; i < l2.size(); i++) list.add(l2.get(i));
+            list.addAll(l1);
+            list.addAll(l2);
         }
     }
 
@@ -1020,9 +1021,9 @@ public class HomeFragment extends Fragment {
             usedLetters[i] = saveFileStrings.get(i + 1);
         }
 
-        String tempString = "";
-        for (String usedLetter : usedLetters) tempString += usedLetter + "\n";
-        appendToFile(tempString, HomeFragment.this.getActivity(), "saveFile.txt");
+        StringBuilder tempString = new StringBuilder();
+        for (String usedLetter : usedLetters) tempString.append(usedLetter).append("\n");
+        appendToFile(tempString.toString(), HomeFragment.this.getActivity(), "saveFile.txt");
 
         possibleWords.clear();
         submittedWords.clear();
@@ -1106,12 +1107,12 @@ public class HomeFragment extends Fragment {
                     }
 
                 }
-                writeToFile(Integer.toString(maxScore) + "\n", HomeFragment.this.getActivity(), "preLoadFile.txt");
-                tempString = "";
+                writeToFile(maxScore + "\n", HomeFragment.this.getActivity(), "preLoadFile.txt");
+                tempString = new StringBuilder();
                 for (int i = 0; i < possibleWords.size(); i++) {
-                    tempString += possibleWords.get(i) + "\n";
+                    tempString.append(possibleWords.get(i)).append("\n");
                 }
-                appendToFile(tempString, HomeFragment.this.getActivity(), "preLoadFile.txt");
+                appendToFile(tempString.toString(), HomeFragment.this.getActivity(), "preLoadFile.txt");
             } catch (IOException e) {
                 //log the exception
                 System.out.println("Error reading preloadFile");
@@ -1142,7 +1143,7 @@ public class HomeFragment extends Fragment {
 
         //From a list of all words with exactly 7 different letters, pick a random one to make the set of buttons
         BufferedReader reader = null;
-        ArrayList<String> pangramList = new ArrayList<String>();
+        ArrayList<String> pangramList = new ArrayList<>();
         try {
             String filename;
             try {
@@ -1198,8 +1199,8 @@ public class HomeFragment extends Fragment {
         submittedWords.clear();
 
         try {
-            for (int i = saveFileStrings.size() - 1; i > 8; i--) {
-                saveFileStrings.remove(i);
+            if (saveFileStrings.size() > 9) {
+                saveFileStrings.subList(9, saveFileStrings.size()).clear();
             }
         } catch (IndexOutOfBoundsException e) {
             System.out.println("No words found in saveFileStrings");
@@ -1510,14 +1511,13 @@ public class HomeFragment extends Fragment {
 
     public float getPixelsFromDp(float dp) {
         final float scale = getContext().getResources().getDisplayMetrics().density;
-        float pixels = (int) (dp * scale + 0.5f);
-        return pixels;
+        return (float) (int) (dp * scale + 0.5f);
     }
 
     private void updateSpeedDemonCounter() {
         speedDemonCounter += 1;
         if (speedDemonCounter == 10 && !(userAchievementFileStrings.contains("QUICK AS LIGHTNING!"))) {
-            ArrayList<String> tempArrayList = new ArrayList<String>();
+            ArrayList<String> tempArrayList = new ArrayList<>();
             tempArrayList.add("Achievement_Button_Speed_Demon_1_Home");
             tempArrayList.add(Integer.toString(R.id.Achievement_Button_Speed_Demon_1_Home));
             addAchievementToScreen(tempArrayList);
@@ -1526,7 +1526,7 @@ public class HomeFragment extends Fragment {
         }
 
         if (speedDemonCounter == 20 && !(userAchievementFileStrings.contains("SPEED DEMON!"))) {
-            ArrayList<String> tempArrayList = new ArrayList<String>();
+            ArrayList<String> tempArrayList = new ArrayList<>();
             tempArrayList.add("Achievement_Button_Speed_Demon_2_Home");
             tempArrayList.add(Integer.toString(R.id.Achievement_Button_Speed_Demon_2_Home));
             addAchievementToScreen(tempArrayList);
@@ -1539,7 +1539,7 @@ public class HomeFragment extends Fragment {
         } catch (Exception e) {
             System.out.println("No runnable to remove.");
         }
-        speedDemonHandler = new Handler();
+        speedDemonHandler = new Handler(Looper.getMainLooper());
         speedDemonHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -1551,7 +1551,7 @@ public class HomeFragment extends Fragment {
     public void startPlaytimeTimer(){
         if (playtimeHandler == null) {
             MainMenuNavigation.timerRunning = true;
-            playtimeHandler = new Handler();
+            playtimeHandler = new Handler(Looper.getMainLooper());
             playtimeHandler.postDelayed(new Runnable() {
                 public void run() {
                     try {
@@ -1560,7 +1560,7 @@ public class HomeFragment extends Fragment {
                         userStatsFileStrings.set(6, "0");
                     }
                     if (!(userAchievementFileStrings.contains("PRETTY FUN!")) && Integer.parseInt(userStatsFileStrings.get(6)) >= 900) {
-                        ArrayList<String> tempArrayList = new ArrayList<String>();
+                        ArrayList<String> tempArrayList = new ArrayList<>();
                         tempArrayList.add("Achievement_Button_Playtime_Home");
                         tempArrayList.add(Integer.toString(R.id.Achievement_Button_Playtime_Home));
                         addAchievementToScreen(tempArrayList);
