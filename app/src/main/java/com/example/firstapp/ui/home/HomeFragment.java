@@ -290,7 +290,7 @@ public class HomeFragment extends Fragment {
                         userStatsFileStrings.set(0, Integer.toString(Integer.parseInt(userStatsFileStrings.get(0)) + 1));
                         //Words submitted achievement if it does not already exist
                         if (!(userAchievementFileStrings.contains("10 WORDS!")) && Integer.parseInt(userStatsFileStrings.get(0)) == 10) {
-                            ArrayList<String> tempArrayList = new ArrayList<String>();
+                            ArrayList<String> tempArrayList = new ArrayList<>();
                             tempArrayList.add("Achievement_Button_Word_Progress_1_Home");
                             tempArrayList.add(Integer.toString(R.id.Achievement_Button_Word_Progress_1_Home));
                             addAchievementToScreen(tempArrayList);
@@ -298,7 +298,7 @@ public class HomeFragment extends Fragment {
                             writeSave(userAchievementFileStrings, HomeFragment.this.getActivity(), "achievementFile.txt");
                         }
                         else if (!(userAchievementFileStrings.contains("25 WORDS!")) && Integer.parseInt(userStatsFileStrings.get(0)) == 25) {
-                            ArrayList<String> tempArrayList = new ArrayList<String>();
+                            ArrayList<String> tempArrayList = new ArrayList<>();
                             tempArrayList.add("Achievement_Button_Word_Progress_2_Home");
                             tempArrayList.add(Integer.toString(R.id.Achievement_Button_Word_Progress_2_Home));
                             addAchievementToScreen(tempArrayList);
@@ -306,7 +306,7 @@ public class HomeFragment extends Fragment {
                             writeSave(userAchievementFileStrings, HomeFragment.this.getActivity(), "achievementFile.txt");
                         }
                         else if (!(userAchievementFileStrings.contains("50 WORDS!")) && Integer.parseInt(userStatsFileStrings.get(0)) == 50) {
-                            ArrayList<String> tempArrayList = new ArrayList<String>();
+                            ArrayList<String> tempArrayList = new ArrayList<>();
                             tempArrayList.add("Achievement_Button_Word_Progress_3_Home");
                             tempArrayList.add(Integer.toString(R.id.Achievement_Button_Word_Progress_3_Home));
                             addAchievementToScreen(tempArrayList);
@@ -320,7 +320,7 @@ public class HomeFragment extends Fragment {
                         }
                         //Long word achievement if it does not already exist
                         if (!(userAchievementFileStrings.contains("LONG WORD!")) && answer.length() >= 7) {
-                            ArrayList<String> tempArrayList = new ArrayList<String>();
+                            ArrayList<String> tempArrayList = new ArrayList<>();
                             tempArrayList.add("Achievement_Button_Longest_Word_1_Home");
                             tempArrayList.add(Integer.toString(R.id.Achievement_Button_Longest_Word_1_Home));
                             addAchievementToScreen(tempArrayList);
@@ -328,7 +328,7 @@ public class HomeFragment extends Fragment {
                             writeSave(userAchievementFileStrings, HomeFragment.this.getActivity(), "achievementFile.txt");
                         }
                         if (!(userAchievementFileStrings.contains("VERY LONG WORD!")) && answer.length() >= 8) {
-                            ArrayList<String> tempArrayList = new ArrayList<String>();
+                            ArrayList<String> tempArrayList = new ArrayList<>();
                             tempArrayList.add("Achievement_Button_Longest_Word_2_Home");
                             tempArrayList.add(Integer.toString(R.id.Achievement_Button_Longest_Word_2_Home));
                             addAchievementToScreen(tempArrayList);
@@ -336,7 +336,7 @@ public class HomeFragment extends Fragment {
                             writeSave(userAchievementFileStrings, HomeFragment.this.getActivity(), "achievementFile.txt");
                         }
                         if (!(userAchievementFileStrings.contains("SUPER LONG WORD!")) && answer.length() >= 9) {
-                            ArrayList<String> tempArrayList = new ArrayList<String>();
+                            ArrayList<String> tempArrayList = new ArrayList<>();
                             tempArrayList.add("Achievement_Button_Longest_Word_3_Home");
                             tempArrayList.add(Integer.toString(R.id.Achievement_Button_Longest_Word_3_Home));
                             addAchievementToScreen(tempArrayList);
@@ -344,7 +344,7 @@ public class HomeFragment extends Fragment {
                             writeSave(userAchievementFileStrings, HomeFragment.this.getActivity(), "achievementFile.txt");
                         }
                         if (!(userAchievementFileStrings.contains("RIDICULOUSLY LONG WORD!")) && answer.length() >= 10) {
-                            ArrayList<String> tempArrayList = new ArrayList<String>();
+                            ArrayList<String> tempArrayList = new ArrayList<>();
                             tempArrayList.add("Achievement_Button_Longest_Word_4_Home");
                             tempArrayList.add(Integer.toString(R.id.Achievement_Button_Longest_Word_4_Home));
                             addAchievementToScreen(tempArrayList);
@@ -960,6 +960,7 @@ public class HomeFragment extends Fragment {
     }
 
     private static void hideKeyboard(Activity activity) {
+        //Not currently in use
         InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
         //Find the currently focused view, so we can grab the correct window token from it.
         View view = activity.getCurrentFocus();
@@ -971,7 +972,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void animateTextViewColors(TextView textView, Integer colorTo) {
-
+        //Changes color of text to new color gradually
         final Property<TextView, Integer> property = new Property<TextView, Integer>(int.class, "textColor") {
             @Override
             public Integer get(TextView object) {
@@ -1006,6 +1007,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void pickLetters() {
+        //Uses the 7 letters saved in savefilestrings to create word lists
         final Button[] tempButtons = {textButton1, textButton2, textButton3, textButton4, textButton5, textButton6, textButton7};
 
         //Selects the saved 7 letters
@@ -1130,12 +1132,11 @@ public class HomeFragment extends Fragment {
     }
 
     private void pickRandomLetters() {
-        //Picks a random set of 7 unique letters - not guaranteed to have possible words (like 7 consonants)
+        //From a list of all words with exactly 7 different letters, pick a random one to make the set of buttons
         final String[] alphabet = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
         String[] usedLetters = {"", "", "", "", "", "", ""};
         Random rand = new Random();
 
-        //From a list of all words with exactly 7 different letters, pick a random one to make the set of buttons
         BufferedReader reader = null;
         ArrayList<String> pangramList = new ArrayList<>();
         try {
@@ -1285,6 +1286,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void setLetters() {
+        //Sets addTextButton buttons to the 7 letters randomly decided in pickLetters
         textButton1.post(new Runnable() {
             public void run() {
                 textButton1.setText(newLettersStrings.get(0));
@@ -1388,6 +1390,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void addAchievementToScreen(ArrayList<String> achievementInformation) {
+        //Causes achievement bubbles to pop up in bottom right corner
         final Button achievementButton;
         switch(achievementInformation.get(0)) {
             case "Default_Achievement_Button_Home":
@@ -1509,6 +1512,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void updateSpeedDemonCounter() {
+        //For use by 2 specific achievements
         speedDemonCounter += 1;
         if (speedDemonCounter == 10 && !(userAchievementFileStrings.contains("QUICK AS LIGHTNING!"))) {
             ArrayList<String> tempArrayList = new ArrayList<>();
@@ -1543,6 +1547,7 @@ public class HomeFragment extends Fragment {
     }
 
     public void startPlaytimeTimer(){
+        //Counts playtime for userStatsFile
         if (playtimeHandler == null) {
             MainMenuNavigation.timerRunning = true;
             playtimeHandler = new Handler(Looper.getMainLooper());
@@ -1571,6 +1576,5 @@ public class HomeFragment extends Fragment {
             startPlaytimeTimer();
         }
     }
-
 
 }
