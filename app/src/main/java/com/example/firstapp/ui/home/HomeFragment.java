@@ -1,5 +1,7 @@
 package com.example.firstapp.ui.home;
 
+import static java.lang.Integer.parseInt;
+
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
@@ -40,8 +42,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-import static java.lang.Integer.parseInt;
-
 //TODO: ?
 //Minimum viable product:
 //Design fixes - get testers/other eyes, clean up navigation drawer
@@ -52,7 +52,6 @@ import static java.lang.Integer.parseInt;
 //Database
 //Setting explanations appear in weird location - maybe fixed
 //Tutorial/How to Play page
-//Order words found by alphabet on load in - Done
 //Optimization - WriteSave should be on pause/resume instead of every second, which means it needs to be in MainMenuNavigation
 
 public class HomeFragment extends Fragment {
@@ -60,19 +59,19 @@ public class HomeFragment extends Fragment {
     public static HomeFragment homeFragment;
     private HomeViewModel homeViewModel;
 
-    private static ArrayList<String> saveFileStrings = new ArrayList<String>();
-    private static ArrayList<String> preLoadFileStrings = new ArrayList<String>();
-    public static ArrayList<String> userStatsFileStrings = new ArrayList<String>();
-    private static ArrayList<String> userAchievementFileStrings = new ArrayList<String>();
-    private static ArrayList<String> settingsFileStrings = new ArrayList<String>();
-    private static ArrayList<String> possibleWords = new ArrayList<String>();
-    private static ArrayList<String> submittedWords = new ArrayList<String>();
-    private static ArrayList<Button> currentAchievements = new ArrayList<Button>();
-    private static ArrayList<String> newLettersStrings = new ArrayList<String>();
+    private final static ArrayList<String> saveFileStrings = new ArrayList<>();
+    private final static ArrayList<String> preLoadFileStrings = new ArrayList<>();
+    public static ArrayList<String> userStatsFileStrings = new ArrayList<>();
+    private final static ArrayList<String> userAchievementFileStrings = new ArrayList<>();
+    private final static ArrayList<String> settingsFileStrings = new ArrayList<>();
+    private final static ArrayList<String> possibleWords = new ArrayList<>();
+    private final static ArrayList<String> submittedWords = new ArrayList<>();
+    private final static ArrayList<Button> currentAchievements = new ArrayList<>();
+    private final static ArrayList<String> newLettersStrings = new ArrayList<>();
     private static int score = 0;
     private static int maxScore = 0;
     private static int enableCheat = 0;
-    private View rootView;
+//    private View rootView;
     private Button submitButton;
     private Button textButton1;
     private Button textButton2;
@@ -129,7 +128,7 @@ public class HomeFragment extends Fragment {
         homeViewModel =
                 ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-        rootView = inflater.inflate(R.layout.fragment_home, container, false);
+//        rootView = inflater.inflate(R.layout.fragment_home, container, false);
         final TextView textView = root.findViewById(R.id.text_home);
         homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
@@ -197,17 +196,17 @@ public class HomeFragment extends Fragment {
         submitButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (enableCheat % 2 == 1) {
-                    enableCheat += 1;
-                    if (enableCheat == 20) {
-                        for (int i = 0; i < possibleWords.size(); i++) {
-                            scoreTrackerCheats.append(possibleWords.get(i) + "\n");
-                        }
-                        enableCheat = -10000000;
-                    }
-                } else {
-                    enableCheat = 0;
-                }
+//                if (enableCheat % 2 == 1) {
+//                    enableCheat += 1;
+//                    if (enableCheat == 20) {
+//                        for (int i = 0; i < possibleWords.size(); i++) {
+//                            scoreTrackerCheats.append(possibleWords.get(i) + "\n");
+//                        }
+//                        enableCheat = -10000000;
+//                    }
+//                } else {
+//                    enableCheat = 0;
+//                }
 
                 if (answerBox.getText().toString().equals(getString(R.string.AnswerBox)) || answerBox.getText().toString().equals("Enter a word first!") || answerBox.getText().toString().equals("")) {
                     answerBox.setText("Enter a word first!");
@@ -372,7 +371,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 String tempButtonText = textButton1.getText().toString();
-                enableCheat = 0;
+//                enableCheat = 0;
                 if (answerBox.getText().toString().equals(getString(R.string.AnswerBox)) || answerBox.getText().toString().equals("Enter a word first!")) {
                     answerBox.setText(getString(R.string.EmptyText));
                 }
@@ -385,7 +384,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 String tempButtonText = textButton2.getText().toString();
-                enableCheat = 0;
+//                enableCheat = 0;
                 if (answerBox.getText().toString().equals(getString(R.string.AnswerBox)) || answerBox.getText().toString().equals("Enter a word first!")) {
                     answerBox.setText(getString(R.string.EmptyText));
                 }
@@ -398,7 +397,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 String tempButtonText = textButton3.getText().toString();
-                enableCheat = 0;
+//                enableCheat = 0;
                 if (answerBox.getText().toString().equals(getString(R.string.AnswerBox)) || answerBox.getText().toString().equals("Enter a word first!")) {
                     answerBox.setText(getString(R.string.EmptyText));
                 }
@@ -411,7 +410,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 String tempButtonText = textButton4.getText().toString();
-                enableCheat = 0;
+//                enableCheat = 0;
                 if (answerBox.getText().toString().equals(getString(R.string.AnswerBox)) || answerBox.getText().toString().equals("Enter a word first!")) {
                     answerBox.setText(getString(R.string.EmptyText));
                 }
@@ -424,7 +423,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 String tempButtonText = textButton5.getText().toString();
-                enableCheat = 0;
+//                enableCheat = 0;
                 if (answerBox.getText().toString().equals(getString(R.string.AnswerBox)) || answerBox.getText().toString().equals("Enter a word first!")) {
                     answerBox.setText(getString(R.string.EmptyText));
                 }
@@ -437,7 +436,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 String tempButtonText = textButton6.getText().toString();
-                enableCheat = 0;
+//                enableCheat = 0;
                 if (answerBox.getText().toString().equals(getString(R.string.AnswerBox)) || answerBox.getText().toString().equals("Enter a word first!")) {
                     answerBox.setText(getString(R.string.EmptyText));
                 }
@@ -452,7 +451,7 @@ public class HomeFragment extends Fragment {
                 //final Button tempButton = (Button) rootView.findViewById(view.getId());
                 //String tempButtonText = tempButton.getText().toString();
                 String tempButtonText = textButton7.getText().toString();
-                enableCheat = 0;
+//                enableCheat = 0;
                 if (answerBox.getText().toString().equals(getString(R.string.AnswerBox)) || answerBox.getText().toString().equals("Enter a word first!")) {
                     answerBox.setText(getString(R.string.EmptyText));
                 }
@@ -471,11 +470,11 @@ public class HomeFragment extends Fragment {
                         answerBox.setText(answerBox.getText().toString().substring(0, answerBox.getText().toString().length() - 1));
                     }
                 } else {
-                    if (enableCheat % 2 == 0) {
-                        enableCheat += 1;
-                    } else {
-                        enableCheat = 0;
-                    }
+//                    if (enableCheat % 2 == 0) {
+//                        enableCheat += 1;
+//                    } else {
+//                        enableCheat = 0;
+//                    }
                     answerBox.setText("");
                 }
             }
@@ -494,7 +493,7 @@ public class HomeFragment extends Fragment {
                     if (!randomIntArray.contains(randInt)) {
                         if (randomIntArray.size() < 4) {
                             randomIntArray.add(0, randInt);
-                        } else if (randomIntArray.size() >= 4) {
+                        } else {
                             randomIntArray.add(4, randInt);
                         }
                     }

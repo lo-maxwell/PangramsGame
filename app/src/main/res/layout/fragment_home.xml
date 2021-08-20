@@ -218,6 +218,7 @@
                 android:layout_marginBottom="0dp"
                 android:autoSizeTextType="none"
                 android:paddingLeft="0dp"
+                android:paddingRight="0dp"
                 android:paddingTop="0dp"
                 android:text="@string/WordList"
                 android:textColor="@color/defaultSoftTextColor" />
@@ -230,21 +231,20 @@
         android:layout_width="80dp"
         android:layout_height="60dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:background="@color/defaultButtonColor"
         android:onClick="startNewGame"
         android:text="@string/NewGame"
         android:textColor="@color/defaultHardTextColor"
-        android:textSize="10sp"
+        android:textSize="11sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:background="@color/defaultButtonColor"
         android:id="@+id/Shuffle_Button_Home"
         android:layout_width="100dp"
-        android:layout_height="40dp"
+        android:layout_height="48dp"
+        android:background="@color/defaultButtonColor"
         android:onClick="shuffleLetters"
         android:text="@string/ButtonShuffle"
         android:textColor="@color/defaultHardTextColor"
@@ -256,7 +256,7 @@
     <Button
         android:id="@+id/Submit_Button_Home"
         android:layout_width="100dp"
-        android:layout_height="40dp"
+        android:layout_height="48dp"
         android:layout_marginTop="138dp"
         android:layout_marginBottom="32dp"
         android:background="@color/defaultButtonColor"
@@ -273,7 +273,7 @@
     <Button
         android:id="@+id/Erase_Button_Home"
         android:layout_width="100dp"
-        android:layout_height="40dp"
+        android:layout_height="48dp"
         android:layout_marginTop="138dp"
         android:layout_marginBottom="32dp"
         android:background="@color/defaultButtonColor"

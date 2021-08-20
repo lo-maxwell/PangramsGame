@@ -55,7 +55,7 @@
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_main_menu_navigation">MainMenuNavigation</string>
-    <string name="ButtonDeleteSave">Delete Save File</string>
+    <string name="ButtonDeleteSave">Erase Saved Data</string>
     <string name="menu_settings">Settings</string>
     <string name="SettingsSoundLabel">Music Volume</string>
     <string name="SettingsWordListLabel">Word List</string>
@@ -67,6 +67,17 @@
     <string name="SettingsAdvertisementsLabel">Enable Ads</string>
     <string name="SettingsInfoButtonImage">Question Mark</string>
     <string name="SettingsCredits" >
+        &lt;b>CREDITS&lt;/b>&lt;br>
+        &lt;u>Code and Game Design&lt;/u>&lt;br>
+        Maxwell Lo&lt;br>
+        &lt;u>Music&lt;/u>&lt;br>
+        \"A Very Brady Special\" by Kevin MacLeod (&lt;a href="https://incompetech.com/">incompetech.com&lt;/a>)&lt;br>
+        Licensed under Creative Commons: By Attribution 4.0 License&lt;br>
+        &lt;a href="http://creativecommons.org/licenses/by/4.0/">http://creativecommons.org/licenses/by/4.0/&lt;/a>&lt;br>
+        &lt;br>
+        Game inspired by the &lt;a href="https://www.nytimes.com/puzzles/spelling-bee">New York Times Spelling Bee&lt;/a>.
+    </string>
+    <string name="SettingsCreditsObsolete" >
         &lt;b>CREDITS&lt;/b>&lt;br>
         &lt;u>Code and Game Design&lt;/u>&lt;br>
         Maxwell Lo&lt;br>
