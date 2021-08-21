@@ -7,25 +7,25 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.example.firstapp.ui.home.HomeFragment"
+        android:name="com.pangramsgame.firstapp.ui.home.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/nav_user_stats"
-        android:name="com.example.firstapp.ui.user_stats.UserStatsFragment"
+        android:name="com.pangramsgame.firstapp.ui.user_stats.UserStatsFragment"
         android:label="@string/menu_user_stats"
         tools:layout="@layout/fragment_user_stats" />
 
     <fragment
         android:id="@+id/nav_achievements"
-        android:name="com.example.firstapp.ui.achievements.AchievementFragment"
+        android:name="com.pangramsgame.firstapp.ui.achievements.AchievementFragment"
         android:label="@string/menu_achievements"
         tools:layout="@layout/fragment_achievements" />
 
     <fragment
         android:id="@+id/nav_settings"
-        android:name="com.example.firstapp.ui.settings.SettingsFragment"
+        android:name="com.pangramsgame.firstapp.ui.settings.SettingsFragment"
         android:label="@string/menu_settings"
         tools:layout="@layout/fragment_settings" />
 

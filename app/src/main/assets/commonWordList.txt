@@ -10796,6 +10796,8 @@ flickers
 flicking
 flicks
 flies
+flier
+fliers
 flight
 flighted
 flighting
@@ -22170,6 +22172,9 @@ ratted
 ratter
 ratters
 ratting
+rattle
+rattled
+rattles
 rattly
 rave
 raven
