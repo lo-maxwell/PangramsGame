@@ -1,6 +1,7 @@
 package com.pangramsgame.firstapp.ui.settings;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
@@ -17,6 +18,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -46,6 +49,7 @@ public class SettingsFragment extends Fragment {
     private ImageButton wordListExplanation;
     private ImageButton nightModeExplanation;
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         settingsViewModel =
@@ -61,7 +65,7 @@ public class SettingsFragment extends Fragment {
 
         readSaveFile(SettingsFragment.this.getActivity());
         ((TextView)root.findViewById(R.id.Credits_Text_View)).setMovementMethod(LinkMovementMethod.getInstance());
-        ((TextView)root.findViewById(R.id.Credits_Text_View)).setText(Html.fromHtml(getResources().getString(R.string.SettingsCredits)));
+        ((TextView)root.findViewById(R.id.Credits_Text_View)).setText(Html.fromHtml(getResources().getString(R.string.SettingsCredits), HtmlCompat.FROM_HTML_MODE_LEGACY));
         initializeViews(root);
 
         soundSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {

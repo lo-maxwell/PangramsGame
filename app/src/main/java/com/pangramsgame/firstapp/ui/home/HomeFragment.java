@@ -6,6 +6,7 @@ import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -23,6 +24,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -126,6 +128,7 @@ public class HomeFragment extends Fragment {
         super.onDestroy();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.Q)
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel =
@@ -193,7 +196,7 @@ public class HomeFragment extends Fragment {
         defaultAchievementButtonAnimation = ObjectAnimator.ofFloat(defaultAchievementButton, "translationX", 1);
         loadingBar = root.findViewById(R.id.Loading_Bar_Home);
         loadingBar.setVisibility(View.GONE);
-        loadingBar.getIndeterminateDrawable().setColorFilter(getResources().getColor(R.color.loadingBar), android.graphics.PorterDuff.Mode.MULTIPLY);
+        //loadingBar.getIndeterminateDrawable().setColorFilter(new BlendModeColorFilter((ContextCompat.getColor(mContext, R.color.loadingBar)), BlendMode.SRC_IN));
         pickingLetters = false;
 
         //Submit_Button_Home
@@ -711,7 +714,7 @@ public class HomeFragment extends Fragment {
                 pickLetterHandler.removeCallbacksAndMessages(null);
                 pickLetterHandler = null;
             }
-            pickLetterHandler = new Handler();
+            pickLetterHandler = new Handler(Looper.getMainLooper());
             pickLetterHandler.postDelayed(new Runnable() {
                 public void run() {
                     writeToFile("NEWPLAYER == FALSE\n", HomeFragment.this.getActivity(), "saveFile.txt");

@@ -8,8 +8,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -29,6 +30,14 @@ public class AchievementFragment extends Fragment {
 
     private AchievementViewModel achievementViewModel;
     private static ArrayList<String> userAchievementFileStrings = new ArrayList<String>();
+    private Fragment achievementFragment;
+    private Context mContext;
+
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mContext = getActivity();
+        achievementFragment = this;
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -53,101 +62,85 @@ public class AchievementFragment extends Fragment {
             tempAchievementTitle = (TextView) root.findViewById(R.id.First_Pangram_Title_Text_Achievements);
             tempAchievementDetails = (TextView) root.findViewById(R.id.First_Pangram_Details_Text_Achievements);
 
-            tempAchievementImage.setImageResource(android.R.drawable.btn_star_big_on);
-            tempAchievementTitle.setTextColor(getResources().getColor(R.color.achievementTitleText));
-            tempAchievementDetails.setTextColor(getResources().getColor(R.color.achievementDetailText));
+            setAchievementColors(tempAchievementImage, tempAchievementTitle, tempAchievementDetails);
         }
         if (userAchievementFileStrings.contains("10 WORDS!")) {
             tempAchievementImage = (ImageView) root.findViewById(R.id.Word_Progress_10_Image_Achievements);
             tempAchievementTitle = (TextView) root.findViewById(R.id.Word_Progress_10_Title_Text_Achievements);
             tempAchievementDetails = (TextView) root.findViewById(R.id.Word_Progress_10_Details_Text_Achievements);
 
-            tempAchievementImage.setImageResource(android.R.drawable.btn_star_big_on);
-            tempAchievementTitle.setTextColor(getResources().getColor(R.color.achievementTitleText));
-            tempAchievementDetails.setTextColor(getResources().getColor(R.color.achievementDetailText));
+            setAchievementColors(tempAchievementImage, tempAchievementTitle, tempAchievementDetails);
         }
         if (userAchievementFileStrings.contains("25 WORDS!")) {
             tempAchievementImage = (ImageView) root.findViewById(R.id.Word_Progress_25_Image_Achievements);
             tempAchievementTitle = (TextView) root.findViewById(R.id.Word_Progress_25_Title_Text_Achievements);
             tempAchievementDetails = (TextView) root.findViewById(R.id.Word_Progress_25_Details_Text_Achievements);
 
-            tempAchievementImage.setImageResource(android.R.drawable.btn_star_big_on);
-            tempAchievementTitle.setTextColor(getResources().getColor(R.color.achievementTitleText));
-            tempAchievementDetails.setTextColor(getResources().getColor(R.color.achievementDetailText));
+            setAchievementColors(tempAchievementImage, tempAchievementTitle, tempAchievementDetails);
         }
         if (userAchievementFileStrings.contains("50 WORDS!")) {
             tempAchievementImage = (ImageView) root.findViewById(R.id.Word_Progress_50_Image_Achievements);
             tempAchievementTitle = (TextView) root.findViewById(R.id.Word_Progress_50_Title_Text_Achievements);
             tempAchievementDetails = (TextView) root.findViewById(R.id.Word_Progress_50_Details_Text_Achievements);
 
-            tempAchievementImage.setImageResource(android.R.drawable.btn_star_big_on);
-            tempAchievementTitle.setTextColor(getResources().getColor(R.color.achievementTitleText));
-            tempAchievementDetails.setTextColor(getResources().getColor(R.color.achievementDetailText));
+            setAchievementColors(tempAchievementImage, tempAchievementTitle, tempAchievementDetails);
         }
         if (userAchievementFileStrings.contains("LONG WORD!")) {
             tempAchievementImage = (ImageView) root.findViewById(R.id.Longest_Word_7_Image_Achievements);
             tempAchievementTitle = (TextView) root.findViewById(R.id.Longest_Word_7_Title_Text_Achievements);
             tempAchievementDetails = (TextView) root.findViewById(R.id.Longest_Word_7_Details_Text_Achievements);
 
-            tempAchievementImage.setImageResource(android.R.drawable.btn_star_big_on);
-            tempAchievementTitle.setTextColor(getResources().getColor(R.color.achievementTitleText));
-            tempAchievementDetails.setTextColor(getResources().getColor(R.color.achievementDetailText));
+            setAchievementColors(tempAchievementImage, tempAchievementTitle, tempAchievementDetails);
         }
         if (userAchievementFileStrings.contains("VERY LONG WORD!")) {
             tempAchievementImage = (ImageView) root.findViewById(R.id.Longest_Word_9_Image_Achievements);
             tempAchievementTitle = (TextView) root.findViewById(R.id.Longest_Word_9_Title_Text_Achievements);
             tempAchievementDetails = (TextView) root.findViewById(R.id.Longest_Word_9_Details_Text_Achievements);
 
-            tempAchievementImage.setImageResource(android.R.drawable.btn_star_big_on);
-            tempAchievementTitle.setTextColor(getResources().getColor(R.color.achievementTitleText));
-            tempAchievementDetails.setTextColor(getResources().getColor(R.color.achievementDetailText));
+            setAchievementColors(tempAchievementImage, tempAchievementTitle, tempAchievementDetails);
         }
         if (userAchievementFileStrings.contains("SUPER LONG WORD!")) {
             tempAchievementImage = (ImageView) root.findViewById(R.id.Longest_Word_11_Image_Achievements);
             tempAchievementTitle = (TextView) root.findViewById(R.id.Longest_Word_11_Title_Text_Achievements);
             tempAchievementDetails = (TextView) root.findViewById(R.id.Longest_Word_11_Details_Text_Achievements);
 
-            tempAchievementImage.setImageResource(android.R.drawable.btn_star_big_on);
-            tempAchievementTitle.setTextColor(getResources().getColor(R.color.achievementTitleText));
-            tempAchievementDetails.setTextColor(getResources().getColor(R.color.achievementDetailText));
+            setAchievementColors(tempAchievementImage, tempAchievementTitle, tempAchievementDetails);
         }
         if (userAchievementFileStrings.contains("RIDICULOUSLY LONG WORD!")) {
             tempAchievementImage = (ImageView) root.findViewById(R.id.Longest_Word_13_Image_Achievements);
             tempAchievementTitle = (TextView) root.findViewById(R.id.Longest_Word_13_Title_Text_Achievements);
             tempAchievementDetails = (TextView) root.findViewById(R.id.Longest_Word_13_Details_Text_Achievements);
 
-            tempAchievementImage.setImageResource(android.R.drawable.btn_star_big_on);
-            tempAchievementTitle.setTextColor(getResources().getColor(R.color.achievementTitleText));
-            tempAchievementDetails.setTextColor(getResources().getColor(R.color.achievementDetailText));
+            setAchievementColors(tempAchievementImage, tempAchievementTitle, tempAchievementDetails);
         }
         if (userAchievementFileStrings.contains("QUICK AS LIGHTNING!")) {
             tempAchievementImage = (ImageView) root.findViewById(R.id.Speed_Demon_1_Image_Achievements);
             tempAchievementTitle = (TextView) root.findViewById(R.id.Speed_Demon_1_Title_Text_Achievements);
             tempAchievementDetails = (TextView) root.findViewById(R.id.Speed_Demon_1_Details_Text_Achievements);
 
-            tempAchievementImage.setImageResource(android.R.drawable.btn_star_big_on);
-            tempAchievementTitle.setTextColor(getResources().getColor(R.color.achievementTitleText));
-            tempAchievementDetails.setTextColor(getResources().getColor(R.color.achievementDetailText));
+            setAchievementColors(tempAchievementImage, tempAchievementTitle, tempAchievementDetails);
         }
         if (userAchievementFileStrings.contains("SPEED DEMON!")) {
             tempAchievementImage = (ImageView) root.findViewById(R.id.Speed_Demon_2_Image_Achievements);
             tempAchievementTitle = (TextView) root.findViewById(R.id.Speed_Demon_2_Title_Text_Achievements);
             tempAchievementDetails = (TextView) root.findViewById(R.id.Speed_Demon_2_Details_Text_Achievements);
 
-            tempAchievementImage.setImageResource(android.R.drawable.btn_star_big_on);
-            tempAchievementTitle.setTextColor(getResources().getColor(R.color.achievementTitleText));
-            tempAchievementDetails.setTextColor(getResources().getColor(R.color.achievementDetailText));
+            setAchievementColors(tempAchievementImage, tempAchievementTitle, tempAchievementDetails);
         }
         if (userAchievementFileStrings.contains("PRETTY FUN!")) {
             tempAchievementImage = (ImageView) root.findViewById(R.id.Playtime_Image_Achievements);
             tempAchievementTitle = (TextView) root.findViewById(R.id.Playtime_Title_Text_Achievements);
             tempAchievementDetails = (TextView) root.findViewById(R.id.Playtime_Details_Text_Achievements);
 
-            tempAchievementImage.setImageResource(android.R.drawable.btn_star_big_on);
-            tempAchievementTitle.setTextColor(getResources().getColor(R.color.achievementTitleText));
-            tempAchievementDetails.setTextColor(getResources().getColor(R.color.achievementDetailText));
+            setAchievementColors(tempAchievementImage, tempAchievementTitle, tempAchievementDetails);
         }
         return root;
+    }
+
+    private void setAchievementColors(ImageView image, TextView title, TextView details) {
+        image.setImageResource(android.R.drawable.btn_star_big_on);
+        title.setTextColor(ContextCompat.getColor(mContext, R.color.achievementTitleText));
+        details.setTextColor(ContextCompat.getColor(mContext, R.color.achievementDetailText));
     }
 
     private void readSaveFile (Context context) {
