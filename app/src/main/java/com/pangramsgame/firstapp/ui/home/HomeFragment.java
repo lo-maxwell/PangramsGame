@@ -1069,8 +1069,9 @@ public class HomeFragment extends Fragment {
             maxScore = 0;
 
             ArrayList<String> tempArrayList = new ArrayList<>();
+            System.out.println("DEBUG: preloadfilestrings " + preLoadFileStrings);
             if (preLoadFileStrings.size() != 0) {
-//                System.out.println("DEBUG: preloadfilestrings " + preLoadFileStrings);
+                //System.out.println("DEBUG: preloadfilestrings " + preLoadFileStrings);
                 for (int i = 1; i < preLoadFileStrings.size(); i++) {
                     tempArrayList.add(preLoadFileStrings.get(i));
                 }
