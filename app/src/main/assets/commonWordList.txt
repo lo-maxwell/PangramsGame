@@ -380,6 +380,7 @@ admins
 admiral
 admirals
 admire
+admired
 admires
 admission
 admissions
