@@ -113,6 +113,8 @@ public class HomeFragment extends Fragment {
     private static ObjectAnimator defaultAchievementButtonAnimation;
     private Context mContext;
     private final Boolean boolCheatEnabled = true;
+    private Handler pickLetterHandler;
+    private Boolean pickingLetters;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -192,6 +194,7 @@ public class HomeFragment extends Fragment {
         loadingBar = root.findViewById(R.id.Loading_Bar_Home);
         loadingBar.setVisibility(View.GONE);
         loadingBar.getIndeterminateDrawable().setColorFilter(getResources().getColor(R.color.loadingBar), android.graphics.PorterDuff.Mode.MULTIPLY);
+        pickingLetters = false;
 
         //Submit_Button_Home
         submitButton.setOnClickListener(new OnClickListener() {
@@ -704,7 +707,12 @@ public class HomeFragment extends Fragment {
                     });
                 }
             }).start();
-            new Thread(new Runnable() {
+            if (pickLetterHandler != null) {
+                pickLetterHandler.removeCallbacksAndMessages(null);
+                pickLetterHandler = null;
+            }
+            pickLetterHandler = new Handler();
+            pickLetterHandler.postDelayed(new Runnable() {
                 public void run() {
                     writeToFile("NEWPLAYER == FALSE\n", HomeFragment.this.getActivity(), "saveFile.txt");
                     pickLetters();
@@ -722,7 +730,7 @@ public class HomeFragment extends Fragment {
 
                     setLetters();
                 }
-            }).start();
+            }, 100);
         }
 
         //preLoadFile
@@ -1011,59 +1019,219 @@ public class HomeFragment extends Fragment {
     }
 
     private void pickLetters() {
-        //Uses the 7 letters saved in savefilestrings to create word lists
-        final Button[] tempButtons = {textButton1, textButton2, textButton3, textButton4, textButton5, textButton6, textButton7};
+        if (!pickingLetters) {
+            pickingLetters = true;
+            System.out.println("DEBUG: Starting pickLetters");
+            //Uses the 7 letters saved in savefilestrings to create word lists
+            final Button[] tempButtons = {textButton1, textButton2, textButton3, textButton4, textButton5, textButton6, textButton7};
 
-        //Selects the saved 7 letters
-        final String[] alphabet = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
-        String[] usedLetters = {"", "", "", "", "", "", ""};
-        for (int i = 0; i < 7; i++) {
-            usedLetters[i] = saveFileStrings.get(i + 1);
-        }
-
-        StringBuilder tempString = new StringBuilder();
-        for (String usedLetter : usedLetters) tempString.append(usedLetter).append("\n");
-        appendToFile(tempString.toString(), HomeFragment.this.getActivity(), "saveFile.txt");
-
-        possibleWords.clear();
-        submittedWords.clear();
-
-        if (saveFileStrings.size() > 9) {
-            for (int i = 9; i < saveFileStrings.size(); i++) {
-                submittedWords.add(saveFileStrings.get(i));
-            }
-        }
-
-        if (saveFileStrings.size() > 8) {
-            score = parseInt(saveFileStrings.get(8));
-        } else {
-            score = 0;
-            saveFileStrings.set(8, "0");
-        }
-
-        for (int j = 0; j < submittedWords.size(); j++) {
-            boolean containsAll = true;
+            //Selects the saved 7 letters
+            final String[] alphabet = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
+            String[] usedLetters = {"", "", "", "", "", "", ""};
             for (int i = 0; i < 7; i++) {
-                if (!(submittedWords.get(j).contains(tempButtons[i].getText().toString()))) {
-                    containsAll = false;
+                usedLetters[i] = saveFileStrings.get(i + 1);
+            }
+
+            StringBuilder tempString = new StringBuilder();
+            for (String usedLetter : usedLetters) tempString.append(usedLetter).append("\n");
+            appendToFile(tempString.toString(), HomeFragment.this.getActivity(), "saveFile.txt");
+
+            possibleWords.clear();
+            submittedWords.clear();
+
+            if (saveFileStrings.size() > 9) {
+                for (int i = 9; i < saveFileStrings.size(); i++) {
+                    submittedWords.add(saveFileStrings.get(i));
                 }
             }
-            if (containsAll) {
-                wordList.append(submittedWords.get(j) + " (+" + 2 * submittedWords.get(j).length() + ")\n");
-            } else {
-                wordList.append(submittedWords.get(j) + " (+" + submittedWords.get(j).length() + ")\n");
-            }
-        }
-        maxScore = 0;
 
-        if (preLoadFileStrings.size() != 0) {
-            for (int i = 1; i < preLoadFileStrings.size(); i++) {
-                possibleWords.add(preLoadFileStrings.get(i));
+            //Sets current score to the stored value, or 0 by default
+            if (saveFileStrings.size() > 8) {
+                score = parseInt(saveFileStrings.get(8));
+            } else {
+                score = 0;
+                saveFileStrings.set(8, "0");
             }
-            maxScore = parseInt(preLoadFileStrings.get(0));
-        } else {
-            //Should never run unless there is a file error
+
+            for (int j = 0; j < submittedWords.size(); j++) {
+                boolean containsAll = true;
+                for (int i = 0; i < 7; i++) {
+                    if (!(submittedWords.get(j).contains(tempButtons[i].getText().toString()))) {
+                        containsAll = false;
+                    }
+                }
+                if (containsAll) {
+                    wordList.append(submittedWords.get(j) + " (+" + 2 * submittedWords.get(j).length() + ")\n");
+                } else {
+                    wordList.append(submittedWords.get(j) + " (+" + submittedWords.get(j).length() + ")\n");
+                }
+            }
+            maxScore = 0;
+
+            ArrayList<String> tempArrayList = new ArrayList<>();
+            if (preLoadFileStrings.size() != 0) {
+//                System.out.println("DEBUG: preloadfilestrings " + preLoadFileStrings);
+                for (int i = 1; i < preLoadFileStrings.size(); i++) {
+                    tempArrayList.add(preLoadFileStrings.get(i));
+                }
+                maxScore = parseInt(preLoadFileStrings.get(0));
+            } else {
+                //Should never run unless there is a file error
+                BufferedReader reader = null;
+                try {
+                    String filename;
+                    try {
+                        if (Boolean.parseBoolean(settingsFileStrings.get(1))) {
+                            filename = "scrabbleWordList.txt";
+                        } else {
+                            filename = "commonWordList.txt";
+                        }
+                    } catch (IndexOutOfBoundsException | NullPointerException e) {
+                        filename = "scrabbleWordList.txt";
+                    }
+                    reader = new BufferedReader(
+                            new InputStreamReader(getActivity().getAssets().open(filename)));
+                    // do reading, usually loop until end of file reading
+                    String mLine;
+                    while ((mLine = reader.readLine()) != null) {
+                        //process line
+                        String data = mLine.toUpperCase();
+                        boolean isPossibleWord = true;
+                        for (int i = 0; i < 26; i++) {
+                            if (!(data.contains(usedLetters[3])) || (data.length() <= 2) || !(contains(usedLetters, alphabet[i])) && data.contains(alphabet[i])) {
+                                isPossibleWord = false;
+                            }
+                        }
+                        if (isPossibleWord) {
+                            possibleWords.add(data);
+                            boolean containsAll = true;
+                            for (int i = 0; i < 7; i++) {
+                                if (!(data.contains(tempButtons[i].getText().toString()))) {
+                                    containsAll = false;
+                                    break;
+                                }
+                            }
+                            if (containsAll) {
+                                maxScore += 2 * data.length();
+                            } else {
+                                maxScore += data.length();
+                            }
+                        }
+                    }
+                    writeToFile(maxScore + "\n", HomeFragment.this.getActivity(), "preLoadFile.txt");
+                    tempString = new StringBuilder();
+                    for (int i = 0; i < possibleWords.size(); i++) {
+                        tempString.append(possibleWords.get(i)).append("\n");
+                    }
+                    appendToFile(tempString.toString(), HomeFragment.this.getActivity(), "preLoadFile.txt");
+                } catch (IOException e) {
+                    //log the exception
+                    System.out.println("Error reading preloadFile");
+                } finally {
+                    if (reader != null) {
+                        try {
+                            reader.close();
+                        } catch (IOException e) {
+                            System.out.println("Error closing reader while after reading preloadFile");
+                        }
+                    }
+                }
+            }
+
+            if (possibleWords.size() == 0) {
+                possibleWords.addAll(tempArrayList);
+                System.out.println("DEBUG: tempArrayList " + tempArrayList);
+            }
+            newLettersStrings.clear();
+            for (int i = 1; i < 8; i++) {
+                newLettersStrings.add(saveFileStrings.get(i));
+            }
+            newLettersStrings.add(Integer.toString(score));
+            newLettersStrings.add(Integer.toString(maxScore));
+            pickingLetters = false;
+        }
+        else {
+            System.out.println("DEBUG: Tried to start new pickLetters while already running.");
+        }
+    }
+
+    private void pickRandomLetters() {
+        if (!pickingLetters) {
+            pickingLetters = true;
+            System.out.println("DEBUG: Starting pickrandomletters");
+            //From a list of all words with exactly 7 different letters, pick a random one to make the set of buttons
+            final String[] alphabet = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
+            String[] usedLetters = {"", "", "", "", "", "", ""};
+            Random rand = new Random();
+
             BufferedReader reader = null;
+            ArrayList<String> pangramList = new ArrayList<>();
+            try {
+                String filename;
+                try {
+                    if (Boolean.parseBoolean(settingsFileStrings.get(1))) {
+                        filename = "scrabblePangramList.txt";
+                    } else {
+                        filename = "commonPangramList.txt";
+                    }
+                } catch (IndexOutOfBoundsException | NullPointerException e) {
+                    filename = "scrabblePangramList.txt";
+                }
+                reader = new BufferedReader(
+                        new InputStreamReader(getActivity().getAssets().open(filename)));
+
+                // do reading, usually loop until end of file reading
+                String mLine;
+                while ((mLine = reader.readLine()) != null) {
+                    //process line
+                    String data = mLine.toUpperCase();
+                    pangramList.add(data);
+                }
+                int randInt = rand.nextInt(pangramList.size());
+                String pangramWord = pangramList.get(randInt).toUpperCase();
+                int filledLetters = 0;
+                //Lazy method of getting random order of the 7 letters
+                //Technically possible for this to become an infinite loop but unlikely
+                while (true) {
+                    randInt = rand.nextInt(pangramWord.length());
+                    while (!(contains(usedLetters, pangramWord.substring(randInt, randInt + 1)))) {
+                        usedLetters[filledLetters] = pangramWord.substring(randInt, randInt + 1);
+                        saveFileStrings.set(filledLetters + 1, usedLetters[filledLetters]);
+                        filledLetters += 1;
+                    }
+                    if (filledLetters == 7) {
+                        break;
+                    }
+                }
+            } catch (IOException e) {
+                //log the exception
+                System.out.println("Error while reading preloadFile");
+            } finally {
+                if (reader != null) {
+                    try {
+                        reader.close();
+                    } catch (IOException e) {
+                        System.out.println("Error trying to close preloadFile");
+                    }
+                }
+            }
+            possibleWords.clear();
+            submittedWords.clear();
+
+            try {
+                if (saveFileStrings.size() > 9) {
+                    saveFileStrings.subList(9, saveFileStrings.size()).clear();
+                }
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("No words found in saveFileStrings");
+            }
+
+            score = 0;
+            maxScore = 0;
+            int tempScore = 0;
+
+            reader = null;
+            ArrayList<String> tempArrayList = new ArrayList<>();
             try {
                 String filename;
                 try {
@@ -1072,11 +1240,12 @@ public class HomeFragment extends Fragment {
                     } else {
                         filename = "commonWordList.txt";
                     }
-                } catch (IndexOutOfBoundsException | NullPointerException e) {
+                } catch (NullPointerException e) {
                     filename = "scrabbleWordList.txt";
                 }
                 reader = new BufferedReader(
                         new InputStreamReader(getActivity().getAssets().open(filename)));
+
                 // do reading, usually loop until end of file reading
                 String mLine;
                 while ((mLine = reader.readLine()) != null) {
@@ -1089,202 +1258,73 @@ public class HomeFragment extends Fragment {
                         }
                     }
                     if (isPossibleWord) {
-                        possibleWords.add(data);
-
+                        tempArrayList.add(data);
                         boolean containsAll = true;
                         for (int i = 0; i < 7; i++) {
-                            if (!(data.contains(tempButtons[i].getText().toString()))) {
+                            if (!(data.contains(usedLetters[i]))) {
                                 containsAll = false;
                                 break;
                             }
                         }
                         if (containsAll) {
-                            maxScore += 2 * data.length();
+                            tempScore += 2 * data.length();
                         } else {
-                            maxScore += data.length();
+                            tempScore += data.length();
                         }
-
                     }
-
                 }
-                writeToFile(maxScore + "\n", HomeFragment.this.getActivity(), "preLoadFile.txt");
-                tempString = new StringBuilder();
+                //Hack to fix a bug with multiple threads running pickRandomLetters() at once, causing conflicts in the word pool
+                possibleWords.clear();
+                if (possibleWords.size() == 0) {
+                    possibleWords.addAll(tempArrayList);
+                    System.out.println("DEBUG: tempArrayList " + tempArrayList);
+                    maxScore = tempScore;
+                }
+//            possibleWords.clear();
+//            maxScore = tempScore;
+//            for (String s : tempArrayList) {
+//                if (!possibleWords.contains(s)) {
+//                    possibleWords.add(s);
+//                }
+//            }
+                writeToFile(Integer.toString(maxScore) + "\n", HomeFragment.this.getActivity(), "preLoadFile.txt");
+                StringBuilder tempString = new StringBuilder();
                 for (int i = 0; i < possibleWords.size(); i++) {
-                    tempString.append(possibleWords.get(i)).append("\n");
+                    try {
+                        tempString.append(possibleWords.get(i)).append("\n");
+                    } catch (IndexOutOfBoundsException e) {
+                        System.out.println("DEBUG: IndexOutOfBounds Error in pickRandomLetters on index " + i);
+                        break;
+                    }
                 }
                 appendToFile(tempString.toString(), HomeFragment.this.getActivity(), "preLoadFile.txt");
             } catch (IOException e) {
                 //log the exception
-                System.out.println("Error reading preloadFile");
+                System.out.println("Error while reading preloadFile");
             } finally {
                 if (reader != null) {
                     try {
                         reader.close();
                     } catch (IOException e) {
-                        System.out.println("Error closing reader while after reading preloadFile");
+                        System.out.println("Error trying to close preloadFile");
                     }
                 }
             }
+
+            System.out.println("DEBUG: possiblewords: " + possibleWords);
+
+            newLettersStrings.clear();
+            for (int i = 1; i < 8; i++) {
+                newLettersStrings.add(saveFileStrings.get(i));
+            }
+            System.out.println("DEBUG: newlettersstrings: " + newLettersStrings);
+            newLettersStrings.add(Integer.toString(score));
+            newLettersStrings.add(Integer.toString(maxScore));
+            pickingLetters = false;
         }
-
-        newLettersStrings.clear();
-        for (int i = 1; i < 8; i++) {
-            newLettersStrings.add(saveFileStrings.get(i));
+        else {
+            System.out.println("DEBUG: Tried to start new pickRandomLetters while already running.");
         }
-        newLettersStrings.add(Integer.toString(score));
-        newLettersStrings.add(Integer.toString(maxScore));
-    }
-
-    private void pickRandomLetters() {
-        System.out.println("DEBUG: Starting pickrandomletters");
-        //From a list of all words with exactly 7 different letters, pick a random one to make the set of buttons
-        final String[] alphabet = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
-        String[] usedLetters = {"", "", "", "", "", "", ""};
-        Random rand = new Random();
-
-        BufferedReader reader = null;
-        ArrayList<String> pangramList = new ArrayList<>();
-        try {
-            String filename;
-            try {
-                if (Boolean.parseBoolean(settingsFileStrings.get(1))) {
-                    filename = "scrabblePangramList.txt";
-                } else {
-                    filename = "commonPangramList.txt";
-                }
-            } catch (IndexOutOfBoundsException | NullPointerException e) {
-                filename = "scrabblePangramList.txt";
-            }
-            reader = new BufferedReader(
-                    new InputStreamReader(getActivity().getAssets().open(filename)));
-
-            // do reading, usually loop until end of file reading
-            String mLine;
-            while ((mLine = reader.readLine()) != null) {
-                //process line
-                String data = mLine.toUpperCase();
-                pangramList.add(data);
-            }
-            int randInt = rand.nextInt(pangramList.size());
-            String pangramWord = pangramList.get(randInt).toUpperCase();
-            int filledLetters = 0;
-            //Lazy method of getting random order of the 7 letters
-            //Technically possible for this to become an infinite loop but unlikely
-            while (true) {
-                randInt = rand.nextInt(pangramWord.length());
-                while (!(contains(usedLetters, pangramWord.substring(randInt, randInt + 1)))) {
-                    usedLetters[filledLetters] = pangramWord.substring(randInt, randInt + 1);
-                    saveFileStrings.set(filledLetters + 1, usedLetters[filledLetters]);
-                    filledLetters += 1;
-                }
-                if (filledLetters == 7) {
-                    break;
-                }
-            }
-        } catch (IOException e) {
-            //log the exception
-            System.out.println("Error while reading preloadFile");
-        } finally {
-            if (reader != null) {
-                try {
-                    reader.close();
-                } catch (IOException e) {
-                    System.out.println("Error trying to close preloadFile");
-                }
-            }
-        }
-        possibleWords.clear();
-        submittedWords.clear();
-
-        try {
-            if (saveFileStrings.size() > 9) {
-                saveFileStrings.subList(9, saveFileStrings.size()).clear();
-            }
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println("No words found in saveFileStrings");
-        }
-
-        score = 0;
-        maxScore = 0;
-        int tempScore = 0;
-
-        reader = null;
-        ArrayList<String> tempArrayList = new ArrayList<>();
-        try {
-            String filename;
-            try {
-                if (Boolean.parseBoolean(settingsFileStrings.get(1))) {
-                    filename = "scrabbleWordList.txt";
-                } else {
-                    filename = "commonWordList.txt";
-                }
-            } catch (NullPointerException e) {
-                filename = "scrabbleWordList.txt";
-            }
-            reader = new BufferedReader(
-                    new InputStreamReader(getActivity().getAssets().open(filename)));
-
-            // do reading, usually loop until end of file reading
-            String mLine;
-            while ((mLine = reader.readLine()) != null) {
-                //process line
-                String data = mLine.toUpperCase();
-                boolean isPossibleWord = true;
-                for (int i = 0; i < 26; i++) {
-                    if (!(data.contains(usedLetters[3])) || (data.length() <= 2) || !(contains(usedLetters, alphabet[i])) && data.contains(alphabet[i])) {
-                        isPossibleWord = false;
-                    }
-                }
-                if (isPossibleWord) {
-                    tempArrayList.add(data);
-                    boolean containsAll = true;
-                    for (int i = 0; i < 7; i++) {
-                        if (!(data.contains(usedLetters[i]))) {
-                            containsAll = false;
-                            break;
-                        }
-                    }
-                    if (containsAll) {
-                        tempScore += 2 * data.length();
-                    } else {
-                        tempScore += data.length();
-                    }
-                }
-            }
-            //Hack to fix a bug with multiple threads running pickRandomLetters() at once, causing conflicts in the word pool
-            possibleWords.clear();
-            if (possibleWords.size() == 0) {
-                possibleWords.addAll(tempArrayList);
-                maxScore = tempScore;
-            }
-            writeToFile(Integer.toString(maxScore) + "\n", HomeFragment.this.getActivity(), "preLoadFile.txt");
-            String tempString = "";
-            for (int i = 0; i < possibleWords.size(); i++) {
-                tempString += possibleWords.get(i) + "\n";
-            }
-            appendToFile(tempString, HomeFragment.this.getActivity(), "preLoadFile.txt");
-        } catch (IOException e) {
-            //log the exception
-            System.out.println("Error while reading preloadFile");
-        } finally {
-            if (reader != null) {
-                try {
-                    reader.close();
-                } catch (IOException e) {
-                    System.out.println("Error trying to close preloadFile");
-                }
-            }
-        }
-
-        System.out.println("DEBUG: possiblewords: " + possibleWords);
-
-        newLettersStrings.clear();
-        for (int i = 1; i < 8; i++) {
-            newLettersStrings.add(saveFileStrings.get(i));
-        }
-        System.out.println("DEBUG: newlettersstrings: " + newLettersStrings);
-        newLettersStrings.add(Integer.toString(score));
-        newLettersStrings.add(Integer.toString(maxScore));
     }
 
     private void setLettersToBlank() {
