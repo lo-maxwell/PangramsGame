@@ -1,4 +1,4 @@
-## Pangrams
+## Pangrams Word Game
 
 ### App Description
 Button-based mostly fully functional word game inspired by the <a href = "https://www.nytimes.com/puzzles/spelling-bee">New York Times Spelling Bee</a>. Created in Android Studio using Java. 
