@@ -12,8 +12,8 @@ Settings page<br>In-game music<br>Night mode
 Download <a href = "https://github.com/lo-maxwell/PangramsGame/blob/master/app-debug.apk">here</a>.
 
 ### Gameplay screenshots
-![Gameplay screenshot 1](screenshots/1.jpg)
+<img src="screenshots/1.jpg" alt="gameplay screenshot 1" width="360" height="780" />
 
-![Gameplay screenshot 2](screenshots/2.jpg)
+<img src="screenshots/2.jpg" alt="gameplay screenshot 1" width="360" height="780" />
 
-![Gameplay screenshot 3](screenshots/3.jpg)
+<img src="screenshots/3.jpg" alt="gameplay screenshot 1" width="360" height="780" />
