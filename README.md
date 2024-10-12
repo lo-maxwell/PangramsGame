@@ -11,10 +11,9 @@ Settings page<br>In-game music<br>Night mode
 ### Most Recent APK
 Download <a href = "https://github.com/lo-maxwell/PangramsGame/blob/master/app-debug.apk">here</a>.
 
-### App Walk-through
+### Gameplay screenshots
+![Gameplay screenshot 1](screenshots/1.jpg)
 
-Gameplay video:<br>
-<img src="https://recordit.co/cMS5DtHyxn.gif" width=200><br>
+![Gameplay screenshot 2](screenshots/2.jpg)
 
-Other pages:<br>
-<img src="https://recordit.co/1p5cK89RsA.gif" width=200><br>
+![Gameplay screenshot 3](screenshots/3.jpg)
